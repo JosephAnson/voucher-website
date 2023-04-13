@@ -1,0 +1,43 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "yarn run lint --fix"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.7.13",
+    "@heroicons/vue": "^2.0.17",
+    "@nuxtjs/web-vitals": "^0.2.4",
+    "@unocss/nuxt": "^0.51.4",
+    "@unocss/reset": "^0.51.4",
+    "@vercel/analytics": "^0.1.11",
+    "@vueuse/core": "^9.13.0",
+    "@vueuse/nuxt": "^9.13.0",
+    "nuxt-schema-org": "^2.1.2",
+    "tailwindcss": "3.3.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.38.4",
+    "@iconify-json/carbon": "^1.1.16",
+    "@nuxt/devtools": "^0.4.0",
+    "@nuxt/image-edge": "^1.0.0-28008586.381b906",
+    "@nuxtjs/eslint-module": "^4.0.2",
+    "@nuxtjs/html-validator": "^1.2.4",
+    "@nuxtjs/i18n": "^8.0.0-beta.11",
+    "@nuxtjs/robots": "^3.0.0",
+    "@unlighthouse/nuxt": "^0.4.9",
+    "eslint": "^8.38.0",
+    "nuxt": "^3.4.1",
+    "nuxt-og-image": "^1.5.7",
+    "nuxt-simple-sitemap": "^2.4.11",
+    "sass": "^1.62.0",
+    "typescript": "^4.9.5",
+    "unocss": "^0.51.4"
+  }
+}
