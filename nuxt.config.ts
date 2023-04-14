@@ -50,7 +50,6 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     'nuxt-simple-sitemap',
     '@nuxtjs/eslint-module',
-    '@nuxtjs/web-vitals',
     '@nuxtjs/robots',
     'nuxt-schema-org',
     'nuxt-og-image',
