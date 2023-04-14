@@ -15,7 +15,7 @@ useSchemaOrg([
 </script>
 
 <template>
-  <div>
-    <NuxtWelcome />
-  </div>
+  <Nav />
+  <NuxtPage />
+  <Footer />
 </template>
