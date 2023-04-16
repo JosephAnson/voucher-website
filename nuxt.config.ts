@@ -54,6 +54,7 @@ export default defineNuxtConfig({
     'nuxt-schema-org',
     'nuxt-og-image',
     'nuxt-typed-router',
+    '@nuxtjs/supabase',
   ],
   plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
   srcDir: 'src/',
@@ -448,9 +449,9 @@ export default defineNuxtConfig({
     },
     ],
   },
-  webVitals: {
-    provider: 'vercel',
-  },
+  // webVitals: {
+  //  provider: 'vercel',
+  // },
   image: {
     screens: {
       'xs': 320,
@@ -464,5 +465,11 @@ export default defineNuxtConfig({
   },
   ogImage: {
     fonts: ['Source Sans Pro:400', 'Montserrat:700'],
+  },
+  pinia: {
+    autoImports: ['defineStore', ['defineStore', 'definePiniaStore']],
+  },
+  imports: {
+    dirs: ['services', 'store'],
   },
 })
