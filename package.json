@@ -9,7 +9,7 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "yarn run lint --fix",
-    "gen-types": "supabase gen types typescript --project-id \"tcqilgocqemuhfpezlwa\" --schema public > src/supabase.types.ts"
+    "gen-types": "supabase gen types typescript --project-id \"vdzjsjlcezebwpavsjif\" --schema public > src/supabase.types.ts"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.13",

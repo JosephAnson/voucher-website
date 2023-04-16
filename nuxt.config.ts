@@ -55,6 +55,7 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     'nuxt-typed-router',
     '@nuxtjs/supabase',
+    '@pinia/nuxt',
   ],
   plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
   srcDir: 'src/',
@@ -141,16 +142,18 @@ export default defineNuxtConfig({
     safelist: 'text-l text-xl text-2xl'.split(' '),
     preflights: [{
       layer: '_forms_css',
-      getCSS: ({ theme }) => {
-        const encodeSvg = svg => `data:image/svg+xml,${svg
-            .replace('<svg', (~svg.indexOf('xmlns') ? '<svg' : '<svg xmlns="http://www.w3.org/2000/svg"'))
-            .replace(/"/g, '\'')
-            .replace(/%/g, '%25')
-            .replace(/#/g, '%23')
-            .replace(/{/g, '%7B')
-            .replace(/}/g, '%7D')
-            .replace(/</g, '%3C')
-            .replace(/>/g, '%3E')}`
+      getCSS: ({ theme }: { theme: { colors: Record<string, Record<number, string>> } } & any) => {
+        const encodeSvg = (svg: string) => {
+          return `data:image/svg+xml,${svg
+              .replace('<svg', (~svg.indexOf('xmlns') ? '<svg' : '<svg xmlns="http://www.w3.org/2000/svg"'))
+              .replace(/"/g, '\'')
+              .replace(/%/g, '%25')
+              .replace(/#/g, '%23')
+              .replace(/{/g, '%7B')
+              .replace(/}/g, '%7D')
+              .replace(/</g, '%3C')
+              .replace(/>/g, '%3E')}`
+        }
 
         const gray = theme?.colors?.gray?.[500] ?? '#6b7280'
         const blue = theme?.colors?.blue?.[600] ?? '#2563eb'

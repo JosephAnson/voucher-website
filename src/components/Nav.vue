@@ -1,27 +1,20 @@
-<!--
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
 <script setup>
 import { Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { UserCircleIcon } from '@heroicons/vue/24/solid'
 
-const user = {
-  name: 'Chelsea Hagon',
-  email: 'chelsea.hagon@example.com',
-  imageUrl:
-      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
+const userStore = useUserStore()
+
+const user = await useSupabaseUser()
+
+await useAsyncData('profile', () => {
+  return userStore.fetchUser()
+}, {
+  watch: [user],
+})
+
+const loggedIn = computed(() => userStore.user.email && user.value)
+
 const navigation = [
   { name: 'Dashboard', href: '/', current: true },
   { name: 'Calendar', href: '#', current: false },
@@ -31,7 +24,6 @@ const navigation = [
 const userNavigation = [
   { name: 'Your Profile', to: '/account' },
   { name: 'Manage Codes', to: '/account' },
-  { name: 'Sign out', to: '/login' },
 ]
 </script>
 
@@ -82,6 +74,7 @@ const userNavigation = [
           <div class="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
             <!-- Profile dropdown -->
             <Menu
+              v-if="loggedIn"
               as="div"
               class="relative ml-5 flex-shrink-0"
             >
@@ -89,10 +82,16 @@ const userNavigation = [
                 <MenuButton class="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                   <span class="sr-only">Open user menu</span>
                   <img
+                    v-if="userStore.user.avatar_url"
                     class="h-8 w-8 rounded-full"
-                    :src="user.imageUrl"
+                    :src="userStore.user.avatar_url"
                     alt=""
                   >
+                  <UserCircleIcon
+                    v-else
+                    class="h-8 w-8 rounded-full"
+                    aria-hidden="true"
+                  />
                 </MenuButton>
               </div>
               <transition
@@ -117,17 +116,34 @@ const userNavigation = [
                       {{ item.name }}
                     </NuxtLink>
                   </MenuItem>
+                  <MenuItem>
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-gray-700"
+                      @click.prevent="userStore.signout"
+                    >
+                      Sign out
+                    </a>
+                  </MenuItem>
                 </MenuItems>
               </transition>
             </Menu>
 
             <NuxtLink
+              v-if="!loggedIn"
+              to="/login"
+              class="ml-6"
+            >
+              <Button theme="transparent">
+                Login
+              </Button>
+            </NuxtLink>
+
+            <NuxtLink
               to="/note/create"
               class="ml-6"
             >
-              <Button
-                href="#"
-              >
+              <Button>
                 New Code
               </Button>
             </NuxtLink>
@@ -154,27 +170,42 @@ const userNavigation = [
           <div class="mx-auto flex max-w-3xl items-center px-4 sm:px-6">
             <div class="flex-shrink-0">
               <img
+                v-if="userStore.user.avatar_url"
                 class="h-10 w-10 rounded-full"
-                :src="user.imageUrl"
+                :src="userStore.user.avatar_url"
                 alt=""
               >
+              <UserCircleIcon
+                v-else
+                class="h-10 w-10 rounded-full"
+                aria-hidden="true"
+              />
             </div>
             <div class="ml-3">
               <div class="text-base font-medium text-gray-800">
-                {{ user.name }}
+                {{ userStore.user.username }}
               </div>
               <div class="text-sm font-medium text-gray-500">
-                {{ user.email }}
+                {{ userStore.user.email }}
               </div>
             </div>
           </div>
           <div class="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
-            <a
+            <NuxtLink
               v-for="item in userNavigation"
               :key="item.name"
-              :href="item.href"
+              :to="item.to"
               class="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-            >{{ item.name }}</a>
+            >
+              {{ item.name }}
+            </NuxtLink>
+            <a
+              href="#"
+              class="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+              @click.prevent="userStore.signout"
+            >
+              Sign out
+            </a>
           </div>
         </div>
       </PopoverPanel>

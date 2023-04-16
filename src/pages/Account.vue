@@ -1,5 +1,10 @@
 <script setup>
-import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid'
+import { UserCircleIcon } from '@heroicons/vue/24/solid'
+
+const userStore = useUserStore()
+
+const username = ref(userStore.user.username)
+const avatarUrl = ref(userStore.user.avatar_url)
 </script>
 
 <template>
@@ -15,52 +20,65 @@ import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid'
               This information will be displayed publicly so be careful what you share.
             </p>
 
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div class="sm:col-span-4">
-                <label
-                  for="username"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >Username</label>
-                <div class="mt-2">
-                  <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                    <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">workcation.com/</span>
-                    <input
-                      id="username"
-                      type="text"
-                      name="username"
-                      autocomplete="username"
-                      class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      placeholder="janesmith"
-                    >
-                  </div>
-                </div>
-              </div>
+            <div class="mt-10">
+              <Field
+                label="Email address"
+                stacked
+                label-for="email"
+              >
+                <Input
+                  id="email"
+                  readonly
+                  :model-value="userStore.user.email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                />
+              </Field>
 
-              <div class="col-span-full">
-                <label
-                  for="about"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >About</label>
-                <div class="mt-2">
-                  <textarea
-                    id="about"
-                    name="about"
-                    rows="3"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-                <p class="mt-3 text-sm leading-6 text-gray-600">
-                  Write a few sentences about yourself.
-                </p>
-              </div>
+              <Field
+                label="Username"
+                stacked
+                label-for="username"
+              >
+                <Input
+                  id="username"
+                  v-model="username"
+                  type="text"
+                  name="username"
+                  autocomplete="username"
+                  placeholder="janesmith"
+                />
+              </Field>
 
-              <div class="col-span-full">
-                <label
-                  for="photo"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >Photo</label>
-                <div class="mt-2 flex items-center gap-x-3">
+              <Field
+                label="About"
+                stacked
+                label-for="about"
+                message="Write a few sentences about yourself."
+              >
+                <Input
+                  id="about"
+                  name="about"
+                  rows="3"
+                  type="textarea"
+                />
+              </Field>
+
+              <Field
+                label="Photo"
+                stacked
+                label-for="photo"
+              >
+                <div class="flex items-center gap-x-3">
+                  <img
+                    v-if="avatarUrl"
+                    class="h-10 w-10 rounded-full"
+                    :src="avatarUrl"
+                    alt=""
+                  >
                   <UserCircleIcon
+                    v-else
                     class="h-12 w-12 text-gray-300"
                     aria-hidden="true"
                   />
@@ -71,184 +89,7 @@ import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid'
                     Change
                   </button>
                 </div>
-              </div>
-
-              <div class="col-span-full">
-                <label
-                  for="cover-photo"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >Cover photo</label>
-                <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                  <div class="text-center">
-                    <PhotoIcon
-                      class="mx-auto h-12 w-12 text-gray-300"
-                      aria-hidden="true"
-                    />
-                    <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                      <label
-                        for="file-upload"
-                        class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                      >
-                        <span>Upload a file</span>
-                        <input
-                          id="file-upload"
-                          name="file-upload"
-                          type="file"
-                          class="sr-only"
-                        >
-                      </label>
-                      <p class="pl-1">
-                        or drag and drop
-                      </p>
-                    </div>
-                    <p class="text-xs leading-5 text-gray-600">
-                      PNG, JPG, GIF up to 10MB
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">
-              Personal Information
-            </h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600">
-              Use a permanent address where you can receive mail.
-            </p>
-
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div class="sm:col-span-3">
-                <label
-                  for="first-name"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >First name</label>
-                <div class="mt-2">
-                  <input
-                    id="first-name"
-                    type="text"
-                    name="first-name"
-                    autocomplete="given-name"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  >
-                </div>
-              </div>
-
-              <div class="sm:col-span-3">
-                <label
-                  for="last-name"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >Last name</label>
-                <div class="mt-2">
-                  <input
-                    id="last-name"
-                    type="text"
-                    name="last-name"
-                    autocomplete="family-name"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  >
-                </div>
-              </div>
-
-              <div class="sm:col-span-4">
-                <label
-                  for="email"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >Email address</label>
-                <div class="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  >
-                </div>
-              </div>
-
-              <div class="sm:col-span-3">
-                <label
-                  for="country"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >Country</label>
-                <div class="mt-2">
-                  <select
-                    id="country"
-                    name="country"
-                    autocomplete="country-name"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                  >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-span-full">
-                <label
-                  for="street-address"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >Street address</label>
-                <div class="mt-2">
-                  <input
-                    id="street-address"
-                    type="text"
-                    name="street-address"
-                    autocomplete="street-address"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  >
-                </div>
-              </div>
-
-              <div class="sm:col-span-2 sm:col-start-1">
-                <label
-                  for="city"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >City</label>
-                <div class="mt-2">
-                  <input
-                    id="city"
-                    type="text"
-                    name="city"
-                    autocomplete="address-level2"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  >
-                </div>
-              </div>
-
-              <div class="sm:col-span-2">
-                <label
-                  for="region"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >State / Province</label>
-                <div class="mt-2">
-                  <input
-                    id="region"
-                    type="text"
-                    name="region"
-                    autocomplete="address-level1"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  >
-                </div>
-              </div>
-
-              <div class="sm:col-span-2">
-                <label
-                  for="postal-code"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                >ZIP / Postal code</label>
-                <div class="mt-2">
-                  <input
-                    id="postal-code"
-                    type="text"
-                    name="postal-code"
-                    autocomplete="postal-code"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  >
-                </div>
-              </div>
+              </Field>
             </div>
           </div>
 
@@ -322,52 +163,6 @@ import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid'
                         Get notified when a candidate accepts or rejects an offer.
                       </p>
                     </div>
-                  </div>
-                </div>
-              </fieldset>
-              <fieldset>
-                <legend class="text-sm font-semibold leading-6 text-gray-900">
-                  Push Notifications
-                </legend>
-                <p class="mt-1 text-sm leading-6 text-gray-600">
-                  These are delivered via SMS to your mobile phone.
-                </p>
-                <div class="mt-6 space-y-6">
-                  <div class="flex items-center gap-x-3">
-                    <input
-                      id="push-everything"
-                      name="push-notifications"
-                      type="radio"
-                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                    >
-                    <label
-                      for="push-everything"
-                      class="block text-sm font-medium leading-6 text-gray-900"
-                    >Everything</label>
-                  </div>
-                  <div class="flex items-center gap-x-3">
-                    <input
-                      id="push-email"
-                      name="push-notifications"
-                      type="radio"
-                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                    >
-                    <label
-                      for="push-email"
-                      class="block text-sm font-medium leading-6 text-gray-900"
-                    >Same as email</label>
-                  </div>
-                  <div class="flex items-center gap-x-3">
-                    <input
-                      id="push-nothing"
-                      name="push-notifications"
-                      type="radio"
-                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                    >
-                    <label
-                      for="push-nothing"
-                      class="block text-sm font-medium leading-6 text-gray-900"
-                    >No push notifications</label>
                   </div>
                 </div>
               </fieldset>

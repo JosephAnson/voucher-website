@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { login } from '~/services/user'
+const userStore = useUserStore()
+const email = ref('')
+const password = ref('')
 </script>
 
 <template>
@@ -26,6 +28,7 @@ import { login } from '~/services/user'
           class="space-y-6"
           action="#"
           method="POST"
+          @submit.prevent="userStore.signInWithEmail({ email, password })"
         >
           <Field
             label="Email address"
@@ -33,6 +36,7 @@ import { login } from '~/services/user'
           >
             <Input
               id="email"
+              v-model="email"
               name="email"
               type="email"
               autocomplete="email"
@@ -46,6 +50,7 @@ import { login } from '~/services/user'
           >
             <Input
               id="password"
+              v-model="password"
               name="password"
               type="password"
               autocomplete="current-password"
@@ -100,7 +105,7 @@ import { login } from '~/services/user'
               <a
                 href="#"
                 class="inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
-                @click.prevent="login('google')"
+                @click.prevent="userStore.signInWithSocial({ provider: 'google' })"
               >
                 <span class="sr-only">Sign in with Google</span>
                 <div class="i-carbon-logo-google" />
