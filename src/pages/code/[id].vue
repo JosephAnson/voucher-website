@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const code = {
   id: 1,
   name: 'Tuple',

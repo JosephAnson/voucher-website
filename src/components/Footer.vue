@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const navigation = {
   solutions: [
     { name: 'Marketing', href: '#' },

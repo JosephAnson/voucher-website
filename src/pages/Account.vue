@@ -1,46 +1,54 @@
-<script setup>
+<script setup lang="ts">
 import { UserCircleIcon } from '@heroicons/vue/24/solid'
+import Grouped from '~/components/Grouped.vue'
 
 const userStore = useUserStore()
 
-const username = ref(userStore.user.username)
-const avatarUrl = ref(userStore.user.avatar_url)
+const username = ref<string>(userStore.user.username || '')
+
+const { open, onUpload } = useAvatarUpload()
+
+onUpload((url) => {
+  userStore.updateAvatar(url)
+})
+
+const { isLoading } = useImage({ src: userStore.user.avatar_url })
 </script>
 
 <template>
   <Section>
     <Container>
-      <form>
-        <div class="space-y-12">
-          <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">
-              Profile
-            </h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600">
-              This information will be displayed publicly so be careful what you share.
-            </p>
+      <div class="border-b border-gray-900/10 pb-12">
+        <h2 class="text-base font-semibold leading-7 text-gray-900">
+          Profile
+        </h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">
+          This information will be displayed publicly so be careful what you share.
+        </p>
 
-            <div class="mt-10">
-              <Field
-                label="Email address"
-                stacked
-                label-for="email"
-              >
-                <Input
-                  id="email"
-                  readonly
-                  :model-value="userStore.user.email"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                />
-              </Field>
+        <div class="mt-10">
+          <Field
+            label="Email address"
+            stacked
+            label-for="email"
+          >
+            <Input
+              id="email"
+              disabled
+              :model-value="userStore.user.email"
+              name="email"
+              type="email"
+              autocomplete="email"
+            />
+          </Field>
 
-              <Field
-                label="Username"
-                stacked
-                label-for="username"
-              >
+          <form @submit.prevent="userStore.updateUsername(username)">
+            <Field
+              label="Username"
+              stacked
+              label-for="username"
+            >
+              <Grouped>
                 <Input
                   id="username"
                   v-model="username"
@@ -49,37 +57,50 @@ const avatarUrl = ref(userStore.user.avatar_url)
                   autocomplete="username"
                   placeholder="janesmith"
                 />
-              </Field>
+                <Button
+                  type="submit"
+                >
+                  Save Username
+                </Button>
+              </Grouped>
+            </Field>
+          </form>
 
-              <Field
-                label="Photo"
-                stacked
-                label-for="photo"
+          <Field
+            label="Photo"
+            stacked
+            label-for="photo"
+          >
+            <div
+              class="flex items-center gap-x-3"
+              @click="open"
+            >
+              {{ isLoading }}
+              <img
+                v-if="userStore.user.avatar_url"
+                class="h-10 w-10 rounded-full"
+                :src="userStore.user.avatar_url"
+                alt=""
               >
-                <div class="flex items-center gap-x-3">
-                  <img
-                    v-if="avatarUrl"
-                    class="h-10 w-10 rounded-full"
-                    :src="avatarUrl"
-                    alt=""
-                  >
-                  <UserCircleIcon
-                    v-else
-                    class="h-12 w-12 text-gray-300"
-                    aria-hidden="true"
-                  />
-                  <button
-                    type="button"
-                    class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                  >
-                    Change
-                  </button>
-                </div>
-              </Field>
+              <UserCircleIcon
+                v-else
+                class="h-12 w-12 text-gray-300"
+                aria-hidden="true"
+              />
+              <button
+                type="button"
+                class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              >
+                Change
+              </button>
             </div>
-          </div>
+            <p class="text-xs">
+              max upload size is 5mb
+            </p>
+          </Field>
+        </div>
 
-          <div class="border-b border-gray-900/10 pb-12">
+        <!--          <div class="border-b border-gray-900/10 pb-12">
             <h2 class="text-base font-semibold leading-7 text-gray-900">
               Notifications
             </h2>
@@ -153,24 +174,8 @@ const avatarUrl = ref(userStore.user.avatar_url)
                 </div>
               </fieldset>
             </div>
-          </div>
-        </div>
-
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-          <button
-            type="button"
-            class="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Save
-          </button>
-        </div>
-      </form>
+          </div> -->
+      </div>
     </Container>
   </Section>
 </template>

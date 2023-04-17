@@ -4,13 +4,14 @@ const props = defineProps<{
   name: string
   description: string
   imageUrl: string
+  url: string
 }>()
 </script>
 
 <template>
   <li class="overflow-hidden rounded-xl border border-gray-200 ">
     <NuxtLink
-      :to="`/companies/${props.id}`"
+      :to="`/companies/${props.url}`"
       class="flex flex-col h-full"
     >
       <div class="flex flex-grow-1 justify-between gap-x-4 bg-gray-50 p-4">

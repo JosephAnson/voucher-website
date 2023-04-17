@@ -3,10 +3,9 @@ const props = withDefaults(defineProps<{
   label?: string
   message?: string
   stacked?: boolean
-  labelFor?: boolean
+  labelFor?: string
 }>(), {
   stacked: false,
-  labelFor: false,
 })
 
 provide('labelFor', props.labelFor)

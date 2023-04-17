@@ -1,42 +1,25 @@
 <script lang="ts" setup>
 import Pagination from '~/components/Pagination.vue'
 
-const clients = [
-  {
-    id: 1,
-    name: 'Tuple',
-    description: 'Bolt, previously known as Taxify, is the leading European transportation platform providing ride, Bolt, previously known as Taxify, is the leading European transportation platform providing ride',
-    imageUrl: 'https://tailwindui.com/img/logos/48x48/tuple.svg',
-  },
-  {
-    id: 2,
-    name: 'SavvyCal',
-    description: 'lorem ipsom this is a description',
-    imageUrl: 'https://tailwindui.com/img/logos/48x48/savvycal.svg',
-  },
-  {
-    id: 3,
-    name: 'Reform',
-    description: 'lorem ipsom this is a description',
-    imageUrl: 'https://tailwindui.com/img/logos/48x48/reform.svg',
-  },
-]
+const { data: companies } = await useFetch('/api/companies')
 </script>
 
 <template>
   <Section>
     <Container>
+      {{ companies }}
       <ul
         role="list"
         class="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8"
       >
         <CompanyCard
-          v-for="client in clients"
-          :id="client.id"
-          :key="client.id"
-          :description="client.description"
-          :name="client.name"
-          :image-url="client.imageUrl"
+          v-for="company in companies"
+          :id="company.id"
+          :key="company.url"
+          :description="company.description"
+          :name="company.name"
+          :image-url="company.imageUrl"
+          :url="company.url"
         />
       </ul>
 

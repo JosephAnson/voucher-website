@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { CheckIcon, StarIcon } from '@heroicons/vue/20/solid'
 
 const product = {

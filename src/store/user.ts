@@ -1,7 +1,13 @@
 import type { ProfilesRow } from '~/types'
+import { getProfile } from '~/services/profile'
 
 export interface UserState {
-  user: ProfilesRow
+  user: {
+    avatar_url: string | null
+    email: string
+    id: string
+    username: string | null
+  }
 }
 
 export const useUserStore = defineStore('user', {
@@ -21,12 +27,52 @@ export const useUserStore = defineStore('user', {
       this.user.avatar_url = avatar_url
     },
     async fetchUser() {
-      const data = await $fetch('/api/profile/', {
-        headers: useRequestHeaders(['cookie']) as any,
-      })
+      const data = await getProfile()
 
       if (data)
         this.setUser(data)
+    },
+    async updateAvatar(avatar_url: string) {
+      const client = useSupabaseClient()
+
+      const { error } = await client.from('profiles').update({ avatar_url }).eq('id', this.user.id)
+
+      if (error) {
+        openSnackbar({ title: 'Avatar update Failed!', message: error.message, status: 'danger' })
+      }
+      else {
+        this.user.avatar_url = avatar_url
+        openSnackbar({ title: 'Avatar updated!' })
+      }
+    },
+    async updateUsername(username?: string) {
+      if (!username) {
+        openSnackbar({
+          message: 'Username cannot be empty!',
+          status: 'danger',
+        })
+      }
+      else {
+        const usernameExist = await usernameExists(username)
+
+        if (usernameExist) {
+          openSnackbar({
+            message: 'Username exists try another!',
+            status: 'danger',
+          })
+        }
+        else {
+          const user = useSupabaseUser()
+          if (!user.value)
+            throw new Error('User not logged in')
+
+          const data = await updateUsername(username, user.value.id)
+
+          this.user.username = data.username
+
+          openSnackbar('Saved username')
+        }
+      }
     },
     async signOut() {
       const client = useSupabaseAuthClient()

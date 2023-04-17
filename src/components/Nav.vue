@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 import { UserCircleIcon } from '@heroicons/vue/24/solid'
@@ -110,10 +110,11 @@ const userNavigation = [
                       {{ item.name }}
                     </NuxtLink>
                   </MenuItem>
-                  <MenuItem>
+                  <MenuItem v-slot="{ active }">
                     <a
                       href="#"
                       class="block px-4 py-2 text-sm text-gray-700"
+                      :class="[active ? 'bg-gray-100' : '']"
                       @click.prevent="userStore.signOut"
                     >
                       Sign out
