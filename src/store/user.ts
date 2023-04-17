@@ -69,9 +69,18 @@ export const useUserStore = defineStore('user', {
       }
     },
     async signOut() {
+      const router = useRouter()
       const client = useSupabaseAuthClient()
 
-      return await client.auth.signOut()
+      const { error } = await client.auth.signOut()
+
+      if (error) {
+        openSnackbar({ title: 'Signout Failed!', message: error.message, status: 'danger' })
+      }
+      else {
+        openSnackbar({ title: 'Signed out!' })
+        await router.push('/')
+      }
     },
     async signInWithSocial({ provider, returnUrl }: { provider: 'discord' | 'google'; returnUrl?: string }) {
       const client = useSupabaseAuthClient()

@@ -2,6 +2,10 @@
 import { UserCircleIcon } from '@heroicons/vue/24/solid'
 import Grouped from '~/components/Grouped.vue'
 
+definePageMeta({
+  middleware: 'auth',
+})
+
 const userStore = useUserStore()
 
 const username = ref<string>(userStore.user.username || '')
