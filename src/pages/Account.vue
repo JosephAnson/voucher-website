@@ -52,20 +52,6 @@ const avatarUrl = ref(userStore.user.avatar_url)
               </Field>
 
               <Field
-                label="About"
-                stacked
-                label-for="about"
-                message="Write a few sentences about yourself."
-              >
-                <Input
-                  id="about"
-                  name="about"
-                  rows="3"
-                  type="textarea"
-                />
-              </Field>
-
-              <Field
                 label="Photo"
                 stacked
                 label-for="photo"
