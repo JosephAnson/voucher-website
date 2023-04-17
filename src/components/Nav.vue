@@ -7,12 +7,6 @@ const userStore = useUserStore()
 
 const user = await useSupabaseUser()
 
-await useAsyncData('profile', () => {
-  return userStore.fetchUser()
-}, {
-  watch: [user],
-})
-
 const loggedIn = computed(() => userStore.user.email && user.value)
 
 const navigation = [
@@ -120,7 +114,7 @@ const userNavigation = [
                     <a
                       href="#"
                       class="block px-4 py-2 text-sm text-gray-700"
-                      @click.prevent="userStore.signout"
+                      @click.prevent="userStore.signOut"
                     >
                       Sign out
                     </a>
@@ -202,7 +196,7 @@ const userNavigation = [
             <a
               href="#"
               class="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-              @click.prevent="userStore.signout"
+              @click.prevent="userStore.signOut"
             >
               Sign out
             </a>

@@ -5,22 +5,26 @@ const password = ref('')
 </script>
 
 <template>
-  <div class="bg-gray-100 flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-        Sign in to your account
-      </h2>
-      <p class="mt-2 text-center text-sm text-gray-600">
-        Or
-        {{ ' ' }}
-        <NuxtLink
-          to="/signup"
-          class="font-medium text-indigo-600 hover:text-indigo-500"
-        >
-          Sign up
-        </NuxtLink>
-      </p>
-    </div>
+  <Section
+    class="bg-gray-100"
+  >
+    <Heading
+      h1
+      class="text-center !mb-2"
+    >
+      Sign in to your account
+    </Heading>
+
+    <p class="mt-2 text-center text-sm text-gray-600">
+      Or
+      {{ ' ' }}
+      <NuxtLink
+        to="/signup"
+        class="font-medium text-indigo-600 hover:text-indigo-500"
+      >
+        Sign up
+      </NuxtLink>
+    </p>
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
@@ -73,22 +77,29 @@ const password = ref('')
             </div>
 
             <div class="text-sm">
-              <a
-                href="#"
-                class="font-medium text-indigo-600 hover:text-indigo-500"
-              >Forgot your password?</a>
+              <TextLink>Forgot your password?</TextLink>
             </div>
           </div>
 
           <div>
-            <button
+            <Button
               type="submit"
-              class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              class="w-full justify-center rounded-md px-3 py-2"
             >
               Sign in
-            </button>
+            </Button>
           </div>
         </form>
+
+        <div class="mt-4 text-center">
+          <NuxtLink
+            to="/magiclink"
+          >
+            <TextLink class="text-sm">
+              Sign in with magic link
+            </TextLink>
+          </NuxtLink>
+        </div>
 
         <div class="mt-6">
           <div class="relative">
@@ -135,5 +146,5 @@ const password = ref('')
         </div>
       </div>
     </div>
-  </div>
+  </Section>
 </template>

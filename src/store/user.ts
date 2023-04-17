@@ -14,22 +14,24 @@ export const useUserStore = defineStore('user', {
     },
   }),
   actions: {
-    async signout() {
-      const client = useSupabaseAuthClient()
-
-      return await client.auth.signOut()
+    setUser({ email, id, username, avatar_url }: ProfilesRow) {
+      this.user.email = email
+      this.user.username = username
+      this.user.id = id
+      this.user.avatar_url = avatar_url
     },
     async fetchUser() {
       const data = await $fetch('/api/profile/', {
         headers: useRequestHeaders(['cookie']) as any,
       })
 
-      if (data) {
-        this.user.email = data.email
-        this.user.username = data.username
-        this.user.id = data.id
-        this.user.avatar_url = data.avatar_url
-      }
+      if (data)
+        this.setUser(data)
+    },
+    async signOut() {
+      const client = useSupabaseAuthClient()
+
+      return await client.auth.signOut()
     },
     async signInWithSocial({ provider, returnUrl }: { provider: 'discord' | 'google'; returnUrl?: string }) {
       const client = useSupabaseAuthClient()
@@ -47,18 +49,23 @@ export const useUserStore = defineStore('user', {
       const router = useRouter()
       const client = useSupabaseAuthClient()
 
-      await client.auth.signInWithPassword({
+      const { error } = await client.auth.signInWithPassword({
         email,
         password,
-
       })
 
-      await router.push('/')
+      if (error) {
+        openSnackbar({ title: 'Login Failed!', message: error.message, status: 'danger' })
+      }
+      else {
+        openSnackbar({ title: 'Logged in!' })
+        await router.push('/')
+      }
     },
     async signUpWithEmail({ email, password, username, returnUrl }: { email: string; password: string; username: string; returnUrl?: string }) {
       const client = useSupabaseAuthClient()
 
-      await client.auth.signUp(
+      const { data } = await client.auth.signUp(
         {
           email,
           password,
@@ -67,7 +74,28 @@ export const useUserStore = defineStore('user', {
             emailRedirectTo: returnUrl || window.location.origin,
           },
         })
-    },
 
+      if (data)
+        this.signInWithEmail({ email, password })
+    },
+    async signInWithOtp({ email, returnUrl }: { email: string; returnUrl?: string }) {
+      const client = useSupabaseAuthClient()
+      const router = useRouter()
+
+      const { error } = await client.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: returnUrl || window.location.origin,
+        },
+      })
+
+      if (error) {
+        openSnackbar({ title: 'Login Failed!', message: error.message, status: 'danger' })
+      }
+      else {
+        openSnackbar({ title: 'Check your emails for the sign in link!' })
+        await router.push('/checkEmail')
+      }
+    },
   },
 })
