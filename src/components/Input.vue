@@ -3,6 +3,7 @@ const props = withDefaults(defineProps<{
   modelValue?: number | string
   id?: string
   disabled?: boolean
+  readonly?: boolean
   type?: string
   placeholder?: string
 }>(), {
@@ -40,8 +41,9 @@ const labelFor = inject('labelFor', null)
     :placeholder="props.placeholder"
     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
     :class="{
-      'bg-gray-300 cursor-not-allowed': props.disabled,
+      'bg-gray-300': props.disabled,
     }"
     :disabled="props.disabled"
+    :readonly="props.readonly"
   >
 </template>

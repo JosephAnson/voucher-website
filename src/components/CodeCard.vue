@@ -15,6 +15,14 @@ const props = defineProps<{
 defineEmits(['delete'])
 
 const revealCode = computed(() => props.revealed ? props.code : hideVoucherCode(props.code))
+const { copy } = useClipboard({ source: props.code })
+
+function copyCode() {
+  if (props.revealed) {
+    copy()
+    openSnackbar('Code Copied')
+  }
+}
 </script>
 
 <template>
@@ -34,12 +42,24 @@ const revealCode = computed(() => props.revealed ? props.code : hideVoucherCode(
       </div>
       <div class="flex items-center space-x-2">
         <Input
-          disabled
+          readonly
           :model-value="revealCode"
+          @click="copyCode"
         />
 
+        <a
+          v-if="!props.edit && props.revealed"
+          href="#"
+          class="flex-shrink-0"
+          @click.prevent="copyCode"
+        >
+          <Button>
+            Copy Code
+          </Button>
+        </a>
+
         <NuxtLink
-          v-if="!props.edit"
+          v-if="!props.edit && !props.revealed"
           class="flex-shrink-0"
           :to="`/vouchercode/${props.id}`"
         >
