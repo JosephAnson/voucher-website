@@ -16,15 +16,17 @@ provide('labelFor', props.labelFor)
     class="field items-center mb-4 last-child:mb-0"
     :class="{ flex: !props.stacked }"
   >
-    <label
-      v-if="props.label"
-      :for="props.labelFor"
-      class="label mr-4 inline-block text-sm font-medium leading-6 text-gray-900"
+    <slot name="label">
+      <label
+        v-if="props.label"
+        :for="props.labelFor"
+        class="label mr-4 inline-block text-sm font-medium leading-6 text-gray-900"
 
-      :class="{ 'mb-2': props.stacked }"
-    >
-      {{ props.label }}
-    </label>
+        :class="{ 'mb-2': props.stacked }"
+      >
+        {{ props.label }}
+      </label>
+    </slot>
     <slot />
     <p
       v-if="props.message"

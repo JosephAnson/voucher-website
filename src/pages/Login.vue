@@ -37,11 +37,10 @@ const password = ref('')
           <Field
             label="Email address"
             stacked
+            label-for="email"
           >
             <Input
-              id="email"
               v-model="email"
-              name="email"
               type="email"
               autocomplete="email"
               required=""
@@ -51,36 +50,47 @@ const password = ref('')
           <Field
             label="Password"
             stacked
+            label-for="password"
           >
+            <template #label>
+              <div class="flex justify-between mb-2">
+                <label
+                  for="password"
+                  class="label mr-4 inline-block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Password
+                </label>
+                <NuxtLink to="/forgotpassword">
+                  <TextLink class="text-xs">
+                    Forgot your password?
+                  </TextLink>
+                </NuxtLink>
+              </div>
+            </template>
             <Input
-              id="password"
               v-model="password"
-              name="password"
               type="password"
               autocomplete="current-password"
               required=""
             />
           </Field>
+          <!--
+                      <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                          <input
+                            id="remember-me"
+                            name="remember-me"
+                            type="checkbox"
+                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          >
+                          <label
+                            for="remember-me"
+                            class="ml-2 block text-sm text-gray-900"
+                          >Remember me</label>
+                        </div>
 
-          <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-              >
-              <label
-                for="remember-me"
-                class="ml-2 block text-sm text-gray-900"
-              >Remember me</label>
-            </div>
-
-            <div class="text-sm">
-              <TextLink>Forgot your password?</TextLink>
-            </div>
-          </div>
-
+                      </div>
+            -->
           <div>
             <Button
               type="submit"
@@ -120,26 +130,6 @@ const password = ref('')
               >
                 <span class="sr-only">Sign in with Google</span>
                 <div class="i-carbon-logo-google" />
-              </a>
-            </div>
-
-            <div>
-              <a
-                href="#"
-                class="inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
-              >
-                <span class="sr-only">Sign in with Twitter</span>
-                <div class="i-carbon-logo-twitter" />
-              </a>
-            </div>
-
-            <div>
-              <a
-                href="#"
-                class="inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
-              >
-                <span class="sr-only">Sign in with GitHub</span>
-                <div class="i-carbon-logo-github" />
               </a>
             </div>
           </div>

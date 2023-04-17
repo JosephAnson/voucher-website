@@ -118,24 +118,28 @@ const userNavigation = [
               </transition>
             </Menu>
 
-            <NuxtLink
-              v-if="!loggedIn"
-              to="/login"
-              class="ml-6"
-            >
-              <Button theme="transparent">
-                Login
-              </Button>
-            </NuxtLink>
+            <div>
+              <NuxtLink
+                v-if="!loggedIn"
+                to="/login"
+                class="ml-6"
+              >
+                <Button theme="transparent">
+                  Login
+                </Button>
+              </NuxtLink>
+            </div>
 
-            <NuxtLink
-              :to="loggedIn ? '/vouchercode/submit' : '/login'"
-              class="ml-6"
-            >
-              <Button>
-                New Code
-              </Button>
-            </NuxtLink>
+            <div>
+              <NuxtLink
+                :to="loggedIn ? '/vouchercode/submit' : '/login'"
+                class="ml-6"
+              >
+                <Button>
+                  New Code
+                </Button>
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>

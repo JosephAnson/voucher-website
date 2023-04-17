@@ -146,5 +146,27 @@ export const useUserStore = defineStore('user', {
         await router.push('/checkEmail')
       }
     },
+    async updatePassword({ newPassword }: { newPassword: string }) {
+      const client = useSupabaseAuthClient()
+
+      return client.auth
+        .updateUser({ password: newPassword })
+    },
+    async forgotPassword({ email }: { email: string }) {
+      const client = useSupabaseAuthClient()
+
+      const { error, data } = await client.auth
+        .resetPasswordForEmail(email, {
+          redirectTo: `${window.location.origin}/updatepassword`,
+        })
+
+      if (error)
+        openSnackbar({ title: 'Password reset failed!', message: error.message, status: 'danger' })
+
+      else
+        openSnackbar({ title: 'Check your emails to reset the password!' })
+
+      return { error, data }
+    },
   },
 })
