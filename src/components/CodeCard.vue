@@ -6,6 +6,7 @@ const props = defineProps<{
   author: string
   avatarSrc: string
   code: string
+  edit: boolean
 }>()
 </script>
 
@@ -29,12 +30,34 @@ const props = defineProps<{
           disabled
           :model-value="props.code"
         />
+
         <NuxtLink
+          v-if="!props.edit"
           class="flex-shrink-0"
           :to="`/code/${props.id}`"
         >
           <Button>
             Reveal Code
+          </Button>
+        </NuxtLink>
+
+        <NuxtLink
+          v-if="props.edit"
+          class="flex-shrink-0"
+          :to="`/code/edit/${props.id}`"
+        >
+          <Button>
+            Edit Code
+          </Button>
+        </NuxtLink>
+
+        <NuxtLink
+          v-if="props.edit"
+          class="flex-shrink-0"
+          :to="`/code/${props.id}`"
+        >
+          <Button theme="danger">
+            Delete
           </Button>
         </NuxtLink>
       </div>

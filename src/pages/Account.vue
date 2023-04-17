@@ -2,10 +2,6 @@
 import { UserCircleIcon } from '@heroicons/vue/24/solid'
 import Grouped from '~/components/Grouped.vue'
 
-definePageMeta({
-  middleware: 'auth',
-})
-
 const userStore = useUserStore()
 
 const username = ref<string>(userStore.user.username || '')
@@ -15,8 +11,6 @@ const { open, onUpload } = useAvatarUpload()
 onUpload((url) => {
   userStore.updateAvatar(url)
 })
-
-const { isLoading } = useImage({ src: userStore.user.avatar_url })
 </script>
 
 <template>
@@ -79,7 +73,6 @@ const { isLoading } = useImage({ src: userStore.user.avatar_url })
               class="flex items-center gap-x-3"
               @click="open"
             >
-              {{ isLoading }}
               <img
                 v-if="userStore.user.avatar_url"
                 class="h-10 w-10 rounded-full"

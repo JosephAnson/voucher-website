@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const props = withDefaults(defineProps<{
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-  theme?: 'primary' | 'transparent'
+  theme?: 'primary' | 'transparent' | 'danger'
   rounded?: boolean
 }>(), {
   size: 'md',
@@ -21,8 +21,9 @@ const props = withDefaults(defineProps<{
       'text-sm px-3.5 py-2': props.size === 'lg',
       'text-sm px-4 py-2.5': props.size === 'xl',
       'bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline-indigo-600': props.theme === 'primary',
+      'bg-red-600 text-white hover:bg-red-500 focus-visible:outline-red-600': props.theme === 'danger',
       'border hover:bg-gray-100 focus-visible:outline-indigo-600': props.theme === 'transparent',
-      'rounded-full': props.rounded,
+      'rounded-md': props.rounded,
       'rounded': !props.rounded,
     }"
   >

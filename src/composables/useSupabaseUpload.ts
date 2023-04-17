@@ -1,3 +1,5 @@
+import type { Database } from '~/supabase.types'
+
 export function useSupabaseUpload(
   { path, bucket, accept = 'image/png, image/jpeg' }: { path: string; bucket: string; accept?: string },
 ) {
@@ -5,7 +7,7 @@ export function useSupabaseUpload(
     { accept, multiple: false },
   )
 
-  const client = useSupabaseClient()
+  const client = useSupabaseClient<Database>()
 
   const { on: onUpload, trigger } = createEventHook<string>()
 

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+await useFetchProfileOnSupabaseUserUpdate()
+
 useSchemaOrg([
   defineOrganization({
     name: 'Nuxt.js',
@@ -12,8 +14,6 @@ useSchemaOrg([
   }),
   defineWebPage(),
 ])
-
-await useFetchProfileOnSupabaseUserUpdate()
 </script>
 
 <template>

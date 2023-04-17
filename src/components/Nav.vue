@@ -9,15 +9,9 @@ const user = await useSupabaseUser()
 
 const loggedIn = computed(() => userStore.user.email && user.value)
 
-const navigation = [
-  { name: 'Dashboard', href: '/', current: true },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Teams', href: '#', current: false },
-  { name: 'Directory', href: '#', current: false },
-]
 const userNavigation = [
   { name: 'Your Profile', to: '/account' },
-  { name: 'Manage Codes', to: '/account' },
+  { name: 'Manage Codes', to: '/managecodes' },
 ]
 </script>
 
@@ -151,16 +145,6 @@ const userNavigation = [
         class="lg:hidden"
         aria-label="Global"
       >
-        <div class="mx-auto max-w-3xl space-y-1 px-2 pb-3 pt-2 sm:px-4">
-          <a
-            v-for="item in navigation"
-            :key="item.name"
-            :href="item.href"
-            :aria-current="item.current ? 'page' : undefined"
-            class="block rounded-md py-2 px-3 text-base font-medium"
-            :class="[item.current ? 'bg-gray-100 text-gray-900' : 'hover:bg-gray-50']"
-          >{{ item.name }}</a>
-        </div>
         <div class="border-t border-gray-200 pb-3 pt-4">
           <div class="mx-auto flex max-w-3xl items-center px-4 sm:px-6">
             <div class="flex-shrink-0">

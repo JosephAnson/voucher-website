@@ -12,19 +12,11 @@ export default defineEventHandler(async (event): Promise<ProfilesRow | null> => 
     try {
       const client = serverSupabaseClient<Database>(event)
 
-      const { data, error } = await client
+      const { data } = await client
         .from('profiles')
         .select(PROFILE_COLUMNS)
         .eq('id', profileId)
         .single<ProfilesRow>()
-
-      if (error) {
-        // eslint-disable-next-line no-console
-        console.log({
-          statusCode: Number(error.code),
-          statusMessage: error.message,
-        })
-      }
 
       return data
     }
