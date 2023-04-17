@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const userStore = useUserStore()
 const email = ref('')
-const reset = ref(true)
+const reset = ref(false)
 
 async function resetPassword() {
   const { error } = await userStore.forgotPassword({ email: email.value })
