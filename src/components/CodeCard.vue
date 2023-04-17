@@ -27,7 +27,7 @@ function copyCode() {
 
 <template>
   <li class="overflow-hidden rounded-xl border border-gray-200">
-    <div class="flex flex-grow-1 justify-between gap-x-4 bg-gray-50 p-4">
+    <div class="flex flex-wrap flex-grow-1 justify-between gap-x-4 bg-gray-50 p-4">
       <div class="flex items-center">
         <img
           :src="props.avatarSrc"
@@ -35,15 +35,19 @@ function copyCode() {
           class="h-12 w-12 rounded-full"
         >
         <div class="ml-4">
-          <h4 class="text-sm font-bold text-gray-900">
+          <Heading
+            h4
+            class="!mb-0 font-bold text-gray-600"
+          >
             {{ props.username }}
-          </h4>
+          </Heading>
         </div>
       </div>
       <div class="flex items-center space-x-2">
         <Input
           readonly
           :model-value="revealCode"
+          class="min-w-48"
           @click="copyCode"
         />
 

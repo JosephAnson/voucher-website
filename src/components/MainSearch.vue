@@ -101,9 +101,22 @@ watch(selectedCompany, () => {
                 leave-to-class="transform scale-95 opacity-0"
               >
                 <ComboboxOptions
-                  v-if="filteredCompanies.length > 0"
+                  v-if="filteredCompanies.length > 0 || search"
                   class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                 >
+                  <ComboboxOption
+                    v-if="search && filteredCompanies.length <= 0"
+                    v-slot="{ active }"
+                  >
+                    <li
+                      class="relative cursor-default select-none py-2 pl-3 pr-9"
+                      :class="[active ? 'bg-indigo-600 text-white' : 'text-gray-900']"
+                    >
+                      <div class="flex items-center">
+                        Searching "{{ search }}"
+                      </div>
+                    </li>
+                  </ComboboxOption>
                   <ComboboxOption
                     v-for="company in filteredCompanies"
                     :key="company.id"
