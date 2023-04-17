@@ -7,7 +7,6 @@ const { data: companies } = await useFetch('/api/companies')
 <template>
   <Section>
     <Container>
-      {{ companies }}
       <ul
         role="list"
         class="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8"
@@ -18,7 +17,7 @@ const { data: companies } = await useFetch('/api/companies')
           :key="company.url"
           :description="company.description"
           :name="company.name"
-          :image-url="company.imageUrl"
+          :logo="company.logo"
           :url="company.url"
         />
       </ul>

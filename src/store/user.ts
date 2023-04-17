@@ -1,5 +1,5 @@
 import type { ProfilesRow } from '~/types'
-import { getProfile } from '~/services/profile'
+import { getProfile, updateAvatar } from '~/services/profile'
 
 export interface UserState {
   user: {
@@ -33,9 +33,7 @@ export const useUserStore = defineStore('user', {
         this.setUser(data)
     },
     async updateAvatar(avatar_url: string) {
-      const client = useSupabaseClient()
-
-      const { error } = await client.from('profiles').update({ avatar_url }).eq('id', this.user.id)
+      const { error } = await updateAvatar(avatar_url)
 
       if (error) {
         openSnackbar({ title: 'Avatar update Failed!', message: error.message, status: 'danger' })
@@ -62,11 +60,7 @@ export const useUserStore = defineStore('user', {
           })
         }
         else {
-          const user = useSupabaseUser()
-          if (!user.value)
-            throw new Error('User not logged in')
-
-          const data = await updateUsername(username, user.value.id)
+          const data = await updateUsername(username)
 
           this.user.username = data.username
 

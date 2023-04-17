@@ -1,8 +1,7 @@
 import type { Database } from '~/supabase.types'
 import type { ProfilesRow } from '~/types'
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
-
-const PROFILE_COLUMNS = 'id, email, username, avatar_url'
+import { PROFILE_COLUMNS } from '~/utils/constants'
 
 export default defineEventHandler(async (event): Promise<ProfilesRow | null> => {
   const user = await serverSupabaseUser(event)

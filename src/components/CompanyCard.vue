@@ -3,7 +3,7 @@ const props = defineProps<{
   id: number
   name: string
   description: string
-  imageUrl: string
+  logo: string
   url: string
 }>()
 </script>
@@ -22,7 +22,7 @@ const props = defineProps<{
           </p>
         </div>
         <img
-          :src="props.imageUrl"
+          :src="props.logo"
           :alt="props.name"
           class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10"
         >

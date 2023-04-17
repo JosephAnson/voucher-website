@@ -1,17 +1,24 @@
 import type { Database } from '~/supabase.types'
+import { PROFILE_COLUMNS } from '~/utils/constants'
 
-const profileColumns = 'id, username, avatar_url'
+export async function getUserID() {
+  const user = useSupabaseUser()
+  if (!user.value)
+    throw new Error('User not logged in')
+
+  return user.value?.id
+}
 
 export async function getProfile() {
   return await $fetch('/api/profile/', {
     headers: useRequestHeaders(['cookie']) as any,
   })
 }
-
-export async function getProfileByUsername(username: string) {
+export async function updateAvatar(avatar_url: string) {
   const client = useSupabaseClient<Database>()
-  const { data } = await client.from('profiles').select(profileColumns).ilike('username', `${username}`).single()
-  return data
+  const userId = await getUserID()
+
+  return client.from('profiles').update({ avatar_url }).eq('id', userId)
 }
 
 export async function usernameExists(username: String) {
@@ -21,16 +28,17 @@ export async function usernameExists(username: String) {
   return (data?.length || 0) > 0
 }
 
-export async function updateUsername(username: string, userId: string) {
+export async function updateUsername(username: string) {
   const client = useSupabaseClient<Database>()
+  const userId = await getUserID()
 
   const { data, error } = await client
     .from('profiles')
-    .upsert({
+    .update({
       username,
-      id: userId,
     })
-    .select(profileColumns)
+    .eq('id', userId)
+    .select(PROFILE_COLUMNS)
     .single()
 
   if (error)
