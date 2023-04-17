@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
         .from('codes')
         .select(CODE_COLUMNS)
         .eq('author', user?.id)
+        .order('created_at', { ascending: false })
 
       return data
     }

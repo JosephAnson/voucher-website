@@ -129,7 +129,7 @@ const userNavigation = [
             </NuxtLink>
 
             <NuxtLink
-              to="/note/create"
+              :to="loggedIn ? '/vouchercode/submit' : '/login'"
               class="ml-6"
             >
               <Button>

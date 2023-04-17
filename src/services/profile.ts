@@ -3,9 +3,10 @@ import { PROFILE_COLUMNS } from '~/utils/constants'
 
 export async function getUserID() {
   const user = useSupabaseUser()
-  if (!user.value)
+  if (!user.value) {
+    openSnackbar({ status: 'danger', title: 'Not logged in!', message: 'To continue you need to login again' })
     throw new Error('User not logged in')
-
+  }
   return user.value?.id
 }
 

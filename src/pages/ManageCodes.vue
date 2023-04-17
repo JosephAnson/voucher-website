@@ -1,7 +1,17 @@
 <script setup lang="ts">
-const { data: codes } = await useFetch('/api/profile/codes', {
+const { data: codes, refresh } = await useFetch('/api/profile/codes', {
   headers: useRequestHeaders(['cookie']) as any,
 })
+
+function deleteVoucherCode(id) {
+  openDialog({
+    onConfirm: () => {
+      deleteCode({ id })
+      refresh()
+      openSnackbar('Voucher Deleted!')
+    },
+  })
+}
 </script>
 
 <template>
@@ -18,9 +28,11 @@ const { data: codes } = await useFetch('/api/profile/codes', {
           :key="code.id"
           :description="code.description"
           :title="code.title"
+          :username="code.author.username"
           :avatar-src="code.author.avatar_url"
           :code="code.code"
           edit
+          @delete="deleteVoucherCode"
         />
       </div>
     </Container>

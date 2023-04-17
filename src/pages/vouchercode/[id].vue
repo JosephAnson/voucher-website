@@ -13,8 +13,10 @@ const { data: code } = await useFetch(`/api/code/${route.params.id}`)
           :key="code.id"
           :description="code.description"
           :title="code.title"
+          :username="code.author.username"
           :avatar-src="code.author.avatar_url"
           :code="code.code"
+          revealed
         />
       </div>
     </Container>

@@ -1,13 +1,20 @@
 <script setup lang="ts">
+import { hideVoucherCode } from '~/utils/hideVoucherCode'
+
 const props = defineProps<{
   id: number
   title: string
   description: string
-  author: string
+  username: string
   avatarSrc: string
   code: string
   edit: boolean
+  revealed: boolean
 }>()
+
+defineEmits(['delete'])
+
+const revealCode = computed(() => props.revealed ? props.code : hideVoucherCode(props.code))
 </script>
 
 <template>
@@ -16,25 +23,25 @@ const props = defineProps<{
       <div class="flex items-center">
         <img
           :src="props.avatarSrc"
-          :alt="`${props.author}.`"
+          :alt="`${props.username}.`"
           class="h-12 w-12 rounded-full"
         >
         <div class="ml-4">
           <h4 class="text-sm font-bold text-gray-900">
-            {{ props.author }}
+            {{ props.username }}
           </h4>
         </div>
       </div>
       <div class="flex items-center space-x-2">
         <Input
           disabled
-          :model-value="props.code"
+          :model-value="revealCode"
         />
 
         <NuxtLink
           v-if="!props.edit"
           class="flex-shrink-0"
-          :to="`/code/${props.id}`"
+          :to="`/vouchercode/${props.id}`"
         >
           <Button>
             Reveal Code
@@ -44,22 +51,23 @@ const props = defineProps<{
         <NuxtLink
           v-if="props.edit"
           class="flex-shrink-0"
-          :to="`/code/edit/${props.id}`"
+          :to="`/vouchercode/edit/${props.id}`"
         >
           <Button>
             Edit Code
           </Button>
         </NuxtLink>
 
-        <NuxtLink
+        <a
           v-if="props.edit"
+          href="#"
           class="flex-shrink-0"
-          :to="`/code/${props.id}`"
+          @click.prevent="$emit('delete', props.id)"
         >
           <Button theme="danger">
             Delete
           </Button>
-        </NuxtLink>
+        </a>
       </div>
     </div>
 

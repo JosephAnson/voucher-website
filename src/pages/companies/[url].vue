@@ -96,6 +96,7 @@ const reviews = { average: 4, totalCount: 1624 }
         :key="code.id"
         :description="code.description"
         :title="code.title"
+        :username="code.author.username"
         :avatar-src="code.author.avatar_url"
         :code="code.code"
       />
