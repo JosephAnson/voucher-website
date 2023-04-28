@@ -19,6 +19,7 @@ const { data: companies } = await useFetch('/api/companies')
           :name="company.name"
           :logo="company.logo"
           :url="company.url"
+          :codes="company.codes"
         />
       </ul>
 

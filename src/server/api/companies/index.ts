@@ -1,7 +1,7 @@
 import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 
-const COMPANY_COLUMNS = 'id, name, description, url, logo'
+const COMPANY_COLUMNS = 'id, name, description, url, logo, codes(id)'
 
 export default eventHandler(async (event) => {
   if (!event.context.params) {

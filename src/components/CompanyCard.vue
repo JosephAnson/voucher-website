@@ -5,7 +5,10 @@ const props = defineProps<{
   description: string
   logo: string
   url: string
+  codes: { id: number }[]
 }>()
+
+const codeCount = computed(() => props.codes.length)
 </script>
 
 <template>
@@ -21,19 +24,24 @@ const props = defineProps<{
             {{ props.description }}
           </p>
         </div>
-        <img
+        <nuxt-img
+          width="54"
+          height="54"
           :src="props.logo"
           :alt="props.name"
-          class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10"
-        >
+          class="h-12 w-12 flex-none rounded-lg bg-white object-contain p-1 ring-1 ring-gray-900/10"
+        />
       </div>
       <div class="p-4 flex gap-x-4 justify-between">
         <div class="flex gap-x-4">
           <Button
             theme="transparent"
             :rounded="false"
+            :class="{
+              'border-primary': codeCount > 0,
+            }"
           >
-            357 Codes
+            {{ codeCount === 1 ? `${codeCount} Code` : `${codeCount} Codes` }}
           </Button>
 
           <Button
