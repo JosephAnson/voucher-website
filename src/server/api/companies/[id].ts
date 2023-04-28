@@ -6,7 +6,7 @@ export default eventHandler(async (event) => {
   if (!event.context.params) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Should provide url',
+      statusMessage: 'Should provide id',
     })
   }
 
@@ -14,7 +14,7 @@ export default eventHandler(async (event) => {
   const { data } = await client
     .from('companies')
     .select(COMPANY_COLUMNS)
-    .eq('url', event.context.params.url)
+    .eq('id', event.context.params.id)
     .order('created_at')
     .single()
 

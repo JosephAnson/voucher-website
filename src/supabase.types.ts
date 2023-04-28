@@ -11,8 +11,8 @@ export interface Database {
     Tables: {
       codes: {
         Row: {
-          author: string | null
-          code: string | null
+          author: string
+          code: string
           company: string
           created_at: string | null
           description: string
@@ -20,8 +20,8 @@ export interface Database {
           title: string
         }
         Insert: {
-          author?: string | null
-          code?: string | null
+          author: string
+          code: string
           company: string
           created_at?: string | null
           description: string
@@ -29,8 +29,8 @@ export interface Database {
           title: string
         }
         Update: {
-          author?: string | null
-          code?: string | null
+          author?: string
+          code?: string
           company?: string
           created_at?: string | null
           description?: string
@@ -41,22 +41,25 @@ export interface Database {
       companies: {
         Row: {
           created_at: string | null
-          description: string
+          description: string | null
           id: string
+          logo: string
           name: string
           url: string
         }
         Insert: {
           created_at?: string | null
-          description: string
+          description?: string | null
           id?: string
+          logo?: string
           name?: string
           url: string
         }
         Update: {
           created_at?: string | null
-          description?: string
+          description?: string | null
           id?: string
+          logo?: string
           name?: string
           url?: string
         }

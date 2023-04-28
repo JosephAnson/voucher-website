@@ -40,7 +40,7 @@ watchEffect(() => {
 watch(selectedCompany, () => {
   if (selectedCompany.value) {
     if (companies.value.find(company => company.id === selectedCompany.value.id))
-      router.push(`/companies/${selectedCompany.value.url}`)
+      router.push(`/companies/${selectedCompany.value.id}`)
     else if (companies.value.find(company => company.url === selectedCompany.value))
       router.push(`/companies/${selectedCompany.value}`)
     else
@@ -129,11 +129,14 @@ watch(selectedCompany, () => {
                       :class="[active ? 'bg-indigo-600 text-white' : 'text-gray-900']"
                     >
                       <div class="flex items-center">
-                        <img
+                        <nuxt-img
                           :src="company.logo"
                           alt=""
-                          class="h-6 w-6 flex-shrink-0 rounded-full"
-                        >
+                          width="27"
+                          height="27"
+                          class="h-6 w-6 flex-shrink-0 rounded-full object-contain"
+                        />
+
                         <span
                           class="ml-3 truncate"
                         >

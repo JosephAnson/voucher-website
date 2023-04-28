@@ -11,7 +11,7 @@ const props = defineProps<{
 <template>
   <li class="overflow-hidden rounded-xl border border-gray-200 ">
     <NuxtLink
-      :to="`/companies/${props.url}`"
+      :to="`/companies/${props.id}`"
       class="flex flex-col h-full"
     >
       <div class="flex flex-grow-1 justify-between gap-x-4 bg-gray-50 p-4">

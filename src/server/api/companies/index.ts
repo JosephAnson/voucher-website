@@ -3,7 +3,7 @@ import type { Database } from '~/supabase.types'
 
 const COMPANY_COLUMNS = 'id, name, description, url, logo'
 
-export default cachedEventHandler(async (event) => {
+export default eventHandler(async (event) => {
   if (!event.context.params) {
     throw createError({
       statusCode: 400,
@@ -18,6 +18,4 @@ export default cachedEventHandler(async (event) => {
     .order('created_at')
 
   return data
-}, {
-  maxAge: 60 * 60 * 24,
 })

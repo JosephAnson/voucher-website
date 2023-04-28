@@ -3,7 +3,7 @@ import { CheckIcon, StarIcon } from '@heroicons/vue/20/solid'
 
 const route = useRoute<'companies-url'>()
 
-const { data: company } = await useFetch(`/api/companies/${route.params.url}`)
+const { data: company } = await useFetch(`/api/companies/${route.params.id}`)
 
 const reviews = { average: 4, totalCount: 1624 }
 </script>
