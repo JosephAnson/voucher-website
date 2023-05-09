@@ -30,11 +30,11 @@ const userNavigation = [
           <div class="flex md:inset-y-0 md:left-0 lg:static">
             <div class="flex flex-shrink-0 items-center">
               <nuxt-link to="/">
-                <!--                <img
+                <nuxt-img
                   class="block h-8 w-auto"
                   src="/logo.svg"
-                  alt="Your Company"
-                > -->
+                  alt="Vouchers, Discounts, Codes"
+                />
               </nuxt-link>
             </div>
           </div>

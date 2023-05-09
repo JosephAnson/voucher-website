@@ -104,6 +104,8 @@ const features = [
               :title="
                 category.title"
               :image-src="`https://source.unsplash.com/random/200x200/?${category.title}`"
+              :image-width="195"
+              image-classes="object-cover aspect-3/2"
             />
           </li>
         </ul>

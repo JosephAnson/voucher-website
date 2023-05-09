@@ -1293,17 +1293,6 @@
     defu "^6.1.2"
     pathe "^1.1.0"
 
-"@nuxtjs/web-vitals@^0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/web-vitals/-/web-vitals-0.2.5.tgz#2daaa9edbb023af4fd96d12e483183c67152aaa0"
-  integrity sha512-A2AeO7RpzARxQ3lBf3U8UMPDaM8Y4TIBDDMUZ5IeYJazWHIJe+5Mw9fhdvE2VrOUY+zNmEDAEKkc3YujKc7rcg==
-  dependencies:
-    "@nuxt/kit" "^3.4.3"
-    defu "^6.1.2"
-    pathe "^1.1.0"
-    ufo "^1.1.1"
-    web-vitals "^3.3.1"
-
 "@pinia/nuxt@^0.4.10":
   version "0.4.10"
   resolved "https://registry.yarnpkg.com/@pinia/nuxt/-/nuxt-0.4.10.tgz#b93f008f22053727cf69c496b516db81290b142f"
@@ -9770,11 +9759,6 @@ web-streams-polyfill@^3.0.3:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-3.2.1.tgz#71c2718c52b45fd49dbeee88634b3a60ceab42a6"
   integrity sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==
-
-web-vitals@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-3.3.1.tgz#f80e4fd01784476c023c8b2c4219075bbe96f64d"
-  integrity sha512-LTfY5GjcY3ngFzNsYFSYL+AmVmlWrzPTUxSMDis2rZbf+SzT7HH3NH4Y/l45XOlrAIunOBeURN9qtBHkRskAiA==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"

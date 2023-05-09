@@ -30,6 +30,7 @@ const codeCount = computed(() => props.codes.length)
           :src="props.logo"
           :alt="props.name"
           class="h-12 w-12 flex-none rounded-lg bg-white object-contain p-1 ring-1 ring-gray-900/10"
+          format="webp"
         />
       </div>
       <div class="p-4 flex gap-x-4 justify-between">

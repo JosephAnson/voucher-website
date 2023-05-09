@@ -34,7 +34,6 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', href: '/favicon-32x32.png', sizes: '32x32' },
         { rel: 'manifest', href: '/site.webmanifest' },
         { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
-
       ],
       htmlAttrs: {
         lang: 'en',
@@ -58,19 +57,21 @@ export default defineNuxtConfig({
     langDir: 'lang',
   },
   modules: [
-    '@vueuse/nuxt',
-    '@nuxt/devtools',
     '@nuxtjs/i18n',
-    '@nuxt/image-edge',
-    '@unocss/nuxt',
-    'nuxt-simple-sitemap',
     '@nuxtjs/eslint-module',
     '@nuxtjs/robots',
+    '@nuxtjs/supabase',
+    '@nuxtjs/html-validator',
+    '@nuxt/image-edge',
+    '@nuxt/devtools',
+    '@vueuse/nuxt',
+    '@unocss/nuxt',
+    '@pinia/nuxt',
+    '@unlighthouse/nuxt',
+    'nuxt-simple-sitemap',
     'nuxt-schema-org',
     'nuxt-og-image',
     'nuxt-typed-router',
-    '@nuxtjs/supabase',
-    '@pinia/nuxt',
   ],
   plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
   srcDir: 'src/',
@@ -454,9 +455,9 @@ export default defineNuxtConfig({
     },
     ],
   },
-  // webVitals: {
-  //  provider: 'vercel',
-  // },
+  webVitals: {
+    provider: 'vercel',
+  },
   image: {
     screens: {
       'xs': 320,
@@ -476,5 +477,10 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: ['services', 'store'],
+  },
+  htmlValidator: {
+    usePrettier: false,
+    logLevel: 'verbose',
+    failOnError: false,
   },
 })

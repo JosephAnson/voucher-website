@@ -10,6 +10,7 @@ const { data: companies } = await useFetch('/api/companies')
       :to="`/companies/${company.id}`"
       :image-src="company.logo"
       :image-alt="company.alt"
+      :image-width="88"
     />
   </div>
   <div class="mt-16 flex justify-center">

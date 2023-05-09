@@ -12,13 +12,9 @@
     "gen-types": "supabase gen types typescript --project-id \"vdzjsjlcezebwpavsjif\" --schema public > src/supabase.types.ts",
     "typecheck": "nuxt typecheck"
   },
-  "resolutions": {
-    "consola": "^3.0.0"
-  },
   "dependencies": {
     "@headlessui/vue": "^1.7.13",
     "@heroicons/vue": "^2.0.17",
-    "@nuxtjs/web-vitals": "^0.2.5",
     "@pinia/nuxt": "^0.4.10",
     "@unocss/nuxt": "^0.51.12",
     "@unocss/reset": "^0.51.12",
@@ -50,5 +46,8 @@
     "sass": "^1.62.1",
     "typescript": "^5.0.4",
     "unocss": "^0.51.12"
+  },
+  "resolutions": {
+    "consola": "^3.0.0"
   }
 }

@@ -19,6 +19,7 @@ const reviews = { average: 4, totalCount: 1624 }
           :src="company.logo"
           :alt="company.name"
           class="h-full w-full object-cover object-center"
+          format="webp"
         />
       </div>
       <div class="mt-4">

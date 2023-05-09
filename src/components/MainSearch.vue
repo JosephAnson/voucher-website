@@ -135,6 +135,7 @@ watch(selectedCompany, () => {
                           width="27"
                           height="27"
                           class="h-6 w-6 flex-shrink-0 rounded-full object-contain"
+                          format="webp"
                         />
 
                         <span
