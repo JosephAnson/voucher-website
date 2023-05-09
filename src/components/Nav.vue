@@ -25,27 +25,27 @@ const userNavigation = [
       class="bg-white shadow-sm lg:static lg:overflow-y-visible"
       :class="[open ? 'fixed inset-0 z-40 overflow-y-auto' : '']"
     >
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="relative flex justify-between lg:gap-8 xl:grid xl:grid-cols-12">
-          <div class="flex md:absolute md:inset-y-0 md:left-0 lg:static xl:col-span-2">
+      <Container>
+        <div class="relative flex justify-between lg:gap-8">
+          <div class="flex md:inset-y-0 md:left-0 lg:static">
             <div class="flex flex-shrink-0 items-center">
               <nuxt-link to="/">
                 <img
                   class="block h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  src="/logo.svg"
                   alt="Your Company"
                 >
               </nuxt-link>
             </div>
           </div>
-          <div class="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-6">
-            <div class="flex items-center px-6 py-4 xl:px-0">
+          <div class="min-w-0 flex-1 lg:px-0 max-w-xl">
+            <div class="flex items-center px-2 py-3 xl:px-0">
               <MainSearch />
             </div>
           </div>
-          <div class="flex items-center md:absolute md:inset-y-0 md:right-0 lg:hidden">
+          <div class="flex items-center md:inset-y-0 md:right-0 lg:hidden">
             <!-- Mobile menu button -->
-            <PopoverButton class="-mx-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <PopoverButton class="-mx-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
               <span class="sr-only">Open menu</span>
               <Bars3Icon
                 v-if="!open"
@@ -67,7 +67,7 @@ const userNavigation = [
               class="relative ml-5 flex-shrink-0"
             >
               <div>
-                <MenuButton class="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <MenuButton class="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
                   <span class="sr-only">Open user menu</span>
                   <img
                     v-if="userStore.user.avatar_url"
@@ -142,7 +142,7 @@ const userNavigation = [
             </div>
           </div>
         </div>
-      </div>
+      </Container>
 
       <PopoverPanel
         as="nav"

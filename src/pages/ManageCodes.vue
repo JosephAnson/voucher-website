@@ -21,7 +21,10 @@ function deleteVoucherCode(id) {
         Your voucher codes
       </Heading>
 
-      <div class="space-y-4">
+      <div
+        v-if="codes.length"
+        class="space-y-4"
+      >
         <CodeCard
           v-for="code in codes"
           :id="code.id"
@@ -34,6 +37,17 @@ function deleteVoucherCode(id) {
           edit
           @delete="deleteVoucherCode"
         />
+      </div>
+      <div v-else>
+        <Heading h3>
+          You've added no vouchers
+        </Heading>
+        <NuxtLink
+          to="/vouchercode/submit"
+          class="text-blue-500 hover:underline"
+        >
+          <Button>Click here to add some</Button>
+        </NuxtLink>
       </div>
     </Container>
   </Section>

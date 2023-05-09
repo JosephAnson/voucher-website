@@ -20,9 +20,9 @@ const props = withDefaults(defineProps<{
       'text-sm px-3 py-1.5': props.size === 'md',
       'text-sm px-3.5 py-2': props.size === 'lg',
       'text-sm px-4 py-2.5': props.size === 'xl',
-      'bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline-indigo-600': props.theme === 'primary',
+      'bg-primary-600 text-white hover:bg-primary-500 focus-visible:outline-primary-600': props.theme === 'primary',
       'bg-red-600 text-white hover:bg-red-500 focus-visible:outline-red-600': props.theme === 'danger',
-      'border hover:bg-gray-100 focus-visible:outline-indigo-600': props.theme === 'transparent',
+      'border hover:bg-gray-100 focus-visible:outline-primary-600': props.theme === 'transparent',
       'rounded-md': props.rounded,
       'rounded': !props.rounded,
     }"

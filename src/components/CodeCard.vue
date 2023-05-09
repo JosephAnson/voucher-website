@@ -26,7 +26,7 @@ function copyCode() {
 </script>
 
 <template>
-  <li class="overflow-hidden rounded-xl border border-gray-200">
+  <li class="overflow-hidden rounded-xl border border-gray-200 bg-white">
     <div class="flex flex-wrap flex-grow-1 justify-between gap-x-4 bg-gray-50 p-4">
       <div class="flex items-center">
         <img

@@ -17,7 +17,9 @@ useSchemaOrg([
 </script>
 
 <template>
-  <Nav />
-  <NuxtPage />
-  <Footer />
+  <div class="bg-[#FFFBF5]">
+    <Nav />
+    <NuxtPage />
+    <Footer />
+  </div>
 </template>

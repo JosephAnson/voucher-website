@@ -12,7 +12,7 @@ const codeCount = computed(() => props.codes.length)
 </script>
 
 <template>
-  <li class="overflow-hidden rounded-xl border border-gray-200 ">
+  <li class="overflow-hidden rounded-xl border border-gray-200 bg-white">
     <NuxtLink
       :to="`/companies/${props.id}`"
       class="flex flex-col h-full"

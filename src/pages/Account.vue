@@ -121,7 +121,7 @@ onUpload((url) => {
                         id="comments"
                         name="comments"
                         type="checkbox"
-                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                        class="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
                       >
                     </div>
                     <div class="text-sm leading-6">
@@ -140,7 +140,7 @@ onUpload((url) => {
                         id="candidates"
                         name="candidates"
                         type="checkbox"
-                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                        class="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
                       >
                     </div>
                     <div class="text-sm leading-6">
@@ -159,7 +159,7 @@ onUpload((url) => {
                         id="offers"
                         name="offers"
                         type="checkbox"
-                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                        class="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
                       >
                     </div>
                     <div class="text-sm leading-6">

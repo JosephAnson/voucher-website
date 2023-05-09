@@ -2,6 +2,56 @@
 import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/vue/24/outline'
 import HomeCompanies from '~/components/HomeCompanies.vue'
 
+const categories = [
+  {
+    title: 'Fashion',
+    image: '',
+  },
+  {
+    title: 'Electronics',
+    image: '',
+  },
+  {
+    title: 'Home',
+    image: '',
+  }, {
+    title: 'Garden',
+    image: '',
+  },
+  {
+    title: 'Health',
+    image: '',
+  },
+  {
+    title: 'Gifts',
+    image: '',
+  },
+  {
+    title: 'Sports',
+    image: '',
+  },
+  {
+    title: 'Insurance',
+    image: '',
+  },
+  {
+    title: 'Motoring',
+    image: '',
+  },
+  {
+    title: 'Utilities',
+    image: '',
+  },
+  {
+    title: 'Travel',
+    image: '',
+  },
+  {
+    title: 'Finance',
+    image: '',
+  },
+]
+
 const features = [
   {
     name: 'Push to deploy',
@@ -33,31 +83,53 @@ const features = [
 <template>
   <Section>
     <Container>
+      <Heading h1>
+        Save money with our vouchers, discounts and codes
+      </Heading>
+
+      <Heading
+        h3
+        primary
+        styled="h4"
+      >
+        Categories
+      </Heading>
       <div class="flex flex-wrap justify-center space-x-2 mt-2 ">
-        <Button
-          v-for="i in 20"
-          :key="i"
-          size="sm"
-          class="mb-2"
-        >
-          Category {{ i }}
-        </Button>
+        <ul class="grid grid-cols-6 gap-4 w-full">
+          <li
+            v-for="category in categories"
+            :key="category.title"
+          >
+            <Card
+              :title="
+                category.title"
+              :image-src="`https://source.unsplash.com/random/200x200/?${category.title}`"
+            />
+          </li>
+        </ul>
       </div>
     </Container>
   </Section>
 
-  <Section>
+  <Section :padding-top="false">
     <Container>
+      <Heading
+        h3
+        primary
+        styled="h4"
+      >
+        Best Offers
+      </Heading>
       <HomeCompanies />
     </Container>
   </Section>
 
-  <div class="bg-gray-100 py-24 sm:py-32">
+  <div class="bg-white py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto max-w-2xl lg:text-center">
-        <h2 class="text-base font-semibold leading-7 text-indigo-600">
+        <Heading h3>
           made easy and simple
-        </h2>
+        </Heading>
         <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Share your voucher codes
         </p>
@@ -73,7 +145,7 @@ const features = [
             class="relative pl-16"
           >
             <dt class="text-base font-semibold leading-7 text-gray-900">
-              <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+              <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-600">
                 <component
                   :is="feature.icon"
                   class="h-6 w-6 text-white"

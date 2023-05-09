@@ -5,9 +5,7 @@ const password = ref('')
 </script>
 
 <template>
-  <Section
-    class="bg-gray-100"
-  >
+  <Section>
     <Heading
       h1
       class="text-center !mb-2"
@@ -20,7 +18,7 @@ const password = ref('')
       {{ ' ' }}
       <NuxtLink
         to="/signup"
-        class="font-medium text-indigo-600 hover:text-indigo-500"
+        class="font-medium text-primary-600 hover:text-primary-500"
       >
         Sign up
       </NuxtLink>
@@ -81,7 +79,7 @@ const password = ref('')
                             id="remember-me"
                             name="remember-me"
                             type="checkbox"
-                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            class="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-600"
                           >
                           <label
                             for="remember-me"

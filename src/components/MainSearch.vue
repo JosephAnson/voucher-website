@@ -80,7 +80,7 @@ watch(selectedCompany, () => {
               <ComboboxInput
                 ref="input"
                 aria-autocomplete="none"
-                class="w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                class="w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                 :display-value="(person) => person?.name"
                 @change="search = $event.target.value"
                 @keydown.enter="searchCompanies(search)"
@@ -110,7 +110,7 @@ watch(selectedCompany, () => {
                   >
                     <li
                       class="relative cursor-default select-none py-2 pl-3 pr-9"
-                      :class="[active ? 'bg-indigo-600 text-white' : 'text-gray-900']"
+                      :class="[active ? 'bg-primary-600 text-white' : 'text-gray-900']"
                     >
                       <div class="flex items-center">
                         Searching "{{ search }}"
@@ -126,7 +126,7 @@ watch(selectedCompany, () => {
                   >
                     <li
                       class="relative cursor-default select-none py-2 pl-3 pr-9"
-                      :class="[active ? 'bg-indigo-600 text-white' : 'text-gray-900']"
+                      :class="[active ? 'bg-primary-600 text-white' : 'text-gray-900']"
                     >
                       <div class="flex items-center">
                         <nuxt-img

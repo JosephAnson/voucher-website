@@ -24,7 +24,7 @@ const props = defineProps<{
       >
         <a
           :href="props.link.href"
-          class="font-semibold text-indigo-600 hover:text-indigo-500"
+          class="font-semibold text-primary-600 hover:text-primary-500"
         >
           {{ props.link.text }}
           <span aria-hidden="true"> &rarr;</span>

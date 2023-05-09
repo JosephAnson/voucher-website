@@ -22,6 +22,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  primary: {
+    type: Boolean,
+    default: false,
+  },
   styled: {
     type: String as PropType<HeadingSizesType | null>,
     validator: (value: HeadingSizesType) => (['h1', 'h2', 'h3', 'h4', 'p'] as HeadingSizesTuple).includes(value),
@@ -69,8 +73,8 @@ const styles = computed(() => {
 <template>
   <component
     :is="type"
-    class="heading font-secondary font-semibold"
-    :class="[styles, { 'font-bold': bold }]"
+    class="heading font-semibold"
+    :class="[styles, { 'font-bold': bold, 'font-secondary': !props.primary }]"
   >
     <slot />
   </component>
