@@ -12,7 +12,9 @@ const codeCount = computed(() => props.codes.length)
 </script>
 
 <template>
-  <li class="overflow-hidden rounded-xl border border-gray-200 bg-white">
+  <li
+    class="overflow-hidden rounded-xl border bg-white"
+  >
     <NuxtLink
       :to="`/companies/${props.id}`"
       class="flex flex-col h-full"
@@ -39,7 +41,7 @@ const codeCount = computed(() => props.codes.length)
             theme="transparent"
             :rounded="false"
             :class="{
-              'border-primary': codeCount > 0,
+              'bg-green-50': codeCount > 0,
             }"
           >
             {{ codeCount === 1 ? `${codeCount} Code` : `${codeCount} Codes` }}

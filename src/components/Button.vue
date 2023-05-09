@@ -3,15 +3,24 @@ const props = withDefaults(defineProps<{
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   theme?: 'primary' | 'transparent' | 'danger'
   rounded?: boolean
+  to?: string
 }>(), {
   size: 'md',
   theme: 'primary',
   rounded: true,
 })
+
+const component = computed(() => {
+  if (props.to)
+    return resolveComponent('NuxtLink')
+  return 'button'
+})
 </script>
 
 <template>
-  <button
+  <component
+    :is="component"
+    :to="props.to"
     type="button"
     class="flex-shrink-0 font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
     :class="{
@@ -28,5 +37,5 @@ const props = withDefaults(defineProps<{
     }"
   >
     <slot />
-  </button>
+  </component>
 </template>

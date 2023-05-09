@@ -51,47 +51,38 @@ function copyCode() {
           @click="copyCode"
         />
 
-        <a
+        <Button
           v-if="!props.edit && props.revealed"
-          href="#"
           class="flex-shrink-0"
           @click.prevent="copyCode"
         >
-          <Button>
-            Copy Code
-          </Button>
-        </a>
+          Copy Code
+        </Button>
 
-        <NuxtLink
+        <Button
           v-if="!props.edit && !props.revealed"
           class="flex-shrink-0"
           :to="`/vouchercode/${props.id}`"
         >
-          <Button>
-            Reveal Code
-          </Button>
-        </NuxtLink>
+          Reveal Code
+        </Button>
 
-        <NuxtLink
+        <Button
           v-if="props.edit"
           class="flex-shrink-0"
           :to="`/vouchercode/edit/${props.id}`"
         >
-          <Button>
-            Edit Code
-          </Button>
-        </NuxtLink>
+          Edit Code
+        </Button>
 
-        <a
+        <Button
           v-if="props.edit"
-          href="#"
+          theme="danger"
           class="flex-shrink-0"
           @click.prevent="$emit('delete', props.id)"
         >
-          <Button theme="danger">
-            Delete
-          </Button>
-        </a>
+          Delete
+        </Button>
       </div>
     </div>
 

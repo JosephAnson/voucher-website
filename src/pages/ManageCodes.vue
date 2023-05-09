@@ -35,6 +35,7 @@ function deleteVoucherCode(id) {
           :avatar-src="code.author.avatar_url"
           :code="code.code"
           edit
+          revealed
           @delete="deleteVoucherCode"
         />
       </div>
@@ -42,12 +43,13 @@ function deleteVoucherCode(id) {
         <Heading h3>
           You've added no vouchers
         </Heading>
-        <NuxtLink
+
+        <Button
           to="/vouchercode/submit"
           class="text-blue-500 hover:underline"
         >
-          <Button>Click here to add some</Button>
-        </NuxtLink>
+          Click here to add some
+        </Button>
       </div>
     </Container>
   </Section>
