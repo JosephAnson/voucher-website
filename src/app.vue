@@ -3,14 +3,11 @@ await useFetchProfileOnSupabaseUserUpdate()
 
 useSchemaOrg([
   defineOrganization({
-    name: 'Nuxt.js',
-    logo: '/logo.png',
-    sameAs: [
-      'https://twitter.com/nuxt_js',
-    ],
+    name: 'Vouchers Discounts Codes',
+    logo: '/logo.svg',
   }),
   defineWebSite({
-    name: 'Nuxt',
+    name: 'Vouchers Discounts Codes',
   }),
   defineWebPage(),
 ])

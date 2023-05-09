@@ -11,15 +11,30 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 export default defineNuxtConfig({
   app: {
     head: {
-      title: '[REPLACE]: App',
+      title: 'VouchersDiscountsCodes - Save Big with the Latest Deals and Promo Codes',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           hid: 'description',
           name: 'description',
-          content: '[REPLACE]: new app descript',
+          content: 'Discover the latest voucher codes, discounts and promo codes for your favorite online stores at VouchersDiscountsCodes. Get huge savings on fashion, beauty, home decor, electronics and more. Start saving today!',
         },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: 'vouchers, discounts, codes, promo codes, online stores, savings, fashion, beauty, home decor, electronics.',
+        },
+        { name: 'msapplication-TileColor', content: '#da532c' },
+        { name: 'theme-color', content: '#ffffff' },
+      ],
+      link: [
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'icon', type: 'image/png', href: '/favicon-16x16.png', sizes: '16x16' },
+        { rel: 'icon', type: 'image/png', href: '/favicon-32x32.png', sizes: '32x32' },
+        { rel: 'manifest', href: '/site.webmanifest' },
+        { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
+
       ],
       htmlAttrs: {
         lang: 'en',
