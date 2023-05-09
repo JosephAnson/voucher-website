@@ -50,7 +50,7 @@ export interface Database {
         Insert: {
           created_at?: string | null
           description?: string | null
-          id?: string
+          id: string
           logo?: string
           name?: string
           url: string

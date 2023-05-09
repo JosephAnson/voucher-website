@@ -166,7 +166,7 @@ const navigation = {
               type="email"
               name="email-address"
               autocomplete="email"
-              required=""
+              required
               class="w-full min-w-0 appearance-none rounded-md border-0 bg-white/5 px-3 py-1.5 text-base text-white shadow-sm ring-1 ring-inset ring-white/10 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:w-64 sm:text-sm sm:leading-6 xl:w-full"
               placeholder="Enter your email"
             >

@@ -7,7 +7,7 @@ const confirmPassword = ref('')
 
 async function updatePassword() {
   if (newPassword.value === confirmPassword.value) {
-    const { error, data } = await userStore.updatePassword({ newPassword: newPassword.value })
+    const { error } = await userStore.updatePassword({ newPassword: newPassword.value })
 
     if (error) {
       openSnackbar({ title: 'Password change failed!', message: error.message, status: 'danger' })

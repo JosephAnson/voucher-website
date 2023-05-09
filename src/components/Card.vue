@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const props = defineProps<{
-  title: string
-  imageSrc: string
-  imageAlt: string
-  to: string
+  title?: string
+  imageSrc?: string
+  imageAlt?: string
+  to?: string
 }>()
 </script>
 
