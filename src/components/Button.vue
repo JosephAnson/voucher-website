@@ -3,6 +3,7 @@ const props = withDefaults(defineProps<{
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   theme?: 'primary' | 'transparent' | 'danger'
   rounded?: boolean
+  disabled?: boolean
   to?: string
 }>(), {
   size: 'md',
@@ -34,6 +35,7 @@ const component = computed(() => {
       'border hover:bg-gray-100 focus-visible:outline-primary-600': props.theme === 'transparent',
       'rounded-md': props.rounded,
       'rounded': !props.rounded,
+      'opacity-50': props.disabled,
     }"
   >
     <slot />

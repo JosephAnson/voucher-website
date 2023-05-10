@@ -74,7 +74,6 @@ const navigation = {
                 Solutions
               </h3>
               <ul
-                role="list"
                 class="mt-6 space-y-4"
               >
                 <li
@@ -93,7 +92,6 @@ const navigation = {
                 Support
               </h3>
               <ul
-                role="list"
                 class="mt-6 space-y-4"
               >
                 <li
@@ -114,7 +112,6 @@ const navigation = {
                 Company
               </h3>
               <ul
-                role="list"
                 class="mt-6 space-y-4"
               >
                 <li
@@ -133,7 +130,6 @@ const navigation = {
                 Legal
               </h3>
               <ul
-                role="list"
                 class="mt-6 space-y-4"
               >
                 <li

@@ -12,6 +12,7 @@ const loggedIn = computed(() => userStore.user.email && user.value)
 const userNavigation = [
   { name: 'Your Profile', to: '/account' },
   { name: 'Manage Codes', to: '/managecodes' },
+  { name: 'Add Company', to: '/companies/add' },
 ]
 </script>
 

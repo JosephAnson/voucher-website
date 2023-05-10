@@ -1,7 +1,8 @@
 import type { Database } from '~/supabase.types'
+import { createGuid } from '~/utils/createGuid'
 
 export function useSupabaseUpload(
-  { path, bucket, accept = 'image/png, image/jpeg' }: { path: string; bucket: string; accept?: string },
+  { path, bucket, fileName: _fileName, accept = 'image/png, image/jpeg' }: { path: string; bucket: string; fileName?: string; accept?: string },
 ) {
   const { files, open, reset, onChange } = useFileDialog(
     { accept, multiple: false },
@@ -14,12 +15,13 @@ export function useSupabaseUpload(
   onChange(async (fileList) => {
     if (fileList) {
       const file = fileList[0]
+      const fileName = _fileName || createGuid().replace(/-/g, '')
 
       if (file) {
         const { data, error } = await client
           .storage
           .from(bucket)
-          .upload(path, file, {
+          .upload(`${path}/${fileName}`, file, {
             upsert: true,
             cacheControl: '0',
           })
@@ -31,7 +33,7 @@ export function useSupabaseUpload(
         else {
           // Handle success
           if (data?.path)
-            await trigger(`https://vdzjsjlcezebwpavsjif.supabase.co/storage/v1/object/public/avatars/${data.path}?name=${file.name}`)
+            await trigger(`https://vdzjsjlcezebwpavsjif.supabase.co/storage/v1/object/public/${bucket}/${data.path}?name=${fileName}`)
         }
       }
     }

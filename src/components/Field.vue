@@ -2,6 +2,7 @@
 const props = withDefaults(defineProps<{
   label?: string
   message?: string
+  error?: string
   stacked?: boolean
   labelFor?: string
 }>(), {
@@ -9,6 +10,7 @@ const props = withDefaults(defineProps<{
 })
 
 provide('labelFor', props.labelFor)
+provide('error', props.error)
 </script>
 
 <template>
@@ -33,6 +35,12 @@ provide('labelFor', props.labelFor)
       class="mt-1 text-xs leading-6 text-gray-600"
     >
       {{ props.message }}
+    </p>
+    <p
+      v-if="props.error"
+      class="mt-1 text-xs leading-6 text-red-600"
+    >
+      {{ props.error }}
     </p>
   </div>
 </template>

@@ -40,6 +40,7 @@ export interface Database {
       }
       companies: {
         Row: {
+          approved: boolean
           created_at: string | null
           description: string | null
           id: string
@@ -48,14 +49,16 @@ export interface Database {
           url: string
         }
         Insert: {
+          approved?: boolean
           created_at?: string | null
           description?: string | null
           id: string
-          logo?: string
+          logo: string
           name?: string
           url: string
         }
         Update: {
+          approved?: boolean
           created_at?: string | null
           description?: string | null
           id?: string

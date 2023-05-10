@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
-  paddingTop: boolean
-  paddingBottom: boolean
+  paddingTop?: boolean
+  paddingBottom?: boolean
 }>(), {
   paddingTop: true,
   paddingBottom: true,

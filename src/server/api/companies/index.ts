@@ -15,7 +15,7 @@ export default eventHandler(async (event) => {
   const { data } = await client
     .from('companies')
     .select(COMPANY_COLUMNS)
-    .order('created_at')
+    .order('name')
 
   return data
 })
