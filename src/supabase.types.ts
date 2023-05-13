@@ -87,17 +87,17 @@ export interface Database {
       company_categories: {
         Row: {
           category: number
-          companies: string
+          company: string
           id: number
         }
         Insert: {
           category: number
-          companies: string
+          company: string
           id?: number
         }
         Update: {
           category?: number
-          companies?: string
+          company?: string
           id?: number
         }
       }

@@ -2,8 +2,8 @@ import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 import { COMPANY_COLUMNS } from '~/utils/constants'
 
-export default eventHandler(async (event) => {
-  if (!event.context.params) {
+export default defineEventHandler(async (event) => {
+  if (!event.context.params?.id) {
     throw createError({
       statusCode: 400,
       statusMessage: 'Should provide id',

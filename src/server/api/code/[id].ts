@@ -2,7 +2,7 @@ import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 import { CODE_COLUMNS } from '~/utils/constants'
 
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   if (!event.context.params) {
     throw createError({
       statusCode: 400,

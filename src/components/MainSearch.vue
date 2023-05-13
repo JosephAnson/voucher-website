@@ -15,8 +15,9 @@ const router = useRouter()
 const search = ref('')
 const selectedCompany = ref(null)
 
-function searchCompanies(searchText: string) {
-  router.push(`/companies?search=${searchText}`)
+function searchCompanies(searchText: string | undefined) {
+  router.push(searchText ? `/companies?search=${searchText}` : '/companies')
+  search.value = ''
 }
 
 const input = ref<HTMLInputElement>(null)

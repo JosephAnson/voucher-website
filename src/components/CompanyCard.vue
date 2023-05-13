@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const props = defineProps<{
-  id: number
+  id: number | string
   name: string
-  description: string
+  description?: string
   logo: string
   url: string
   codes: { id: number }[]
@@ -22,7 +22,10 @@ const codeCount = computed(() => props.codes.length)
       <div class="flex flex-grow-1 justify-between gap-x-4 bg-gray-50 p-4">
         <div>
           <Heading>{{ props.name }}</Heading>
-          <p class="line-clamp-3">
+          <p
+            v-if="props.description"
+            class="line-clamp-3"
+          >
             {{ props.description }}
           </p>
         </div>
