@@ -2275,6 +2275,15 @@
     local-pkg "^0.4.3"
     vee-validate "^4.9.2"
 
+"@vee-validate/yup@^4.9.3":
+  version "4.9.3"
+  resolved "https://registry.yarnpkg.com/@vee-validate/yup/-/yup-4.9.3.tgz#a065eebd99c1f563d499bc2598e7c819898dd1fd"
+  integrity sha512-j7mZfdnDxDkvhWtjRlzKPQ039GYs2JG9IXkpd6ZluxZSbiCSCFr907BLp21HHgXmB7BhGsmY3iN1aBld4XXJjw==
+  dependencies:
+    type-fest "^3.10.0"
+    vee-validate "^4.9.3"
+    yup "^1.1.1"
+
 "@vercel/analytics@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@vercel/analytics/-/analytics-1.0.1.tgz#38308a626c91866cb00a249c08bf65251e9b9d81"
@@ -9575,6 +9584,14 @@ vee-validate@^4.9.2:
     "@vue/devtools-api" "^6.5.0"
     type-fest "^3.10.0"
 
+vee-validate@^4.9.3:
+  version "4.9.3"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.9.3.tgz#5baaa965aa3acc9cacffb02cec212e8bf8d635a5"
+  integrity sha512-XZ5OuDa0WecESCScWzdX632e9uT/ExTacRsUiLaL46r2NqJBSE9Gr88QxV/kh7PmfD0Nb1+7/LwFYukTMeQfFw==
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
+    type-fest "^3.10.0"
+
 vite-node@^0.30.1:
   version "0.30.1"
   resolved "https://registry.yarnpkg.com/vite-node/-/vite-node-0.30.1.tgz#ab0ed1553019c7d81ac95529c57ab8ac9e82347d"
@@ -10111,8 +10128,3 @@ zip-stream@^4.1.0:
     archiver-utils "^2.1.0"
     compress-commons "^4.1.0"
     readable-stream "^3.6.0"
-
-zod@^3.21.4:
-  version "3.21.4"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.21.4.tgz#10882231d992519f0a10b5dd58a38c9dabbb64db"
-  integrity sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==

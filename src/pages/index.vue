@@ -2,55 +2,7 @@
 import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/vue/24/outline'
 import HomeCompanies from '~/components/HomeCompanies.vue'
 
-const categories = [
-  {
-    title: 'Fashion',
-    image: '',
-  },
-  {
-    title: 'Electronics',
-    image: '',
-  },
-  {
-    title: 'Home',
-    image: '',
-  }, {
-    title: 'Garden',
-    image: '',
-  },
-  {
-    title: 'Health',
-    image: '',
-  },
-  {
-    title: 'Gifts',
-    image: '',
-  },
-  {
-    title: 'Sports',
-    image: '',
-  },
-  {
-    title: 'Insurance',
-    image: '',
-  },
-  {
-    title: 'Motoring',
-    image: '',
-  },
-  {
-    title: 'Utilities',
-    image: '',
-  },
-  {
-    title: 'Travel',
-    image: '',
-  },
-  {
-    title: 'Finance',
-    image: '',
-  },
-]
+const { data: categories } = await useFetch('/api/categories')
 
 const features = [
   {
@@ -86,7 +38,6 @@ const features = [
       <Heading h1>
         Save money with our vouchers, discounts and codes
       </Heading>
-
       <Heading
         h3
         primary
@@ -98,12 +49,12 @@ const features = [
         <ul class="grid grid-cols-6 gap-4 w-full">
           <li
             v-for="category in categories"
-            :key="category.title"
+            :key="category.id"
           >
             <Card
               :title="
-                category.title"
-              :image-src="`https://source.unsplash.com/random/200x200/?${category.title}`"
+                category.category"
+              :image-src="`https://source.unsplash.com/random/200x200/?${category.category}`"
               :image-width="195"
               image-classes="object-cover aspect-3/2"
             />

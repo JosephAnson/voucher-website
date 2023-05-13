@@ -1,14 +1,15 @@
 import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 
-const COMPANY_COLUMNS = 'id, name, description, url, logo, codes(id)'
+const COLUMNS = 'id, category'
 
 export default eventHandler(async (event) => {
   const client = serverSupabaseClient<Database>(event)
   const { data } = await client
-    .from('companies')
-    .select(COMPANY_COLUMNS)
-    .order('name')
+    .from('categories')
+    .select(COLUMNS)
+    .order('order')
+    .order('id')
 
   return data
 })

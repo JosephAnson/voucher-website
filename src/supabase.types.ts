@@ -9,6 +9,23 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      categories: {
+        Row: {
+          category: string
+          id: number
+          order: number
+        }
+        Insert: {
+          category: string
+          id?: number
+          order?: number
+        }
+        Update: {
+          category?: string
+          id?: number
+          order?: number
+        }
+      }
       codes: {
         Row: {
           author: string
@@ -65,6 +82,23 @@ export interface Database {
           logo?: string
           name?: string
           url?: string
+        }
+      }
+      company_categories: {
+        Row: {
+          category: number
+          companies: string
+          id: number
+        }
+        Insert: {
+          category: number
+          companies: string
+          id?: number
+        }
+        Update: {
+          category?: number
+          companies?: string
+          id?: number
         }
       }
       profiles: {
