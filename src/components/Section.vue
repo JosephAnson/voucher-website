@@ -11,8 +11,8 @@ const props = withDefaults(defineProps<{
 <template>
   <div
     :class="{
-      'pt-8': props.paddingTop,
-      'pb-8': props.paddingBottom,
+      'pt-6 md:pt-8': props.paddingTop,
+      'pb-6 md:pb-8': props.paddingBottom,
     }"
   >
     <slot />

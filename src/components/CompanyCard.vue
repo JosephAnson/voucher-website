@@ -49,13 +49,6 @@ const codeCount = computed(() => props.codes.length)
           >
             {{ codeCount === 1 ? `${codeCount} Code` : `${codeCount} Codes` }}
           </Button>
-
-          <Button
-            theme="transparent"
-            :rounded="false"
-          >
-            100 Views a day
-          </Button>
         </div>
         <Button>Show Codes</Button>
       </div>

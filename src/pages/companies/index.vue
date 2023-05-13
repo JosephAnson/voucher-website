@@ -58,14 +58,17 @@ const mobileFiltersOpen = ref(false)
               leave-from="translate-x-0"
               leave-to="translate-x-full"
             >
-              <DialogPanel class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
+              <DialogPanel class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-2 pb-12 shadow-xl">
                 <div class="flex items-center justify-between px-4">
-                  <h2 class="text-lg font-medium text-gray-900">
+                  <Heading
+                    h2
+                    :margin-bottom="false"
+                  >
                     Filters
-                  </h2>
+                  </Heading>
                   <button
                     type="button"
-                    class="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
+                    class="flex h-10 w-10 items-center justify-center rounded-md text-gray-400"
                     @click="mobileFiltersOpen = false"
                   >
                     <span class="sr-only">Close menu</span>
@@ -77,24 +80,35 @@ const mobileFiltersOpen = ref(false)
                 </div>
 
                 <!-- Filters -->
-                <form class="mt-4 border-t border-gray-200">
+                <form class="mt-2 border-t border-gray-200">
                   <h3 class="sr-only">
                     Categories
                   </h3>
                   <ul
                     role="list"
-                    class="px-2 py-3 font-medium text-gray-900"
+                    class="px-2 py-1 font-medium text-gray-900"
                   >
                     <li
-                      v-for="category in categories"
-                      :key="category.category"
+                      v-for="categoryItem in categories"
+                      :key="categoryItem.category"
                     >
                       <a
-                        :href="category.href"
-                        class="block px-2 py-3"
-                      >{{ category.category }}</a>
+                        class="block p-2"
+                        href="#"
+                        @click.prevent="(category = categoryItem.id, mobileFiltersOpen = false)"
+                      >
+                        {{ categoryItem.category }}
+                      </a>
                     </li>
                   </ul>
+                  <div class="px-4">
+                    <Button
+                      class="w-full"
+                      @click.prevent="(category = '', mobileFiltersOpen = false)"
+                    >
+                      Clear Filters
+                    </Button>
+                  </div>
                 </form>
               </DialogPanel>
             </TransitionChild>
@@ -102,9 +116,12 @@ const mobileFiltersOpen = ref(false)
         </Dialog>
       </TransitionRoot>
 
-      <main class="">
-        <div class="flex items-baseline justify-between border-b border-gray-200">
-          <Heading h1>
+      <main>
+        <div class="flex items-baseline justify-between border-b border-gray-200 pb-2">
+          <Heading
+            h1
+            class="!mb-0"
+          >
             Companies
           </Heading>
 
@@ -115,7 +132,7 @@ const mobileFiltersOpen = ref(false)
             >
               <div>
                 <MenuButton class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                  Sort by: {{ $t(`sortOptions.${sort}`) }}
+                  Sort&nbsp;<span class="hidden md:inline">by: {{ $t(`sortOptions.${sort}`) }} </span>
                   <ChevronDownIcon
                     class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"

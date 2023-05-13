@@ -46,7 +46,7 @@ const features = [
         Categories
       </Heading>
       <div class="flex flex-wrap justify-center space-x-2 mt-2 ">
-        <ul class="grid grid-cols-6 gap-4 w-full">
+        <ul class="grid grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4 w-full">
           <li
             v-for="category in categories"
             :key="category.id"

@@ -73,7 +73,7 @@ watch(selectedCompany, () => {
             class="w-full"
           >
             <ComboboxLabel
-              class="sr-only block text-sm font-medium leading-6 text-gray-900"
+              class="sr-only"
             >
               Search
             </ComboboxLabel>
@@ -81,12 +81,12 @@ watch(selectedCompany, () => {
               <ComboboxInput
                 ref="input"
                 aria-autocomplete="none"
-                class="w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                class="w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-1.5 md:pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                 :display-value="(person) => person?.name"
                 @change="search = $event.target.value"
                 @keydown.enter="searchCompanies(search)"
               />
-              <ComboboxButton class="absolute inset-y-0 right-8 flex items-center rounded-r-md px-2 focus:outline-none">
+              <ComboboxButton class="absolute inset-y-0 right-8 hidden md:flex items-center rounded-r-md px-2 focus:outline-none hidden md:flex">
                 <ChevronUpDownIcon
                   class="h-5 w-5 text-gray-400"
                   aria-hidden="true"
@@ -103,7 +103,7 @@ watch(selectedCompany, () => {
               >
                 <ComboboxOptions
                   v-if="filteredCompanies.length > 0 || search"
-                  class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                  class="absolute bottom-100% md:bottom-auto z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                 >
                   <ComboboxOption
                     v-if="search && filteredCompanies.length <= 0"
@@ -122,6 +122,7 @@ watch(selectedCompany, () => {
                     v-for="company in filteredCompanies"
                     :key="company.id"
                     v-slot="{ active }"
+                    :static="true"
                     :value="company"
                     as="template"
                   >
@@ -151,7 +152,7 @@ watch(selectedCompany, () => {
               </transition>
             </div>
           </Combobox>
-          <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+          <div class="absolute inset-y-0 right-0 py-1.5 pr-1.5 hidden md:flex">
             <kbd class="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400">⌘K</kbd>
           </div>
         </div>
@@ -159,7 +160,7 @@ watch(selectedCompany, () => {
           size="lg"
           @click="searchCompanies(search)"
         >
-          Search Company
+          Search <span class="hidden md:inline"> Company</span>
         </Button>
       </div>
     </div>

@@ -28,7 +28,7 @@ function copyCode() {
 <template>
   <li class="overflow-hidden rounded-xl border border-gray-200 bg-white">
     <div class="flex flex-wrap flex-grow-1 justify-between gap-x-4 bg-gray-50 p-4">
-      <div class="flex items-center">
+      <div class="flex items-center mb-2 mb-0">
         <img
           :src="props.avatarSrc"
           :alt="`${props.username}.`"
@@ -43,7 +43,7 @@ function copyCode() {
           </Heading>
         </div>
       </div>
-      <div class="flex items-center space-x-2">
+      <div class="md:flex items-center md:space-x-2 space-y-2 md:space-y-0">
         <Input
           readonly
           :model-value="revealCode"
@@ -51,38 +51,40 @@ function copyCode() {
           @click="copyCode"
         />
 
-        <Button
-          v-if="!props.edit && props.revealed"
-          class="flex-shrink-0"
-          @click.prevent="copyCode"
-        >
-          Copy Code
-        </Button>
+        <div class="md:flex space-x-2 flex-shrink-0">
+          <Button
+            v-if="!props.edit && props.revealed"
+            class="flex-shrink-0"
+            @click.prevent="copyCode"
+          >
+            Copy Code
+          </Button>
 
-        <Button
-          v-if="!props.edit && !props.revealed"
-          class="flex-shrink-0"
-          :to="`/vouchercode/${props.id}`"
-        >
-          Reveal Code
-        </Button>
+          <Button
+            v-if="!props.edit && !props.revealed"
+            class="flex-shrink-0"
+            :to="`/vouchercode/${props.id}`"
+          >
+            Reveal Code
+          </Button>
 
-        <Button
-          v-if="props.edit"
-          class="flex-shrink-0"
-          :to="`/vouchercode/edit/${props.id}`"
-        >
-          Edit Code
-        </Button>
+          <Button
+            v-if="props.edit"
+            class="flex-shrink-0"
+            :to="`/vouchercode/edit/${props.id}`"
+          >
+            Edit Code
+          </Button>
 
-        <Button
-          v-if="props.edit"
-          theme="danger"
-          class="flex-shrink-0"
-          @click.prevent="$emit('delete', props.id)"
-        >
-          Delete
-        </Button>
+          <Button
+            v-if="props.edit"
+            theme="danger"
+            class="flex-shrink-0"
+            @click.prevent="$emit('delete', props.id)"
+          >
+            Delete
+          </Button>
+        </div>
       </div>
     </div>
 

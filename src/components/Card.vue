@@ -18,7 +18,7 @@ const component = computed(() => {
 </script>
 
 <template>
-  <div class="bg-white shadow rounded-2xl p-2 flex items-center justify-center flex-col w-full h-full">
+  <div class="bg-white shadow rounded-2xl p-1 md:p-2 flex items-center justify-center flex-col w-full h-full">
     <Component
       :is="component"
       :to="props.to"

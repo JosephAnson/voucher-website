@@ -31,6 +31,10 @@ const props = defineProps({
     validator: (value: HeadingSizesType) => (['h1', 'h2', 'h3', 'h4', 'p'] as HeadingSizesTuple).includes(value),
     default: null,
   },
+  marginBottom: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 const HEADING_SIZES = ['h1', 'h2', 'h3', 'h4', 'p'] as const
@@ -53,13 +57,13 @@ const type = computed(() => {
 function getHeaderClass(type: HeadingSizesType) {
   switch (type) {
     case 'h1':
-      return 'text-2xl md:text-3xl mb-5'
+      return 'text-2xl md:text-3xl'.concat(props.marginBottom ? ' mb-5' : '')
     case 'h2':
-      return 'text-xl md:text-2xl mb-4'
+      return 'text-xl md:text-2xl'.concat(props.marginBottom ? ' mb-4' : '')
     case 'h4':
-      return 'md:text-l mb-2'
+      return 'md:text-l'.concat(props.marginBottom ? ' mb-2' : '')
     default:
-      return 'text-xl md:text-xl mb-3'
+      return 'text-xl md:text-xl'.concat(props.marginBottom ? ' mb-3' : '')
   }
 }
 

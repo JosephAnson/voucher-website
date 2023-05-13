@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
   const sort = getSort(query?.sort, 'ALPHABETICAL')
 
   if (query?.category) {
-    const { data, error } = await client
+    const { data } = await client
       .from('company_categories')
       .select(`company(${COMPANY_COLUMNS})`)
       .eq('category', query?.category)

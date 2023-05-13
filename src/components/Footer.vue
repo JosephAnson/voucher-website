@@ -35,21 +35,7 @@ const navigation = {
       href: '#',
 
     },
-    {
-      name: 'Twitter',
-      href: '#',
 
-    },
-    {
-      name: 'GitHub',
-      href: '#',
-
-    },
-    {
-      name: 'YouTube',
-      href: '#',
-
-    },
   ],
 }
 </script>
