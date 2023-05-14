@@ -20,7 +20,6 @@ const userNavigation = [
 const router = useRouter()
 
 router.afterEach(() => {
-  console.log('changed')
   open.value = false
 })
 </script>

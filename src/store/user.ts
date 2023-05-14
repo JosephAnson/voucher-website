@@ -82,17 +82,18 @@ export const useUserStore = defineStore('user', {
         await router.push('/')
       }
     },
-    async signInWithSocial({ provider, returnUrl }: { provider: 'discord' | 'google'; returnUrl?: string }) {
+    async signInWithSocial({ provider }: { provider: 'discord' | 'google' }) {
+      const router = useRouter()
       const client = useSupabaseAuthClient()
 
-      await client.auth.signInWithOAuth({
+      const { error } = await client.auth.signInWithOAuth({
         provider,
-        options: {
-          redirectTo: returnUrl || window.location.origin,
-        },
       })
 
-      // if (error) return openSnackbar('Something went wrong !')
+      if (error)
+        openSnackbar({ title: 'Login Failed!', message: error.message, status: 'danger' })
+      else
+        await router.push('/')
     },
     async signInWithEmail({ email, password }: { email: string; password: string }) {
       const router = useRouter()
@@ -111,31 +112,30 @@ export const useUserStore = defineStore('user', {
         await router.push('/')
       }
     },
-    async signUpWithEmail({ email, password, username, returnUrl }: { email: string; password: string; username: string; returnUrl?: string }) {
+    async signUpWithEmail({ email, password, username }: { email: string; password: string; username: string }) {
       const client = useSupabaseAuthClient()
+      const router = useRouter()
 
-      const { data } = await client.auth.signUp(
+      const { data, error } = await client.auth.signUp(
         {
           email,
           password,
           options: {
             data: { username },
-            emailRedirectTo: returnUrl || window.location.origin,
           },
         })
-
-      if (data)
-        this.signInWithEmail({ email, password })
+      console.log(data, error)
+      if (error)
+        openSnackbar({ title: 'Login Failed!', message: error.message, status: 'danger' })
+      else
+        await router.push('/confirmEmail')
     },
-    async signInWithOtp({ email, returnUrl }: { email: string; returnUrl?: string }) {
+    async signInWithOtp({ email }: { email: string }) {
       const client = useSupabaseAuthClient()
       const router = useRouter()
 
       const { error } = await client.auth.signInWithOtp({
         email,
-        options: {
-          emailRedirectTo: returnUrl || window.location.origin,
-        },
       })
 
       if (error) {
@@ -154,17 +154,18 @@ export const useUserStore = defineStore('user', {
     },
     async forgotPassword({ email }: { email: string }) {
       const client = useSupabaseAuthClient()
+      const router = useRouter()
 
       const { error, data } = await client.auth
-        .resetPasswordForEmail(email, {
-          redirectTo: `${window.location.origin}/updatepassword`,
-        })
+        .resetPasswordForEmail(email)
 
-      if (error)
+      if (error) {
         openSnackbar({ title: 'Password reset failed!', message: error.message, status: 'danger' })
-
-      else
+      }
+      else {
+        await router.push('/updatePassword')
         openSnackbar({ title: 'Check your emails to reset the password!' })
+      }
 
       return { error, data }
     },

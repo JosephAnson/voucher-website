@@ -40,7 +40,10 @@ function submit() {
           stacked
           label-for="description"
         >
-          <Input v-model="description" />
+          <Input
+            v-model="description"
+            type="textarea"
+          />
         </Field>
 
         <Field
