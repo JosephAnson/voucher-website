@@ -19,12 +19,17 @@ const codeCount = computed(() => props.codes.length)
       :to="`/companies/${props.id}`"
       class="flex flex-col h-full"
     >
-      <div class="flex flex-grow-1 justify-between gap-x-4 bg-gray-50 p-4">
+      <div class="flex flex-grow-1 justify-between gap-x-4 p-4 pb-0">
         <div>
-          <Heading>{{ props.name }}</Heading>
+          <Heading
+            :margin-bottom="false"
+            class="mb-2"
+          >
+            {{ props.name }}
+          </Heading>
           <p
             v-if="props.description"
-            class="line-clamp-3"
+            class="line-clamp-3 text-sm text-gray-500"
           >
             {{ props.description }}
           </p>

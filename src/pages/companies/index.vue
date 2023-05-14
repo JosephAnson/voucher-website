@@ -18,9 +18,16 @@ const sort = useRouteQuery('sort', SORT_OPTIONS[0])
 const category = useRouteQuery('category')
 
 const { data: companies } = await useFetch('/api/companies', { query: { sort, category } })
-const { data: categories } = await useFetch('/api/categories')
+const { data: _categories } = await useFetch('/api/categories')
 
 const mobileFiltersOpen = ref(false)
+
+const categories = computed(() => {
+  return [
+    { id: null, category: 'All' },
+    ..._categories.value,
+  ]
+})
 </script>
 
 <template>
