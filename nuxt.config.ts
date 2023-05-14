@@ -86,8 +86,8 @@ export default defineNuxtConfig({
       presetWebFonts({
         provider: 'google',
         fonts: {
-          sans: ['DM Sans'],
-          serif: ['DM Serif Display'],
+          sans: ['DM Sans:400,500,700'],
+          serif: ['DM Serif Display:400,500,700'],
         },
       }),
     ],
@@ -101,6 +101,7 @@ export default defineNuxtConfig({
       },
       colors: {
         primary: {
+          DEFAULT: '#2E51FF',
           50: '#F5F7FF',
           100: '#E5EAFF',
           200: '#CCD5FF',
@@ -114,6 +115,7 @@ export default defineNuxtConfig({
           950: '#00147A',
         },
         secondary: {
+          DEFAULT: '#8FADFF',
           50: '#F5F8FF',
           100: '#F0F4FF',
           200: '#E0E9FF',

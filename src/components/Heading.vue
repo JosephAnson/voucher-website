@@ -77,8 +77,12 @@ const styles = computed(() => {
 <template>
   <component
     :is="type"
-    class="heading font-semibold"
-    :class="[styles, { 'font-bold': bold, 'font-secondary': !props.primary }]"
+    class="heading"
+    :class="[styles, {
+      'font-bold': bold,
+      'font-semibold': !bold,
+      'font-secondary': !props.primary,
+    }]"
   >
     <slot />
   </component>
