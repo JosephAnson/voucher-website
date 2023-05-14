@@ -72,7 +72,10 @@ const reviews = { average: 4, totalCount: 1624 }
             </p>
           </div>
 
-          <div class="mt-6 flex items-center">
+          <div
+            v-if="company.codes.length > 0"
+            class="mt-6 flex items-center"
+          >
             <CheckIcon
               class="h-5 w-5 flex-shrink-0 text-green-500"
               aria-hidden="true"

@@ -3,7 +3,7 @@ import type { Database } from '~/supabase.types'
 
 const COLUMNS = 'id, category'
 
-export default defineEventHandler(async (event) => {
+export default defineCachedEventHandler(async (event) => {
   const client = serverSupabaseClient<Database>(event)
   const { data } = await client
     .from('categories')
@@ -12,4 +12,7 @@ export default defineEventHandler(async (event) => {
     .order('id')
 
   return data
+},
+{
+  maxAge: 60 * 60 * 24 * 7,
 })
