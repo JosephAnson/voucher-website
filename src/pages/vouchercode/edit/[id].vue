@@ -8,13 +8,18 @@ const title = ref(codeData.value.title)
 const description = ref(codeData.value.description)
 const code = ref(codeData.value.code)
 
-function submit() {
-  updateCode({
-    id: codeData.value.id,
-    title: title.value,
-    description: description.value,
-    code: code.value,
+async function submit() {
+  await $fetch('/api/code/update', {
+    method: 'POST',
+    body: {
+      id: codeData.value.id,
+      title: title.value,
+      description: description.value,
+      code: code.value,
+    },
   })
+
+  openSnackbar('Code Saved!')
 
   router.back()
 }
@@ -56,7 +61,7 @@ function submit() {
 
         <div class="mt-6 flex items-center justify-end gap-x-2">
           <Button
-            theme="transparent"
+            theme="white"
             type="button"
             @click="router.back()"
           >

@@ -1,4 +1,5 @@
 import type { QueryValue } from 'ufo'
+import type { SupabaseClient } from '@supabase/supabase-js'
 import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 import type { SORTS } from '~/types'
@@ -22,6 +23,15 @@ function getSort(sort: string | undefined | QueryValue, defaultSort: SORTS): Sor
   return mappedSort[sortString as SORTS]
 }
 
+export async function getAllCompanies(client: SupabaseClient<Database>, sort: SortItem) {
+  const { data } = await client
+    .from('companies')
+    .select(COMPANY_COLUMNS)
+    .order(sort.sort, { foreignTable: '', ascending: sort.ascending })
+
+  return data
+}
+
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
   const client = serverSupabaseClient<Database>(event)
@@ -37,11 +47,6 @@ export default defineEventHandler(async (event) => {
     return data?.map(({ company }) => company) || []
   }
   else {
-    const { data } = await client
-      .from('companies')
-      .select(COMPANY_COLUMNS)
-      .order(sort.sort, { foreignTable: '', ascending: sort.ascending })
-
-    return data
+    return await getAllCompanies(client, sort)
   }
 })

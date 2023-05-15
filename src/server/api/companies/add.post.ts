@@ -2,16 +2,7 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 import { convertUrlToId } from '~/utils/convertUrlToId'
-
-function throwIfPropertiesMissing<T extends object>(object: T, properties: (keyof T)[]) {
-  const missingProperties = properties.filter(property => !(property in object))
-  if (missingProperties.length) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: `Missing properties: ${missingProperties.join(', ')}`,
-    })
-  }
-}
+import { throwIfPropertiesMissing } from '~/server/utils/throwIfPropertiesMissing'
 
 async function checkIfCompanyExists(client: SupabaseClient<Database>, id: string) {
   const { data } = await client

@@ -5,9 +5,12 @@ const { data: codes, refresh } = await useFetch('/api/profile/codes', {
 
 function deleteVoucherCode(id) {
   openDialog({
-    onConfirm: () => {
-      deleteCode({ id })
-      refresh()
+    onConfirm: async () => {
+      await $fetch('/api/code/delete', {
+        method: 'POST',
+        body: { id },
+      })
+      await refresh()
       openSnackbar('Voucher Deleted!')
     },
   })
@@ -44,10 +47,7 @@ function deleteVoucherCode(id) {
           You've added no vouchers
         </Heading>
 
-        <Button
-          to="/vouchercode/submit"
-          class="text-blue-500 hover:underline"
-        >
+        <Button to="/vouchercode/submit">
           Click here to add some
         </Button>
       </div>

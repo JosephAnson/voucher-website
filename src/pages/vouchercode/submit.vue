@@ -11,13 +11,18 @@ const description = ref(codeData.value.description)
 const code = ref(codeData.value.code)
 
 async function submit() {
-  await createCode({
-    id: codeData.value.id,
-    title: title.value,
-    description: description.value,
-    code: code.value,
-    company: company.value,
+  await $fetch('/api/code/add', {
+    method: 'POST',
+    body: {
+      id: codeData.value.id,
+      title: title.value,
+      description: description.value,
+      code: code.value,
+      company: company.value,
+    },
   })
+
+  openSnackbar('Code Saved!')
 
   await router.push('/managecodes')
 }
