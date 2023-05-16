@@ -3,11 +3,19 @@ import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 import { throwIfPropertiesMissing } from '~/server/utils/throwIfPropertiesMissing'
 
-export async function createCode(userId: string, client: SupabaseClient<Database>, { title, description, code, company }: { id: string; title: string; description: string; code: string; company: string }) {
+export async function createCode(userId: string, client: SupabaseClient<Database>, { title, description, code, company, language = 'en' }: { title: string; description: string; code: string; company: string; language?: string }) {
+  if (!title || title === '' || !code || code === '' || !company)
+    console.log('code not created')
+
   const { data, error } = await client
     .from('codes')
     .insert({
-      title, description, code, company, author: userId,
+      title,
+      description,
+      code,
+      company,
+      author: userId,
+      language,
     })
     .select()
     .single()

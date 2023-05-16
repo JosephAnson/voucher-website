@@ -34,6 +34,7 @@ export interface Database {
           created_at: string | null
           description: string
           id: number
+          language: string
           title: string
         }
         Insert: {
@@ -43,6 +44,7 @@ export interface Database {
           created_at?: string | null
           description: string
           id?: number
+          language?: string
           title: string
         }
         Update: {
@@ -52,6 +54,7 @@ export interface Database {
           created_at?: string | null
           description?: string
           id?: number
+          language?: string
           title?: string
         }
       }
