@@ -8,13 +8,14 @@ import { getAllCodes } from '~/server/api/code'
 import { getTopParrainCodes } from '~/server/crawlers/getTopParrainCodes'
 import { getSpyDealsCodes } from '~/server/crawlers/getSpyDealsCodes'
 import type { Code } from '~/types'
+import { isBannedCode } from '~/utils/isBannedCode'
 
 config()
 
 const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '')
 
 export async function seedCodes() {
-  const browser = await puppeteer.launch({ headless: 'new' })
+  const browser = await puppeteer.launch({ headless: true })
   // Make sure the browser opens a new page
   // Make sure the browser opens a new page
   const page = await browser.newPage()
@@ -30,14 +31,16 @@ export async function seedCodes() {
     const skyDealCodes = await getSpyDealsCodes(page, company.name, 'en')
     const skyDealCodesNl = await getSpyDealsCodes(page, company.name, 'nl', 'https://www.spydeals.nl/winkels')
 
-    const codes: (Code | null)[] = [...parrainCodes, ...parrainCodesNl, ...skyDealCodesNl, ...skyDealCodes].filter(code => !code?.code.includes('aklam'))
+    const codes: (Code | null)[] = [...parrainCodes, ...parrainCodesNl, ...skyDealCodesNl, ...skyDealCodes]
+      .filter((code): code is Code => code !== null && code.code !== '' && code.title !== '')
+      .filter(code => !isBannedCode(company.url, code.code))
 
     for (const code of codes) {
       if (code) {
         const existingCode = allCodes.find(c => c.code === code.code && c.company === company.id && c.language === code.language)
 
         if (existingCode) {
-          // console.log('code already exists', code.code)
+          console.log('code already exists', code.code)
         }
         else {
           await createCode('ca35f5fc-389c-4678-8ec8-294336ed3132', client, {
