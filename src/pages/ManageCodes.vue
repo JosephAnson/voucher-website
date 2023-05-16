@@ -20,10 +20,19 @@ function deleteVoucherCode(id) {
 <template>
   <Section>
     <Container>
-      <Heading h1>
-        Your voucher codes
-      </Heading>
-
+      <div
+        class="flex justify-between items-center"
+      >
+        <Heading h1>
+          Your voucher
+        </Heading>
+        <Heading
+          v-if="codes.length"
+          h2
+        >
+          {{ codes.length }} Codes
+        </Heading>
+      </div>
       <div
         v-if="codes.length"
         class="space-y-4"
