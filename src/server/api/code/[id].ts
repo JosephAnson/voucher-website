@@ -15,6 +15,7 @@ export default defineEventHandler(async (event) => {
     .from('codes')
     .select(CODE_COLUMNS)
     .eq('id', event.context.params.id)
+    .eq('language', 'en')
     .order('created_at')
     .single()
 
