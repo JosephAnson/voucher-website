@@ -27,6 +27,7 @@ export async function getAllCompanies(client: SupabaseClient<Database>, sort: So
   const { data } = await client
     .from('companies')
     .select(COMPANY_COLUMNS)
+    .eq('codes.language', 'en')
     .order(sort.sort, { foreignTable: '', ascending: sort.ascending })
 
   return data
@@ -43,6 +44,7 @@ export default defineEventHandler(async (event) => {
       .from('company_categories')
       .select(`company(${COMPANY_COLUMNS})`)
       .eq('category', query?.category)
+      .eq('company.codes.language', 'en')
       .order(sort.sort, { foreignTable: 'company', ascending: sort.ascending })
     return data?.map(({ company }) => company) || []
   }
