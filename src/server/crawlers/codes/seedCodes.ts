@@ -10,16 +10,13 @@ import { getTopParrainCodes } from '~/server/crawlers/codes/getTopParrainCodes'
 import { getSpyDealsCodes } from '~/server/crawlers/codes/getSpyDealsCodes'
 
 export async function seedCodes(client: SupabaseClient<Database>) {
-  const browser = await puppeteer.launch({ headless: true })
-  // Make sure the browser opens a new page
-  // Make sure the browser opens a new page
-  const page = await browser.newPage()
-
   const companies = await getAllCompanies(client, { sort: 'name', ascending: true }) || []
   const allCodes = await getAllCodes(client) || []
 
   for (const company of companies) {
-    console.log('company', company.name)
+    const browser = await puppeteer.launch({ headless: 'new' })
+    // Make sure the browser opens a new page
+    const page = await browser.newPage()
 
     const parrainCodes = await getTopParrainCodes(page, company.name, 'en')
     const parrainCodesNl = await getTopParrainCodes(page, company.name, 'nl')
@@ -34,10 +31,7 @@ export async function seedCodes(client: SupabaseClient<Database>) {
       if (code) {
         const existingCode = allCodes.find(c => c.code === code.code && c.company === company.id && c.language === code.language)
 
-        if (existingCode) {
-          console.log('code already exists', code.code)
-        }
-        else {
+        if (!existingCode) {
           await createCode('ca35f5fc-389c-4678-8ec8-294336ed3132', client, {
             title: code.title,
             description: code.description,
@@ -46,13 +40,30 @@ export async function seedCodes(client: SupabaseClient<Database>) {
             language: code.language,
           })
 
+          // Add code that's been added to list of codes so it's not add again
+          allCodes.push({
+            id: 0,
+            title: code.title,
+            description: code.description,
+            code: code.code,
+            company: company.id,
+            language: code.language,
+            author: {
+              email: '',
+              username: '',
+              avatar_url: '',
+            },
+          })
+
           console.log('code created', code.code)
+        }
+        else {
+          console.log('code already exists', code.code)
         }
       }
     }
 
     console.log('-'.repeat(20))
+    await browser.close()
   }
-
-  await browser.close()
 }
