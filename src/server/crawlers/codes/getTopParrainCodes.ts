@@ -1,4 +1,4 @@
-import type { Page } from 'puppeteer'
+import type { Page } from 'playwright'
 import type { Code } from '~/types'
 
 export async function getTopParrainCodes(page: Page, name: string, language = 'en', SITE_URL = 'https://www.topparrain.com'): Promise<Code[]> {

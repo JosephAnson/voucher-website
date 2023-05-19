@@ -1,7 +1,7 @@
-import type { Page } from 'puppeteer'
+import type { BrowserContext, Page } from 'playwright'
 import type { Code } from '~/types'
 
-export async function getSpyDealsCodes(page: Page, name: string, language = 'en', SITE_URL = 'https://www.spydeals.co.uk/shops'): Promise<(Code | null)[]> {
+export async function getSpyDealsCodes(context: BrowserContext, page: Page, name: string, language = 'en', SITE_URL = 'https://www.spydeals.co.uk/shops'): Promise<(Code | null)[]> {
   await page.goto(SITE_URL)
 
   const items = await page.evaluate(() => {
@@ -42,7 +42,7 @@ export async function getSpyDealsCodes(page: Page, name: string, language = 'en'
 
     for (const voucher of vouchers) {
       if (voucher.href && voucher.voucherId) {
-        await page.setCookie({ name: 'show-voucher', value: voucher.voucherId })
+        await context.addCookies([{ name: 'show-voucher', value: voucher.voucherId, url: SITE_URL }])
 
         await page.goto(`${companyUrl}`)
 

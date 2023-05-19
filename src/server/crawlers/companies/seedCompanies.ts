@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer'
+import { chromium } from 'playwright'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { getAllCompanies } from '~/server/api/companies'
 import type { Database } from '~/supabase.types'
@@ -7,8 +7,8 @@ import { createCompany } from '~/server/api/companies/add.post'
 import { createGuid } from '~/utils/createGuid'
 
 export async function seedCompanies(client: SupabaseClient<Database>) {
-  const browser = await puppeteer.launch({ headless: true })
-  // Make sure the browser opens a new page
+  const browser = await chromium.launch()
+
   // Make sure the browser opens a new page
   const page = await browser.newPage()
 

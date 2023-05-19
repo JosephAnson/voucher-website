@@ -10,14 +10,14 @@ export default defineNitroPlugin(async () => {
   const scheduler = useScheduler()
   const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '')
 
-  // await seedCompanies()
-  // await seedCodes()
+  // await seedCompanies(client)
+  // await seedCodes(client)
 
   scheduler.run(async () => {
     await seedCodes(client)
-  }).everyMinutes(1)
+  }).everyDays(1)
 
   scheduler.run(async () => {
     await seedCompanies(client)
-  }).everyDays(1)
+  }).everyDays(10)
 })
