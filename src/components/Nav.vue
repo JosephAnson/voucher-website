@@ -44,7 +44,7 @@ router.afterEach(() => {
             </nuxt-link>
           </div>
         </div>
-        <div class="min-w-0 flex-1 lg:px-0 max-w-xl fixed md:relative bottom-0 left-0 bg-white md:bg-transparent w-full md:w-auto">
+        <div class="min-w-0 flex-1 lg:px-0 max-w-xl fixed z-40 md:relative bottom-0 left-0 bg-white md:bg-transparent w-full md:w-auto">
           <div class="flex items-center px-2 py-2 xl:px-0 md:py-3">
             <MainSearch />
           </div>

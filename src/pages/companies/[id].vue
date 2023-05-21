@@ -3,14 +3,21 @@ import { CheckIcon, StarIcon } from '@heroicons/vue/20/solid'
 
 const route = useRoute<'companies-url'>()
 
-const { data: company } = await useFetch(`/api/companies/${route.params.id}`)
+const { data: company, error } = await useFetch(`/api/companies/${route.params.id}`)
+
+if (!company.value)
+  navigateTo('404')
 
 const reviews = { average: 4, totalCount: 1624 }
 </script>
 
 <template>
   <Section>
-    <Container class="lg:flex lg:gap-x-8">
+    {{ error }}
+    <Container
+      v-if="company"
+      class="lg:flex lg:gap-x-8"
+    >
       <div class="lg:max-w-md">
         <div class="aspect-square overflow-hidden max-w-50">
           <nuxt-img
