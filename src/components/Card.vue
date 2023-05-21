@@ -5,8 +5,10 @@ const props = withDefaults(defineProps<{
   imageAlt?: string
   imageWidth?: number
   imageClasses?: string
+  imageQuality?: number
   to?: string
 }>(), {
+  imageQuality: 100,
   imageClasses: 'object-contain aspect-1/1',
 })
 
@@ -31,7 +33,9 @@ const component = computed(() => {
         :alt="props?.imageAlt || props?.title || ''"
         :width="props?.imageWidth || ''"
         :class="props?.imageClasses"
+        :quality="props.imageQuality"
         loading="lazy"
+        fit="contain"
       />
       <h3
         v-if="props.title"

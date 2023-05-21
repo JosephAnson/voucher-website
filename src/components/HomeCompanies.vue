@@ -11,6 +11,7 @@ const { data: companies } = await useFetch('/api/companies')
       :image-src="company.logo"
       :image-alt="company.alt"
       :image-width="88"
+      :image-quality="75"
     />
   </div>
   <div class="mt-16 flex justify-center">

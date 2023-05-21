@@ -459,10 +459,8 @@ export default defineNuxtConfig({
     },
     ],
   },
-  webVitals: {
-    provider: 'vercel',
-  },
   image: {
+    domains: [process.env.SUPABASE_URL as string, 'source.unsplash.com'],
     screens: {
       'xs': 320,
       'sm': 640,

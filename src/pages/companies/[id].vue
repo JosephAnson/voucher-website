@@ -15,11 +15,10 @@ const reviews = { average: 4, totalCount: 1624 }
         <div class="aspect-square overflow-hidden max-w-50">
           <nuxt-img
             width="200"
-            height="200"
             :src="company.logo"
             :alt="company.name"
             class="h-full w-full object-contain object-center"
-            format="webp"
+            format="png"
           />
         </div>
         <div class="mt-4">
