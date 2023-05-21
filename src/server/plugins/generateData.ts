@@ -1,8 +1,9 @@
 import { createClient } from '@supabase/supabase-js'
 import { config } from 'dotenv'
 import { useScheduler } from '#scheduler'
-import { seedCodes } from '~/server/crawlers/codes/seedCodes'
-import { seedCompanies } from '~/server/crawlers/companies/seedCompanies'
+import { seedCodes } from '~/server/seedData/codes/seedCodes'
+import { seedCompanies } from '~/server/seedData/companies/seedCompanies'
+import { generateDescriptions } from '~/server/seedData/companies/generateDescriptions'
 
 config()
 
@@ -12,6 +13,7 @@ export default defineNitroPlugin(async () => {
 
   // await seedCompanies(client)
   // await seedCodes(client)
+  // await generateDescriptions(client)
 
   scheduler.run(async () => {
     await seedCodes(client)
@@ -20,4 +22,8 @@ export default defineNitroPlugin(async () => {
   scheduler.run(async () => {
     await seedCompanies(client)
   }).everyDays(10)
+
+  scheduler.run(async () => {
+    await generateDescriptions(client)
+  }).yearly()
 })

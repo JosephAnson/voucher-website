@@ -2,7 +2,7 @@ import { chromium } from 'playwright'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { getAllCompanies } from '~/server/api/companies'
 import type { Database } from '~/supabase.types'
-import { getTopParrainCompanies } from '~/server/crawlers/companies/getTopParrainCompanies'
+import { getTopParrainCompanies } from '~/server/seedData/companies/getTopParrainCompanies'
 import { createCompany } from '~/server/api/companies/add.post'
 import { createGuid } from '~/utils/createGuid'
 

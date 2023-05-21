@@ -5,9 +5,9 @@ import { getAllCodes } from '~/server/api/code'
 import type { Code } from '~/types'
 import { isBannedCode } from '~/utils/isBannedCode'
 import type { Database } from '~/supabase.types'
-import { getSpyDealsCodes } from '~/server/crawlers/codes/getSpyDealsCodes'
+import { getSpyDealsCodes } from '~/server/seedData/codes/getSpyDealsCodes'
 import { createCode } from '~/server/api/code/add.post'
-import { getTopParrainCodes } from '~/server/crawlers/codes/getTopParrainCodes'
+import { getTopParrainCodes } from '~/server/seedData/codes/getTopParrainCodes'
 
 export async function seedCodes(client: SupabaseClient<Database>) {
   const companies = await getAllCompanies(client, { sort: 'name', ascending: true }) || []
