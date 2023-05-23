@@ -111,8 +111,9 @@ useSeoMeta({
         <Panel
           class="mt-10 mb-4"
           title="How Referrals work"
-          description="Collaboratively deploy interoperable value before synergistic human capital. Rapidiously build sticky models via error-free markets. Appropriately initiate high standards in e-business after state of the."
-        />
+        >
+          Share Your Voucher Codes works on a simple principle: sharing is caring. If you have a voucher code that you'd like to share with the community, simply submit it through our user-friendly submission form. Make sure to include all the necessary details, such as the store name, discount value, expiration date, and any additional terms or conditions. Once reviewed and approved by our team, your voucher code will be published on our website for others to benefit from.
+        </Panel>
       </div>
 
       <div class="flex flex-col space-y-4 flex-grow-1">

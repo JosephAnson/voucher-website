@@ -16,7 +16,7 @@ const props = defineProps<{
         {{ props.title }}
       </h3>
       <div class="mt-2 max-w-xl text-sm text-gray-500">
-        <p>{{ props.description }}</p>
+        <p><slot /></p>
       </div>
       <div
         v-if="props.link && props.link.href"
