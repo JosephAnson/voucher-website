@@ -21,7 +21,7 @@ export async function createCode(userId: string, client: SupabaseClient<Database
     .single()
 
   if (error)
-    throw createError('Cannot update code')
+    throw createError(`Cannot update code: ${error.message}`)
 
   return data
 }
