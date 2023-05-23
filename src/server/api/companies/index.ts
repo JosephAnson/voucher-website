@@ -4,8 +4,7 @@ import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 import type { SORTS } from '~/types'
 import { SORT_OPTIONS } from '~/types'
-
-const COMPANY_COLUMNS = 'id, name, description, url, logo, created_at, codes(id), metaTitle, metaDescription'
+import { COMPANY_COLUMNS } from '~/utils/constants'
 
 interface SortItem {
   sort: string
@@ -23,12 +22,13 @@ function getSort(sort: string | undefined | QueryValue, defaultSort: SORTS): Sor
   return mappedSort[sortString as SORTS]
 }
 
-export async function getAllCompanies(client: SupabaseClient<Database>, sort: SortItem) {
+export async function getAllCompanies(client: SupabaseClient<Database>, sort: SortItem, limit: number) {
   const { data } = await client
     .from('companies')
     .select(COMPANY_COLUMNS)
     .eq('codes.language', 'en')
     .order(sort.sort, { foreignTable: '', ascending: sort.ascending })
+    .limit(limit)
 
   return data
 }
@@ -38,17 +38,19 @@ export default defineEventHandler(async (event) => {
   const client = serverSupabaseClient<Database>(event)
 
   const sort = getSort(query?.sort, 'ALPHABETICAL')
-
+  const limit = Number(query?.limit || 10000)
   if (query?.category) {
     const { data } = await client
       .from('company_categories')
       .select(`company(${COMPANY_COLUMNS})`)
+      .limit(limit)
       .eq('category', query?.category)
       .eq('company.codes.language', 'en')
       .order(sort.sort, { foreignTable: 'company', ascending: sort.ascending })
+
     return data?.map(({ company }) => company) || []
   }
   else {
-    return await getAllCompanies(client, sort)
+    return await getAllCompanies(client, sort, limit)
   }
 })

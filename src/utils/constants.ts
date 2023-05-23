@@ -70,4 +70,5 @@ export const BANNED_CODES: BannedCode[] = [
   { reason: 'banned', code: 'gain.gg' },
   { reason: 'banned', code: 'hellcase.com' },
   { reason: 'banned', code: 'mone.se' },
+  { reason: 'banned', code: 'grabpoints.com' },
 ]
