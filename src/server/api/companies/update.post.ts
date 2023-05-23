@@ -3,11 +3,14 @@ import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 import { throwIfPropertiesMissing } from '~/server/utils/throwIfPropertiesMissing'
 
-export async function updateCompany(client: SupabaseClient<Database>, { id, name, description }: { id: string; name: string; description: string }) {
+export async function updateCompany(
+  client: SupabaseClient<Database>,
+  { id, name, description, metaTitle, metaDescription }: { id: string; name?: string; description?: string; metaTitle?: string; metaDescription?: string },
+) {
   const { data, error } = await client
     .from('companies')
     .update({
-      name, description,
+      name, description, metaTitle, metaDescription,
     })
     .eq('id', id)
     .select()

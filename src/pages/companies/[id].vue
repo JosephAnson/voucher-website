@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { CheckIcon, StarIcon } from '@heroicons/vue/20/solid'
+import { useSeoMeta } from '#imports'
 
 const route = useRoute<'companies-url'>()
 
@@ -9,6 +10,15 @@ if (!company.value)
   navigateTo('404')
 
 const reviews = { average: 4, totalCount: 1624 }
+
+useSeoMeta({
+  title: company.value.metaTitle,
+  ogTitle: company.value.metaTitle,
+  twitterTitle: company.value.metaTitle,
+  description: company.value.metaDescription,
+  ogDescription: company.value.metaDescription,
+  twitterDescription: company.value.metaDescription,
+})
 </script>
 
 <template>
@@ -32,6 +42,12 @@ const reviews = { average: 4, totalCount: 1624 }
           <Heading h1>
             {{ company.name }}
           </Heading>
+          <a
+            :href="company.url"
+            class="mt-1 text-sm text-gray-500"
+          >
+            {{ company.url }}
+          </a>
         </div>
 
         <section

@@ -1,7 +1,7 @@
 export const PROFILE_COLUMNS = 'id, email, username, avatar_url'
 
 export const CODE_COLUMNS = 'id, code, author(email, username, avatar_url), company, title, description, language'
-export const COMPANY_COLUMNS = `id, name, description, url, logo, codes(${CODE_COLUMNS})`
+export const COMPANY_COLUMNS = `id, name, description, url, logo, codes(${CODE_COLUMNS}), metaTitle, metaDescription`
 
 type BannedReason = 'email' | 'banned' | 'spam'
 
@@ -60,4 +60,6 @@ export const BANNED_CODES: BannedCode[] = [
   { reason: 'banned', code: 'instant-gaming.com' },
   { reason: 'banned', code: 'www.bitmart.com' },
   { reason: 'banned', code: 'py.pl' },
+  { reason: 'banned', code: 'y.is' },
+  { reason: 'banned', code: 'okx.com' },
 ]

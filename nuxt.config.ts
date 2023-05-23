@@ -11,7 +11,6 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'VouchersDiscountsCodes - Save Big with the Latest Deals and Promo Codes',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },

@@ -1,19 +1,39 @@
 import type { BrowserContext, Page } from 'playwright'
 import type { Code } from '~/types'
 
-export async function getSpyDealsCodes(context: BrowserContext, page: Page, name: string, language = 'en', SITE_URL = 'https://www.spydeals.co.uk/shops'): Promise<(Code | null)[]> {
-  await page.goto(SITE_URL)
+const companiesMap: Record<string, { text?: string; href: string | null }> = {}
+let initialSearch = false
 
-  const items = await page.evaluate(() => {
-    const items = document.querySelectorAll('.companies-alphabetized__company-item a')
-    return Array.from(items).map(item => ({
-      text: item?.textContent?.trim().toLowerCase(),
-      href: item?.getAttribute('href'),
-    }))
-  })
+export async function getSpyDealsCodes(context: BrowserContext, page: Page, name: string, language = 'en', SITE_URL = 'https://www.spydeals.co.uk/shops'): Promise<(Code | null)[]> {
+  if (!initialSearch) {
+    const sections = ['/a-d', '/e-g', '/h-k', '/l-o', '/p-s', '/t-w', '/x-z', '/0-9']
+
+    for (const section of sections) {
+      await page.goto(SITE_URL + section)
+
+      const companies = await page.evaluate(() => {
+        const items = document.querySelectorAll('.companies-alphabetized__company-item a')
+        return Array.from(items).map(item => ({
+          text: item?.textContent?.trim().toLowerCase(),
+          href: item?.getAttribute('href'),
+        }))
+      })
+
+      if (companies) {
+        for (const company of companies) {
+          if (company.text)
+            companiesMap[company.text] = company
+        }
+      }
+    }
+
+    initialSearch = true
+  }
+
+  console.log('companies found: ', Object.keys(companiesMap).length)
 
   async function getCompanyUrl(page: Page, name: string) {
-    const item = items.find(({ text }) => text?.includes(name.toLowerCase()))
+    const item = Object.values(companiesMap).find(({ text }) => text?.includes(name.toLowerCase()))
 
     return item?.href || null
   }

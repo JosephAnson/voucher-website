@@ -20,13 +20,13 @@ const component = computed(() => {
   return PhotoIcon
 })
 
-const { open, onUpload } = useSupabaseUpload({
+const { open, onUpload: onSupabaseUpload } = useSupabaseUpload({
   fileName: props.fileName,
   bucket: props.bucket,
   path: props.path,
 })
 
-onUpload((url) => {
+onSupabaseUpload((url) => {
   props.onUpload(url)
 })
 </script>

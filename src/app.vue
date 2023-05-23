@@ -11,6 +11,12 @@ useSchemaOrg([
   }),
   defineWebPage(),
 ])
+
+useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} - VouchersDiscountsCodes` : 'VouchersDiscountsCodes - Save Big with the Latest Deals and Promo Codes'
+  },
+})
 </script>
 
 <template>

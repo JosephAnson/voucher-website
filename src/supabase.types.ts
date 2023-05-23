@@ -65,6 +65,8 @@ export interface Database {
           description: string | null
           id: string
           logo: string
+          metaDescription: string | null
+          metaTitle: string | null
           name: string
           url: string
         }
@@ -74,6 +76,8 @@ export interface Database {
           description?: string | null
           id: string
           logo: string
+          metaDescription?: string | null
+          metaTitle?: string | null
           name?: string
           url: string
         }
@@ -83,6 +87,8 @@ export interface Database {
           description?: string | null
           id?: string
           logo?: string
+          metaDescription?: string | null
+          metaTitle?: string | null
           name?: string
           url?: string
         }

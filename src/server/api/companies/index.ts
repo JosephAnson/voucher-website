@@ -5,7 +5,7 @@ import type { Database } from '~/supabase.types'
 import type { SORTS } from '~/types'
 import { SORT_OPTIONS } from '~/types'
 
-const COMPANY_COLUMNS = 'id, name, description, url, logo, created_at, codes(id)'
+const COMPANY_COLUMNS = 'id, name, description, url, logo, created_at, codes(id), metaTitle, metaDescription'
 
 interface SortItem {
   sort: string
