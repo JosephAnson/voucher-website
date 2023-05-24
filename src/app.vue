@@ -1,5 +1,12 @@
 <script lang="ts" setup>
-await useFetchProfileOnSupabaseUserUpdate()
+const user = await useSupabaseClient()
+const userStore = useUserStore()
+
+await useAsyncData('profile', () => userStore.fetchUser())
+
+user.auth.onAuthStateChange(async () => {
+  await userStore.fetchUser()
+})
 
 useSchemaOrg([
   defineOrganization({
@@ -20,9 +27,7 @@ useHead({
 </script>
 
 <template>
-  <div class="bg-[#FFFBF5]">
-    <Nav />
+  <NuxtLayout>
     <NuxtPage />
-    <Footer />
-  </div>
+  </NuxtLayout>
 </template>

@@ -1,10 +1,10 @@
 export async function useFetchProfileOnSupabaseUserUpdate() {
   const userStore = useUserStore()
-  const user = await useSupabaseUser()
+  const user = await useSupabaseAuthClient()
 
-  await useAsyncData('profile', () => {
-    return userStore.fetchUser()
-  }, {
-    watch: [user],
+  await useAsyncData('profile', () => userStore.fetchUser())
+
+  user.auth.onAuthStateChange(async () => {
+    await userStore.fetchUser()
   })
 }

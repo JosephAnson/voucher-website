@@ -8,7 +8,7 @@ definePageMeta({
 <template>
   <div>
     <Heading h1>
-      Admin Dashboard
+      Set banned codes
     </Heading>
   </div>
 </template>

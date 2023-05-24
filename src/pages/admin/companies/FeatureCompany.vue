@@ -8,7 +8,7 @@ definePageMeta({
 <template>
   <div>
     <Heading h1>
-      Admin Dashboard
+      Set featured companies
     </Heading>
   </div>
 </template>

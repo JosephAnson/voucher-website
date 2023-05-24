@@ -1,21 +1,14 @@
 <script setup lang="ts">
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
-import { UserCircleIcon } from '@heroicons/vue/24/solid'
 import UserAvatar from '~/components/UserAvatar.vue'
 
 const userStore = useUserStore()
+const { userNavigation } = useUserNavigation()
 
 const user = await useSupabaseUser()
 
 const loggedIn = computed(() => userStore.user.email && user.value)
 const open = ref(false)
-
-const userNavigation = [
-  { name: 'Your Profile', to: '/account' },
-  { name: 'Manage Codes', to: '/managecodes' },
-  { name: 'Add Company', to: '/companies/add' },
-]
 
 const router = useRouter()
 
@@ -69,63 +62,7 @@ router.afterEach(() => {
           </div>
         </div>
         <div class="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
-          <!-- Profile dropdown -->
-          <Menu
-            v-if="loggedIn"
-            as="div"
-            class="relative ml-5 flex-shrink-0"
-          >
-            <div>
-              <MenuButton class="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
-                <span class="sr-only">Open user menu</span>
-                <img
-                  v-if="userStore.user.avatar_url"
-                  class="h-8 w-8 rounded-full"
-                  :src="userStore.user.avatar_url"
-                  alt=""
-                >
-                <UserCircleIcon
-                  v-else
-                  class="h-8 w-8 rounded-full"
-                  aria-hidden="true"
-                />
-              </MenuButton>
-            </div>
-            <transition
-              enter-active-class="transition ease-out duration-100"
-              enter-from-class="transform opacity-0 scale-95"
-              enter-to-class="transform opacity-100 scale-100"
-              leave-active-class="transition ease-in duration-75"
-              leave-from-class="transform opacity-100 scale-100"
-              leave-to-class="transform opacity-0 scale-95"
-            >
-              <MenuItems class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <MenuItem
-                  v-for="item in userNavigation"
-                  :key="item.name"
-                  v-slot="{ active }"
-                >
-                  <NuxtLink
-                    :to="item.to"
-                    class="block px-4 py-2 text-sm text-gray-700"
-                    :class="[active ? 'bg-gray-100' : '']"
-                  >
-                    {{ item.name }}
-                  </NuxtLink>
-                </MenuItem>
-                <MenuItem v-slot="{ active }">
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700"
-                    :class="[active ? 'bg-gray-100' : '']"
-                    @click.prevent="userStore.signOut"
-                  >
-                    Sign out
-                  </a>
-                </MenuItem>
-              </MenuItems>
-            </transition>
-          </Menu>
+          <NavProfile class="ml-5" />
 
           <div>
             <Button
@@ -180,15 +117,19 @@ router.afterEach(() => {
           >
             Login
           </NuxtLink>
+
           <div v-if="loggedIn">
-            <NuxtLink
+            <template
               v-for="item in userNavigation"
               :key="item.name"
-              :to="item.to"
-              class="block rounded-md px-6 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
             >
-              {{ item.name }}
-            </NuxtLink>
+              <NuxtLink
+                :to="item.to"
+                class="block rounded-md px-6 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+              >
+                {{ item.name }}
+              </NuxtLink>
+            </template>
             <a
               href="#"
               class="block rounded-md px-6 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
