@@ -10,3 +10,5 @@ export interface Code {
   description: string
   language: string
 }
+
+export type USER_ROLES = 'USER' | 'ADMIN' | 'SUPER_ADMIN'

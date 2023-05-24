@@ -63,6 +63,7 @@ export interface Database {
           approved: boolean
           created_at: string | null
           description: string | null
+          featured: boolean
           id: string
           logo: string
           metaDescription: string | null
@@ -74,6 +75,7 @@ export interface Database {
           approved?: boolean
           created_at?: string | null
           description?: string | null
+          featured?: boolean
           id: string
           logo: string
           metaDescription?: string | null
@@ -85,6 +87,7 @@ export interface Database {
           approved?: boolean
           created_at?: string | null
           description?: string | null
+          featured?: boolean
           id?: string
           logo?: string
           metaDescription?: string | null
@@ -110,23 +113,37 @@ export interface Database {
           id?: number
         }
       }
+      profile_roles: {
+        Row: {
+          role: string
+        }
+        Insert: {
+          role: string
+        }
+        Update: {
+          role?: string
+        }
+      }
       profiles: {
         Row: {
           avatar_url: string | null
           email: string
           id: string
+          role: string | null
           username: string | null
         }
         Insert: {
           avatar_url?: string | null
           email: string
           id: string
+          role?: string | null
           username?: string | null
         }
         Update: {
           avatar_url?: string | null
           email?: string
           id?: string
+          role?: string | null
           username?: string | null
         }
       }

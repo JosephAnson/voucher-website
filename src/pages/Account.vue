@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import Grouped from '~/components/Grouped.vue'
 
+definePageMeta({
+  middleware: 'auth',
+})
+
 const userStore = useUserStore()
 
 const username = ref<string>(userStore.user.username || '')
@@ -29,6 +33,19 @@ const username = ref<string>(userStore.user.username || '')
             name="email"
             type="email"
             autocomplete="email"
+          />
+        </Field>
+
+        <Field
+          v-if="userStore.user.role && userStore.user.role !== 'user'"
+          label="Role"
+          stacked
+          label-for="role"
+        >
+          <Input
+            id="email"
+            disabled
+            :model-value="userStore.user.role"
           />
         </Field>
 

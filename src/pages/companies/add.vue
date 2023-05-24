@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { string } from 'yup'
 
+definePageMeta({
+  middleware: 'auth',
+})
+
 const router = useRouter()
 
 const { meta, errors, validate } = useForm()

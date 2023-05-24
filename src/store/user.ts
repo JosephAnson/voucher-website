@@ -1,4 +1,4 @@
-import type { ProfilesRow } from '~/types'
+import type { ProfilesRow, USER_ROLES } from '~/types'
 import { getProfile, updateAvatar } from '~/services/profile'
 
 export interface UserState {
@@ -7,30 +7,35 @@ export interface UserState {
     email: string
     id: string
     username: string | null
+    role: USER_ROLES | null
   }
 }
 
 export const useUserStore = defineStore('user', {
   state: (): UserState => ({
     user: {
+      id: '',
       username: '',
       email: '',
-      id: '',
       avatar_url: '',
+      role: null,
     },
   }),
   actions: {
-    setUser({ email, id, username, avatar_url }: ProfilesRow) {
+    setUser({ email, id, username, avatar_url, role }: ProfilesRow) {
       this.user.email = email
       this.user.username = username
       this.user.id = id
       this.user.avatar_url = avatar_url
+      this.user.role = role as USER_ROLES
+
+      return this.user
     },
     async fetchUser() {
       const data = await getProfile()
 
       if (data)
-        this.setUser(data)
+        return this.setUser(data)
     },
     async updateAvatar(avatar_url: string) {
       const { error } = await updateAvatar(avatar_url)
