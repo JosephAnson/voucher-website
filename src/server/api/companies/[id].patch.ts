@@ -1,7 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
-import { throwIfPropertiesMissing } from '~/server/utils/throwIfPropertiesMissing'
 
 export async function updateCompany(
   client: SupabaseClient<Database>,
@@ -25,16 +24,14 @@ export async function updateCompany(
 export default defineEventHandler(async (event) => {
   const client = serverSupabaseClient<Database>(event)
 
-  const body = await readBody(event)
-
-  if (!body) {
+  if (!event.context.params?.id) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Should provide details',
+      statusMessage: 'Should provide id',
     })
   }
 
-  throwIfPropertiesMissing(body, ['id'])
+  const body = await readBody(event)
 
-  return await updateCompany(client, body)
+  return await updateCompany(client, { id: event.context.params.id, ...body })
 })
