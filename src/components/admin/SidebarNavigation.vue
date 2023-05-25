@@ -12,13 +12,13 @@ const navigation: NavigationItem[] = [
   {
     name: 'Companies',
     children: [
-      { name: 'Set featured', to: '/admin/companies/featurecompany' },
+      { name: 'Set featured', to: '/admin/companies/featured' },
     ],
   },
   {
     name: 'Codes',
     children: [
-      { name: 'Banned List', to: '/admin/codes/bannedcodes' },
+      { name: 'Banned List', to: '/admin/codes/banned' },
     ],
   },
 ]

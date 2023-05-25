@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data: companies } = await useFetch('/api/companies', { query: { limit: 36 } })
+const { data: companies } = await useFetch('/api/companies/featured', { query: { limit: 36 } })
 const companyCount = computed(() => companies.value.length)
 </script>
 
