@@ -119,17 +119,14 @@ router.afterEach(() => {
           </NuxtLink>
 
           <div v-if="loggedIn">
-            <template
+            <NuxtLink
               v-for="item in userNavigation"
               :key="item.name"
+              :to="item.to"
+              class="block rounded-md px-6 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
             >
-              <NuxtLink
-                :to="item.to"
-                class="block rounded-md px-6 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-              >
-                {{ item.name }}
-              </NuxtLink>
-            </template>
+              {{ item.name }}
+            </NuxtLink>
             <a
               href="#"
               class="block rounded-md px-6 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"

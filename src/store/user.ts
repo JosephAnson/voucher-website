@@ -121,7 +121,7 @@ export const useUserStore = defineStore('user', {
       const client = useSupabaseAuthClient()
       const router = useRouter()
 
-      const { data, error } = await client.auth.signUp(
+      const { error } = await client.auth.signUp(
         {
           email,
           password,
@@ -129,7 +129,7 @@ export const useUserStore = defineStore('user', {
             data: { username },
           },
         })
-      console.log(data, error)
+
       if (error)
         openSnackbar({ title: 'Login Failed!', message: error.message, status: 'danger' })
       else

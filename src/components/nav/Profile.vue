@@ -22,7 +22,7 @@ router.afterEach(() => {
   <Menu
     v-if="loggedIn"
     as="div"
-    class="relative  flex-shrink-0"
+    class="relative flex-shrink-0"
   >
     <div>
       <MenuButton class="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">

@@ -11,7 +11,6 @@ export default defineNuxtRouteMiddleware(async () => {
 
   const allowedRoles: USER_ROLES[] = ['ADMIN', 'SUPER_ADMIN']
 
-  console.log(userStore.user)
   if (!userStore.user.role || !allowedRoles.includes(userStore.user.role))
     return navigateTo('/login')
 })

@@ -48,7 +48,7 @@ export default defineEventHandler(async (event) => {
       .eq('company.codes.language', 'en')
       .order(sort.sort, { foreignTable: 'company', ascending: sort.ascending })
 
-    return data?.map(({ company }) => company) || []
+    return data?.map(({ company }: any) => company) || []
   }
   else {
     return await getAllCompanies(client, sort, limit)

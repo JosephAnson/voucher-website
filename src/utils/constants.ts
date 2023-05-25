@@ -1,6 +1,6 @@
 export const PROFILE_COLUMNS = 'id, email, username, avatar_url, role'
 export const CODE_COLUMNS = 'id, code, author(email, username, avatar_url), company, title, description, language'
-export const COMPANY_COLUMNS = `id, name, description, url, logo, codes(${CODE_COLUMNS}), metaTitle, metaDescription, featured, approved`
+export const COMPANY_COLUMNS = `id, name, description, url, logo, codes(${CODE_COLUMNS}), company_categories(category), metaTitle, metaDescription, featured, approved`
 
 type BannedReason = 'email' | 'banned' | 'spam'
 

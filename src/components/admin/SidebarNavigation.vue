@@ -13,6 +13,7 @@ const navigation: NavigationItem[] = [
     name: 'Companies',
     children: [
       { name: 'Set featured', to: '/admin/companies/featured' },
+      { name: 'Set categories', to: '/admin/companies/categories' },
     ],
   },
   {
