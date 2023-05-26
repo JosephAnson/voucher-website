@@ -32,7 +32,7 @@ const username = ref<string>(userStore.user.username || '')
             :model-value="userStore.user.email"
             name="email"
             type="email"
-            autocomplete="email"
+            autocomplete="off"
           />
         </Field>
 
@@ -45,6 +45,7 @@ const username = ref<string>(userStore.user.username || '')
           <Input
             id="email"
             disabled
+            autocomplete="off"
             :model-value="userStore.user.role"
           />
         </Field>
@@ -53,15 +54,13 @@ const username = ref<string>(userStore.user.username || '')
           <Field
             label="Username"
             stacked
-            label-for="username"
+            label-for="account-username"
           >
             <Grouped>
               <Input
-                id="username"
                 v-model="username"
                 type="text"
-                name="username"
-                autocomplete="username"
+                autocomplete="off"
                 placeholder="janesmith"
               />
               <Button

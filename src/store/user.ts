@@ -30,17 +30,6 @@ export const useUserStore = defineStore('user', {
 
       return this.user
     },
-    async fetchUser() {
-      try {
-        const { data } = await $fetch('/api/profile/')
-
-        if (data)
-          return this.setUser(data)
-      }
-      catch (error) {
-        console.error(error)
-      }
-    },
     async updateAvatar(avatar_url: string) {
       const { error } = await $fetch('/api/profile/updateAvatar', {
         method: 'PATCH',
@@ -75,9 +64,15 @@ export const useUserStore = defineStore('user', {
           })
         }
         else {
-          const data = await updateUsername(username)
+          const data = await $fetch('/api/profile/updateUsername', {
+            method: 'PATCH',
+            body: {
+              username,
+            },
+          })
 
-          this.user.username = data.username
+          if (data?.username)
+            this.user.username = data.username
 
           openSnackbar('Saved username')
         }

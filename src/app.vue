@@ -2,11 +2,21 @@
 const user = await useSupabaseClient()
 const userStore = useUserStore()
 
-await useAsyncData('profile', () => userStore.fetchUser())
-
-user.auth.onAuthStateChange(async () => {
-  await userStore.fetchUser()
+// Get the user profile on page load
+const { data } = await useFetch('/api/profile/', {
+  headers: useRequestHeaders(['cookie']),
 })
+userStore.setUser(data.value.data)
+
+// Listen for auth state changes
+if (process.client) {
+  user.auth.onAuthStateChange(async (event) => {
+    if (event === 'SIGNED_IN') {
+      const { data } = await $fetch('/api/profile/')
+      userStore.setUser(data)
+    }
+  })
+}
 
 useSchemaOrg([
   defineOrganization({
