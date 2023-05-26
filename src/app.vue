@@ -6,15 +6,16 @@ const userStore = useUserStore()
 const { data } = await useFetch('/api/profile/', {
   headers: useRequestHeaders(['cookie']),
 })
-userStore.setUser(data.value.data)
+
+if (data.value)
+  userStore.setUser(data.value.data)
 
 // Listen for auth state changes
 if (process.client) {
-  user.auth.onAuthStateChange(async (event) => {
-    if (event === 'SIGNED_IN') {
-      const { data } = await $fetch('/api/profile/')
+  user.auth.onAuthStateChange(async () => {
+    const { data } = await $fetch('/api/profile/')
+    if (data)
       userStore.setUser(data)
-    }
   })
 }
 

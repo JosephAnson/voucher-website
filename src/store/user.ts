@@ -55,9 +55,14 @@ export const useUserStore = defineStore('user', {
         })
       }
       else {
-        const usernameExist = await usernameExists(username)
+        const usernameExists = await $fetch('/api/profile/usernameExists', {
+          method: 'POST',
+          body: {
+            username,
+          },
+        })
 
-        if (usernameExist) {
+        if (usernameExists) {
           openSnackbar({
             message: 'Username exists try another!',
             status: 'danger',

@@ -6,12 +6,12 @@ export default defineNuxtRouteMiddleware(async () => {
   if (!user.value)
     return navigateTo('/login')
 
-  const userStore = useUserStore()
-
-  await userStore.fetchUser()
+  const { data } = await useFetch('/api/profile/', {
+    headers: useRequestHeaders(['cookie']),
+  })
 
   const allowedRoles: USER_ROLES[] = ['ADMIN', 'SUPER_ADMIN']
 
-  if (!userStore.user.role || !allowedRoles.includes(userStore.user.role))
-    return navigateTo('/login')
+  if (!data.value?.data?.role || !allowedRoles.includes(data.value?.data?.role as USER_ROLES))
+    return navigateTo('/404')
 })
