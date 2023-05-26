@@ -14,7 +14,6 @@ async function updatePassword() {
     }
     else {
       openSnackbar('Password changed successfully!')
-      await userStore.fetchUser()
       await router.push('/')
     }
   }

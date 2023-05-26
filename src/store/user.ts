@@ -1,5 +1,4 @@
 import type { ProfilesRow, USER_ROLES } from '~/types'
-import { getProfile, updateAvatar } from '~/services/profile'
 
 export interface UserState {
   user: {
@@ -33,7 +32,7 @@ export const useUserStore = defineStore('user', {
     },
     async fetchUser() {
       try {
-        const data = await getProfile()
+        const { data } = await $fetch('/api/profile/')
 
         if (data)
           return this.setUser(data)
@@ -43,13 +42,19 @@ export const useUserStore = defineStore('user', {
       }
     },
     async updateAvatar(avatar_url: string) {
-      const { error } = await updateAvatar(avatar_url)
+      const { error } = await $fetch('/api/profile/updateAvatar', {
+        method: 'PATCH',
+        body: {
+          avatar_url,
+        },
+      })
 
       if (error) {
         openSnackbar({ title: 'Avatar update Failed!', message: error.message, status: 'danger' })
       }
       else {
-        this.user.avatar_url = avatar_url
+        // Force reload avatar
+        this.user.avatar_url = `${avatar_url}?${Date.now()}`
         openSnackbar({ title: 'Avatar updated!' })
       }
     },

@@ -10,18 +10,6 @@ export async function getUserID() {
   return user.value?.id
 }
 
-export async function getProfile() {
-  return await $fetch('/api/profile/', {
-    headers: useRequestHeaders(['cookie']) as any,
-  })
-}
-export async function updateAvatar(avatar_url: string) {
-  const client = useSupabaseClient<Database>()
-  const userId = await getUserID()
-
-  return client.from('profiles').update({ avatar_url }).eq('id', userId)
-}
-
 export async function usernameExists(username: String) {
   const client = useSupabaseClient<Database>()
   const { data } = await client.from('profiles').select('username').eq('username', username)

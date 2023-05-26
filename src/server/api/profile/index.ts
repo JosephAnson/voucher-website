@@ -3,7 +3,7 @@ import type { ProfilesRow } from '~/types'
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
 import { PROFILE_COLUMNS } from '~/utils/constants'
 
-export default defineEventHandler(async (event): Promise<ProfilesRow | null> => {
+export default defineEventHandler(async (event) => {
   const user = await serverSupabaseUser(event)
 
   if (user) {
@@ -12,13 +12,11 @@ export default defineEventHandler(async (event): Promise<ProfilesRow | null> => 
     try {
       const client = serverSupabaseClient<Database>(event)
 
-      const { data } = await client
+      return client
         .from('profiles')
         .select(PROFILE_COLUMNS)
         .eq('id', profileId)
         .single<ProfilesRow>()
-
-      return data
     }
     catch {
       throw createError({

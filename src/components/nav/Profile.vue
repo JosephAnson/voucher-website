@@ -27,12 +27,15 @@ router.afterEach(() => {
     <div>
       <MenuButton class="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
         <span class="sr-only">Open user menu</span>
-        <img
+        <NuxtImg
           v-if="userStore.user.avatar_url"
-          class="h-8 w-8 rounded-full"
+          class="h-8 w-8 rounded-full object-cover"
           :src="userStore.user.avatar_url"
-          alt=""
-        >
+          alt="User Avatar"
+          fit="cover"
+          width="36"
+          quality="100"
+        />
         <UserCircleIcon
           v-else
           class="h-8 w-8 rounded-full"

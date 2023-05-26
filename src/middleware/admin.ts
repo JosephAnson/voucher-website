@@ -7,6 +7,7 @@ export default defineNuxtRouteMiddleware(async () => {
     return navigateTo('/login')
 
   const userStore = useUserStore()
+
   await userStore.fetchUser()
 
   const allowedRoles: USER_ROLES[] = ['ADMIN', 'SUPER_ADMIN']

@@ -20,10 +20,12 @@ const component = computed(() => {
   return PhotoIcon
 })
 
+const computedPath = computed(() => props.path)
+
 const { open, onUpload: onSupabaseUpload } = useSupabaseUpload({
   fileName: props.fileName,
   bucket: props.bucket,
-  path: props.path,
+  path: computedPath,
 })
 
 onSupabaseUpload((url) => {
@@ -38,32 +40,43 @@ onSupabaseUpload((url) => {
       flex: props.size === 'small',
     }"
   >
-    <img
-      v-if="props.image"
-      class="object-contain"
-      :class="{
-        'h-10 w-10 rounded-full': props.size === 'small',
-        'h-22 w-22 mb-2': props.size === 'large',
-      }"
-      :src="props.image"
-      alt=""
-    >
-    <component
-      :is="component"
-      v-else
-      class="text-gray-300"
-      :class="{
-        'h-12 w-12 rounded-full': props.size === 'small',
-        'h-24 w-24 ml--1 mt--3': props.size === 'large',
-      }"
-      aria-hidden="true"
-    />
-    <Button
-      theme="primary"
-      @click="open"
-    >
-      Change
-    </Button>
+    <template v-if="loading">
+      <div
+        class="i-carbon-progress-bar-round animate-spin"
+        :class="{
+          'h-10 w-10 rounded-full': props.size === 'small',
+          'h-22 w-22 mb-2': props.size === 'large',
+        }"
+      />
+    </template>
+    <template v-else>
+      <img
+        v-if="props.image "
+        class="object-contain"
+        :class="{
+          'h-10 w-10 rounded-full': props.size === 'small',
+          'h-22 w-22 mb-2': props.size === 'large',
+        }"
+        :src="props.image"
+        alt=""
+      >
+      <component
+        :is="component"
+        v-else
+        class="text-gray-300"
+        :class="{
+          'h-12 w-12 rounded-full': props.size === 'small',
+          'h-24 w-24 ml--1 mt--3': props.size === 'large',
+        }"
+        aria-hidden="true"
+      />
+      <Button
+        theme="primary"
+        @click="open"
+      >
+        Change
+      </Button>
+    </template>
   </div>
   <p
     v-if="props.message"

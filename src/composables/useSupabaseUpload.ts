@@ -1,8 +1,16 @@
+import type { Ref } from 'vue'
 import type { Database } from '~/supabase.types'
 import { createGuid } from '~/utils/createGuid'
 
+interface UseSupabaseUploadOptions {
+  path: Ref<string>
+  bucket: string
+  fileName?: string
+  accept?: string
+}
+
 export function useSupabaseUpload(
-  { path, bucket, fileName: _fileName, accept = 'image/png, image/jpeg' }: { path: string; bucket: string; fileName?: string; accept?: string },
+  { path, bucket, fileName: _fileName, accept = 'image/png, image/jpeg' }: UseSupabaseUploadOptions,
 ) {
   const { files, open, reset, onChange } = useFileDialog(
     { accept, multiple: false },
@@ -21,7 +29,7 @@ export function useSupabaseUpload(
         const { data, error } = await client
           .storage
           .from(bucket)
-          .upload(`${path}/${fileName}`, file, {
+          .upload(`${path.value}/${fileName}`, file, {
             upsert: true,
             cacheControl: '0',
           })
