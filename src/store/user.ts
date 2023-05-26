@@ -32,10 +32,15 @@ export const useUserStore = defineStore('user', {
       return this.user
     },
     async fetchUser() {
-      const data = await getProfile()
+      try {
+        const data = await getProfile()
 
-      if (data)
-        return this.setUser(data)
+        if (data)
+          return this.setUser(data)
+      }
+      catch (error) {
+        console.error(error)
+      }
     },
     async updateAvatar(avatar_url: string) {
       const { error } = await updateAvatar(avatar_url)

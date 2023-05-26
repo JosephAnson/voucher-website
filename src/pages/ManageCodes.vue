@@ -3,9 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const { data: codes, refresh } = await useFetch('/api/profile/codes', {
-  headers: useRequestHeaders(['cookie']) as any,
-})
+const { data: codes, refresh } = await useFetch('/api/profile/codes')
 
 function deleteVoucherCode(id) {
   openDialog({
