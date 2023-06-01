@@ -17,7 +17,10 @@ import { SORT_OPTIONS } from '~/types'
 const sort = useRouteQuery('sort', SORT_OPTIONS[0])
 const category = useRouteQuery('category')
 
-const { data: companies } = await useFetch('/api/companies', { query: { sort, category } })
+const page = useRouteQuery('page', '1')
+const pageLimit = ref(12)
+
+const { data: companyData } = await useFetch('/api/companies', { query: { sort, category, limit: pageLimit, page }, watch: [sort, category, page] })
 const { data: _categories } = await useFetch('/api/categories')
 
 const mobileFiltersOpen = ref(false)
@@ -122,7 +125,6 @@ const categories = computed(() => {
           </div>
         </Dialog>
       </TransitionRoot>
-
       <main>
         <div class="flex items-baseline justify-between border-b border-gray-200 pb-2">
           <Heading
@@ -223,11 +225,11 @@ const categories = computed(() => {
             <!-- Product grid -->
             <div class="lg:col-span-3">
               <ul
-                v-if="companies.length > 0"
+                v-if="companyData?.companies?.length > 0"
                 class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-2 xl:gap-x-8"
               >
                 <CompanyCard
-                  v-for="company in companies"
+                  v-for="company in companyData.companies"
                   :id="company.id"
                   :key="company.url"
                   :description="company.description"
@@ -243,6 +245,14 @@ const categories = computed(() => {
               >
                 No items in this category
               </div>
+
+              <Pagination
+                class="mt-5"
+                :page="page"
+                :total="companyData?.count || 0"
+                :page-size="pageLimit"
+                @change="page = $event"
+              />
             </div>
           </div>
         </section>

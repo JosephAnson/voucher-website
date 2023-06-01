@@ -22,15 +22,20 @@ function getSort(sort: string | undefined | QueryValue, defaultSort: SORTS): Sor
   return mappedSort[sortString as SORTS]
 }
 
-export async function getAllCompanies(client: SupabaseClient<Database>, sort: SortItem, limit: number) {
-  const { data } = await client
+export async function getAllCompanies({ client, sort, limit, page }: {
+  client: SupabaseClient<Database>
+  sort: SortItem
+  limit: number
+  page: number
+}) {
+  const { data, count } = await client
     .from('companies')
-    .select(COMPANY_COLUMNS)
+    .select(COMPANY_COLUMNS, { count: 'exact' })
     .eq('codes.language', 'en')
     .order(sort.sort, { foreignTable: '', ascending: sort.ascending })
-    .limit(limit)
+    .range(limit * page, page === 0 ? limit - 1 : limit * page + limit - 1)
 
-  return data
+  return { companies: data, count }
 }
 
 export default defineEventHandler(async (event) => {
@@ -39,18 +44,20 @@ export default defineEventHandler(async (event) => {
 
   const sort = getSort(query?.sort, 'ALPHABETICAL')
   const limit = Number(query?.limit || 10000)
+  const page = Number(query?.page - 1 || 0)
+
   if (query?.category) {
-    const { data } = await client
+    const { data, count } = await client
       .from('company_categories')
-      .select(`company(${COMPANY_COLUMNS})`)
-      .limit(limit)
+      .select(`company(${COMPANY_COLUMNS})`, { count: 'exact' })
+      .range(limit * page, page === 0 ? limit - 1 : limit * page + limit - 1)
       .eq('category', query?.category)
       .eq('company.codes.language', 'en')
       .order(sort.sort, { foreignTable: 'company', ascending: sort.ascending })
 
-    return data?.map(({ company }: any) => company) || []
+    return { companies: data?.map(({ company }: any) => company) || [], count }
   }
   else {
-    return await getAllCompanies(client, sort, limit)
+    return await getAllCompanies({ client, sort, limit, page })
   }
 })

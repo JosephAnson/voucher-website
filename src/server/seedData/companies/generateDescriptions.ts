@@ -7,7 +7,7 @@ import { updateCompany } from '~/server/api/companies/update.post'
 export async function generateDescriptions(client: SupabaseClient<Database>) {
   const { sendMessage } = useChatGPT()
 
-  const allCompanies = await getAllCompanies(client, { sort: 'name', ascending: true }) || []
+  const allCompanies = await getAllCompanies({ client, sort: { sort: 'name', ascending: true } }) || []
 
   for (const company of allCompanies) {
     if (!company.description) {
