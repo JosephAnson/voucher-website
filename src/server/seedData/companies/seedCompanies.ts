@@ -12,7 +12,7 @@ export async function seedCompanies(client: SupabaseClient<Database>) {
   // Make sure the browser opens a new page
   const page = await browser.newPage()
 
-  const allCompanies = await getAllCompanies({ client, sort: { sort: 'name', ascending: true } }) || []
+  const { companies: allCompanies } = await getAllCompanies({ client, sort: { sort: 'name', ascending: true } }) || []
 
   const parrainCompaniesEN = await getTopParrainCompanies(page, 'en')
   // const skyDealCodes = await getSpyDealsCodes(page, company.name, 'en')

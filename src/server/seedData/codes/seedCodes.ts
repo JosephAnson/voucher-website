@@ -66,7 +66,7 @@ async function saveCompanyCode(context: BrowserContext, company: any, allCodes: 
 }
 
 export async function seedCodes(client: SupabaseClient<Database>) {
-  const allCompanies = await getAllCompanies({ client, sort: { sort: 'name', ascending: true } }) || []
+  const { companies: allCompanies } = await getAllCompanies({ client, sort: { sort: 'name', ascending: true } }) || []
   const allCodes = await getAllCodes(client) || []
 
   const companyChunks = chunkArray(allCompanies, allCompanies.length / 3)

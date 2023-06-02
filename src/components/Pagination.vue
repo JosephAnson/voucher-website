@@ -10,19 +10,19 @@ const emits = defineEmits<{
 }>()
 
 const total = computed(() => props.total)
-const pageSize = computed(() => props.pageSize)
 
 const {
   currentPage,
   isFirstPage,
   isLastPage,
   pageCount,
+  currentPageSize,
   prev,
   next,
 } = useOffsetPagination({
   total,
   page: Number(props.page),
-  pageSize,
+  pageSize: props.pageSize,
   onPageChange: ({ currentPage }) => emits('change', currentPage),
 })
 
@@ -42,6 +42,11 @@ const twoNextPagesFromCurrentPage = computed(() => {
       pages.push(i)
   }
   return pages
+})
+
+watchEffect(() => {
+  currentPage.value = Number(props.page)
+  currentPageSize.value = Number(props.pageSize)
 })
 </script>
 
