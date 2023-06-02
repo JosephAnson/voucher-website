@@ -9,9 +9,6 @@ export async function deleteCode(client: SupabaseClient<Database>, { id }: { id:
     .delete()
     .eq('id', id)
 
-  console.log('id', id)
-  console.log(data, error)
-
   if (error)
     throw createError(error)
 
@@ -28,8 +25,6 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'Should provide details',
     })
   }
-
-  console.log('id', body.id)
 
   throwIfPropertiesMissing(body, ['id'])
 

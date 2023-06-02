@@ -18,7 +18,6 @@ export default defineEventHandler(async (event) => {
 
   const client = serverSupabaseClient<Database>(event)
   const userId = await getUserID(event)
-  console.log('userId', userId, body.avatar_url)
 
   return client.from('profiles').update({ avatar_url: body.avatar_url }).eq('id', userId)
 })

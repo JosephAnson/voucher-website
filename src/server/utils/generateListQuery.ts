@@ -1,37 +1,30 @@
 import type { H3Event } from 'h3'
 import type { PostgrestFilterBuilder } from '@supabase/postgrest-js'
-import type { QueryValue } from 'ufo'
 import type { Database } from '~/supabase.types'
 import type { SORTS } from '~/types'
 import { SORT_OPTIONS } from '~/types'
 
-interface SortItem {
+type SortMapping = Record<SORTS, { sort: string; ascending: boolean }>
+function getSort(sort: string, sortMapping: SortMapping, defaultSort: SORTS): {
   sort: string
   ascending: boolean
-}
-
-function getSort(sort: string | undefined | QueryValue, defaultSort: SORTS): SortItem {
+} {
   const sortString = SORT_OPTIONS.includes(sort as SORTS) ? sort : defaultSort
-
-  const mappedSort: Record<SORTS, SortItem> = {
-    NEWEST: { sort: 'created_at', ascending: false },
-    ALPHABETICAL: { sort: 'name', ascending: true },
-  }
-
-  return mappedSort[sortString as SORTS]
+  return sortMapping[sortString as SORTS]
 }
 
-export function generateListQuery({ event, query: supabaseQuery, sortForeignTable }: {
+export function generateListQuery({ event, query: supabaseQuery, sortForeignTable, sortMapping }: {
   event: H3Event
   query: PostgrestFilterBuilder<Database['public'], any, any>
   sortForeignTable?: string
+  sortMapping: SortMapping
 }) {
   const query = getQuery(event)
 
   let newSupabaseQuery = supabaseQuery
 
   if (query?.sort) {
-    const sort = getSort(query.sort, 'ALPHABETICAL')
+    const sort = getSort(query.sort as string, sortMapping, 'ALPHABETICAL')
     newSupabaseQuery = newSupabaseQuery.order(sort.sort, { foreignTable: sortForeignTable || '', ascending: sort.ascending })
   }
 

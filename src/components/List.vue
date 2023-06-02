@@ -12,38 +12,58 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
+import type { SORTS } from '~/types'
 import { SORT_OPTIONS } from '~/types'
 
 const props = defineProps<{
   title: string
   api: string
   pageLimit: number
-  categories: { id: number | null; category: string }[]
+  categories?: { id: number | null; category: string }[]
 }>()
 
 const mobileFiltersOpen = ref(false)
 
-const sort = useRouteQuery('sort', SORT_OPTIONS[0])
+const sort = useRouteQuery('sort', SORT_OPTIONS[0] as SORTS)
 const category = useRouteQuery('category')
-const page = useRouteQuery<string>('page')
+const page = useRouteQuery('page', '1' as string, { transform: Number })
 
-const { data } = await useFetch(
+const { data, refresh } = await useFetch(
   props.api,
   {
     query: {
       sort,
-      category,
       limit: props.pageLimit,
       page,
+      ...(category.value && { category: category.value }),
     },
-    watch: [sort, category, page],
+    watch: [sort, page],
   },
 )
+
+function setSort(sortOption: SORTS) {
+  console.log('setSort', sortOption)
+  sort.value = sortOption
+  page.value = 1
+}
+
+function setCategory(categoryId: string) {
+  console.log('setCategory', categoryId)
+  category.value = categoryId
+  page.value = 1
+  mobileFiltersOpen.value = false
+}
+
+function setPage(pageNumber: number) {
+  console.log('pageNumber', pageNumber)
+  page.value = pageNumber
+}
 </script>
 
 <template>
   <!-- Mobile filter dialog -->
   <TransitionRoot
+    v-if="props.categories"
     as="template"
     :show="mobileFiltersOpen"
   >
@@ -111,7 +131,7 @@ const { data } = await useFetch(
                   <a
                     class="block p-2"
                     href="#"
-                    @click.prevent="(category = categoryItem.id, mobileFiltersOpen = false)"
+                    @click.prevent="setCategory(categoryItem.id)"
                   >
                     {{ categoryItem.category }}
                   </a>
@@ -120,7 +140,7 @@ const { data } = await useFetch(
               <div class="px-4">
                 <Button
                   class="w-full"
-                  @click.prevent="(category = '', mobileFiltersOpen = false)"
+                  @click.prevent="setCategory('')"
                 >
                   Clear Filters
                 </Button>
@@ -173,7 +193,7 @@ const { data } = await useFetch(
                   href="#"
                   class="block px-4 py-2 text-sm"
                   :class="[sortOption === sort ? 'font-medium text-gray-900' : 'text-gray-500', active ? 'bg-gray-100' : '']"
-                  @click="sort = sortOption"
+                  @click="setSort(sortOption)"
                 >{{ $t(`sortOptions.${sortOption}`) }}</a>
               </MenuItem>
             </div>
@@ -182,11 +202,12 @@ const { data } = await useFetch(
       </Menu>
 
       <button
+        v-if="props.categories"
         type="button"
         class="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
         @click="mobileFiltersOpen = true"
       >
-        <span class="sr-only">Filters</span>
+        <span class="sr-only">Categories</span>
         <FunnelIcon
           class="h-5 w-5"
           aria-hidden="true"
@@ -201,7 +222,10 @@ const { data } = await useFetch(
   >
     <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
       <!-- Filters -->
-      <form class="hidden lg:block">
+      <form
+        v-if="props.categories"
+        class="hidden lg:block"
+      >
         <Heading
           h2
           class="sr-only"
@@ -213,13 +237,13 @@ const { data } = await useFetch(
           class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
         >
           <li
-            v-for="categoryItem in categories"
+            v-for="categoryItem in props.categories"
             :key="categoryItem.category"
           >
             <a
               class="w-full flex items-center"
               href="#"
-              @click.prevent="category = categoryItem.id"
+              @click.prevent="setCategory(categoryItem.id)"
             >
               {{ categoryItem.category }}
             </a>
@@ -228,26 +252,21 @@ const { data } = await useFetch(
       </form>
 
       <!-- Product grid -->
-      <div class="lg:col-span-3">
-        <ul
-          v-if="data?.items?.length > 0"
-          class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-2 xl:gap-x-8"
-        >
-          <li
-            v-for="item in data.items"
-            :key="item.id"
-          >
-            <slot
-              name="item"
-              :item="item"
-            />
-          </li>
-        </ul>
+      <div :class="{ 'lg:col-span-3': props.categories, 'lg:col-span-12': !props.categories }">
+        <div v-if="data?.items?.length > 0">
+          <slot
+            name="items"
+            :items="data.items"
+            :refresh="refresh"
+          />
+        </div>
         <div
           v-else
           class="text-sm"
         >
-          No items
+          <slot name="empty">
+            No items
+          </slot>
         </div>
 
         <Pagination
@@ -255,7 +274,7 @@ const { data } = await useFetch(
           :page="page"
           :total="data?.count || 0"
           :page-size="pageLimit"
-          @change="page = $event"
+          @change-page="setPage($event)"
         />
       </div>
     </div>

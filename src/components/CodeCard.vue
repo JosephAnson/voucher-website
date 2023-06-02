@@ -26,7 +26,7 @@ function copyCode() {
 </script>
 
 <template>
-  <li class="overflow-hidden rounded-xl border border-gray-200 bg-white p-4">
+  <div class="overflow-hidden rounded-xl border border-gray-200 bg-white p-4">
     <div class="flex flex-col md:flex-row flex-grow-1 justify-between gap-x-4 mb-2">
       <Heading
         :margin-bottom="false"
@@ -99,5 +99,5 @@ function copyCode() {
         </Button>
       </div>
     </div>
-  </li>
+  </div>
 </template>

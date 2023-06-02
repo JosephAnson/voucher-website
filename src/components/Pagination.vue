@@ -5,8 +5,8 @@ const props = defineProps<{
   pageSize: number
 }>()
 
-const emits = defineEmits<{
-  'change': number
+const emit = defineEmits<{
+  'changePage': [page: number]
 }>()
 
 const total = computed(() => props.total)
@@ -23,7 +23,7 @@ const {
   total,
   page: Number(props.page),
   pageSize: props.pageSize,
-  onPageChange: ({ currentPage }) => emits('change', currentPage),
+  onPageChange: ({ currentPage }) => emit('changePage', Number(currentPage)),
 })
 
 const twoPreviousPagesFromCurrentPage = computed(() => {
@@ -44,10 +44,12 @@ const twoNextPagesFromCurrentPage = computed(() => {
   return pages
 })
 
-watchEffect(() => {
-  currentPage.value = Number(props.page)
-  currentPageSize.value = Number(props.pageSize)
-})
+watchEffect(() => currentPage.value = Number(props.page))
+watchEffect(() => currentPageSize.value = Number(props.pageSize))
+
+function setPage(page: number | string) {
+  currentPage.value = Number(page)
+}
 </script>
 
 <template>
@@ -94,8 +96,10 @@ watchEffect(() => {
         }"
         href="#"
         class="inline-flex items-center border-t-2 px-4 pt-4 text-sm font-medium"
-        @click="currentPage = pageItem"
-      >{{ pageItem }}</a>
+        @click="setPage(pageItem)"
+      >
+        {{ pageItem }}
+      </a>
       <a class="inline-flex items-center border-t-2 px-4 pt-4 text-sm font-medium border-primary-500 text-primary-600">{{ currentPage }}</a>
       <a
         v-for="pageItem in twoNextPagesFromCurrentPage"
@@ -106,10 +110,12 @@ watchEffect(() => {
         }"
         href="#"
         class="inline-flex items-center border-t-2 px-4 pt-4 text-sm font-medium"
-        @click="currentPage = pageItem"
-      >{{ pageItem }}</a>
+        @click="setPage(pageItem)"
+      >
+        {{ pageItem }}
+      </a>
       <span
-        v-if="!isLastPage"
+        v-if="!isLastPage && pageCount > 3"
         class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500"
       >...</span>
     </div>

@@ -16,19 +16,28 @@ const categories = computed(() => {
         <List
           title="Companies"
           api="/api/companies"
-          :page-limit="4"
+          :page-limit="6"
           :categories="categories"
         >
-          <template #item="{ item }">
-            <CompanyCard
-              :id="item.id"
-              class="h-full"
-              :description="item.description"
-              :name="item.name"
-              :logo="item.logo"
-              :url="item.url"
-              :codes="item.codes"
-            />
+          <template #items="{ items }">
+            <ul
+              class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-2 xl:gap-x-8"
+            >
+              <li
+                v-for="item in items"
+                :key="item.id"
+              >
+                <CompanyCard
+                  :id="item.id"
+                  class="h-full"
+                  :description="item.description"
+                  :name="item.name"
+                  :logo="item.logo"
+                  :url="item.url"
+                  :codes="item.codes"
+                />
+              </li>
+            </ul>
           </template>
         </List>
       </main>

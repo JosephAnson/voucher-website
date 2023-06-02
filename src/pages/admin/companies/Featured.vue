@@ -6,7 +6,7 @@ definePageMeta({
 
 const { data: companies } = await useFetch('/api/companies')
 
-const sortedResults = useSorted(companies, (a, b) => b.featured - a.featured)
+const sortedResults = useSorted(companies.value.items, (a, b) => b.featured - a.featured)
 
 async function onChange(id: string, featured: boolean, callback) {
   callback(featured)

@@ -3,9 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const { data: codes, refresh } = await useFetch('/api/profile/codes')
-
-function deleteVoucherCode(id) {
+function deleteVoucherCode(refresh, id) {
   openDialog({
     onConfirm: async () => {
       await $fetch('/api/code/delete', {
@@ -22,46 +20,43 @@ function deleteVoucherCode(id) {
 <template>
   <Section>
     <Container>
-      <div
-        class="flex justify-between items-center"
+      <List
+        title="Your voucher codes"
+        api="/api/profile/codes"
+        :page-limit="6"
       >
-        <Heading h1>
-          Your voucher
-        </Heading>
-        <Heading
-          v-if="codes.length"
-          h2
-        >
-          {{ codes.length }} Codes
-        </Heading>
-      </div>
-      <div
-        v-if="codes.length"
-        class="space-y-4"
-      >
-        <CodeCard
-          v-for="code in codes"
-          :id="code.id"
-          :key="code.id"
-          :description="code.description"
-          :title="code.title"
-          :username="code.author.username"
-          :avatar-src="code.author.avatar_url"
-          :code="code.code"
-          edit
-          revealed
-          @delete="deleteVoucherCode"
-        />
-      </div>
-      <div v-else>
-        <Heading h3>
-          You've added no vouchers
-        </Heading>
+        <template #items="{ items: codes, refresh }">
+          <ul class="space-y-4">
+            <li
+              v-for="code in codes"
+              :key="code.id"
+            >
+              <CodeCard
+                :id="code.id"
+                :description="code.description"
+                :title="code.title"
+                :username="code.author.username"
+                :avatar-src="code.author.avatar_url"
+                :code="code.code"
+                edit
+                revealed
+                @delete="deleteVoucherCode(refresh, code.id)"
+              />
+            </li>
+          </ul>
+        </template>
+        <template #empty>
+          <div>
+            <Heading h3>
+              You've added no vouchers
+            </Heading>
 
-        <Button to="/vouchercode/submit">
-          Click here to add some
-        </Button>
-      </div>
+            <Button to="/vouchercode/submit">
+              Click here to add some
+            </Button>
+          </div>
+        </template>
+      </List>
     </Container>
   </Section>
 </template>

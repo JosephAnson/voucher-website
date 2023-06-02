@@ -12,7 +12,6 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'Should provide details',
     })
   }
-  console.log('DELETED CATEGORY!', body.company, body.category)
 
   throwIfPropertiesMissing(body, ['company', 'category'])
 
@@ -21,8 +20,6 @@ export default defineEventHandler(async (event) => {
     .delete()
     .eq('company', body.company)
     .eq('category', body.category)
-
-  console.log('DELETED CATEGORY!', data, error)
 
   if (error) {
     throw createError({

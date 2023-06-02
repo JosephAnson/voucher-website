@@ -54,8 +54,8 @@ function setCategory(categoryId, companyId, setValue, value) {
 
 <template>
   <TableFull
-    v-if="companies"
-    :items="companies"
+    v-if="companies.items"
+    :items="companies.items"
     search-key="name"
     pick="id, name, company_categories"
     :labels="{
