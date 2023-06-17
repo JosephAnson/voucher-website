@@ -24,7 +24,7 @@
     "@vercel/analytics": "^1.0.1",
     "@vueuse/core": "^10.1.2",
     "@vueuse/head": "^1.1.26",
-    "@vueuse/nuxt": "^10.1.2",
+    "@vueuse/nuxt": "^10.2.0",
     "@vueuse/router": "^10.1.2",
     "nuxt-scheduler": "^0.0.16",
     "nuxt-schema-org": "^2.2.0",
