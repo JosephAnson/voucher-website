@@ -7,7 +7,8 @@ const route = useRoute<'code-id'>()
 const router = useRouter()
 
 const { data: codeData } = await useFetch(`/api/code/${route.params.id}`)
-const { data: companies } = await useFetch('/api/companies')
+const { data } = await useFetch('/api/companies')
+const companies = computed(() => data.value?.items)
 
 const company = ref(companies.value[0].id)
 const title = ref(codeData.value.title)

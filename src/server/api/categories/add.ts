@@ -1,6 +1,7 @@
+import { createError, defineEventHandler, readBody } from 'h3'
+import type { Database } from '../../../supabase.types'
+import { throwIfPropertiesMissing } from '../../utils/throwIfPropertiesMissing'
 import { serverSupabaseClient } from '#supabase/server'
-import type { Database } from '~/supabase.types'
-import { throwIfPropertiesMissing } from '~/server/utils/throwIfPropertiesMissing'
 
 export default defineEventHandler(async (event) => {
   const client = serverSupabaseClient<Database>(event)

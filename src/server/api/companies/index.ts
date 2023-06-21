@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
     if (query?.category)
       supabaseQuery = supabaseQuery.eq('category', query.category)
 
-    const { data, count, error } = await supabaseQuery
+    const { data, count } = await supabaseQuery
     return { items: data?.map(({ company }: any) => company) || [], count }
   }
   else {

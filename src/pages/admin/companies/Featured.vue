@@ -4,7 +4,8 @@ definePageMeta({
   layout: 'admin',
 })
 
-const { data: companies } = await useFetch('/api/companies')
+const { data } = await useFetch('/api/companies')
+const companies = computed(() => data.value?.items)
 
 const sortedResults = useSorted(companies.value.items, (a, b) => b.featured - a.featured)
 

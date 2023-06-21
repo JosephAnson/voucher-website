@@ -25,7 +25,7 @@ const props = defineProps<{
 const mobileFiltersOpen = ref(false)
 
 const sort = useRouteQuery('sort', SORT_OPTIONS[0] as SORTS)
-const category = useRouteQuery('category')
+const category = useRouteQuery('category', '')
 const page = useRouteQuery('page', '1' as string, { transform: Number })
 
 const { data, refresh } = await useFetch(

@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import {
   presetIcons,
   presetTypography,
@@ -9,6 +10,7 @@ import {
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default defineNuxtConfig({
+  devtools: true,
   app: {
     head: {
       meta: [
@@ -62,7 +64,6 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     // '@nuxtjs/html-validator',
     '@nuxt/image-edge',
-    '@nuxt/devtools',
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
@@ -71,8 +72,6 @@ export default defineNuxtConfig({
     'nuxt-simple-sitemap',
     'nuxt-schema-org',
     'nuxt-og-image',
-    'nuxt-typed-router',
-    'nuxt-scheduler',
   ],
   plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
   srcDir: 'src/',
@@ -479,9 +478,7 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['services', 'store'],
   },
-  htmlValidator: {
-    usePrettier: false,
-    logLevel: 'verbose',
-    failOnError: false,
+  experimental: {
+    typedPages: true,
   },
 })

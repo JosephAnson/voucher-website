@@ -9,11 +9,12 @@ import {
   ComboboxOptions,
 } from '@headlessui/vue'
 
-const { data: companies } = useFetch('/api/companies')
+const { data } = useFetch('/api/companies')
+const companies = computed(() => data.value?.items)
 
 const router = useRouter()
 const search = ref('')
-const selectedCompany = ref(null)
+const selectedCompany = ref<string | null>(null)
 
 function searchCompanies(searchText: string | undefined) {
   router.push(searchText ? `/companies?search=${searchText}` : '/companies')
