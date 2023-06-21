@@ -26,7 +26,6 @@
     "@vueuse/head": "^1.1.26",
     "@vueuse/nuxt": "^10.2.0",
     "@vueuse/router": "^10.2.0",
-    "nuxt-scheduler": "^0.0.16",
     "nuxt-schema-org": "^2.2.0",
     "openai": "^3.3.0",
     "pinia": "^2.1.4",

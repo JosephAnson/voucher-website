@@ -1,0 +1,20 @@
+{
+  "crons": [
+    {
+      "path": "/api/hello",
+      "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/seedData/codes/seedCodes",
+      "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/seedData/companies/seedCompanies",
+      "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/seedData/companies/generateDescriptions",
+      "schedule": "0 5 * * *"
+    }
+  ]
+}

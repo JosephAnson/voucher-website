@@ -1,10 +1,10 @@
-import type { SupabaseClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 import { useChatGPT } from '~/composables/useChatGPT'
-import type { Database } from '~/supabase.types'
 import { getAllCompanies } from '~/server/api/companies'
 import { updateCompany } from '~/server/api/companies/update.post'
 
-export async function generateDescriptions(client: SupabaseClient<Database>) {
+export default defineEventHandler(async () => {
+  const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '')
   const { sendMessage } = useChatGPT()
 
   const { companies: allCompanies } = await getAllCompanies({ client, sort: { sort: 'name', ascending: true } }) || []
@@ -64,4 +64,4 @@ export async function generateDescriptions(client: SupabaseClient<Database>) {
       }
     }
   }
-}
+})

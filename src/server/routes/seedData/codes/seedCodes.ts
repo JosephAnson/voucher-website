@@ -1,14 +1,15 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { BrowserContext } from 'playwright'
 import { chromium } from 'playwright'
+import { createClient } from '@supabase/supabase-js'
+import { getSpyDealsCodes } from './getSpyDealsCodes'
+import { getTopParrainCodes } from './getTopParrainCodes'
 import { getAllCompanies } from '~/server/api/companies'
 import { getAllCodes } from '~/server/api/code'
 import type { Code } from '~/types'
 import { isBannedCode } from '~/utils/isBannedCode'
 import type { Database } from '~/supabase.types'
-import { getSpyDealsCodes } from '~/server/seedData/codes/getSpyDealsCodes'
 import { createCode } from '~/server/api/code/add.post'
-import { getTopParrainCodes } from '~/server/seedData/codes/getTopParrainCodes'
 import { chunkArray } from '~/server/utils/chunkArray'
 import { Queue } from '~/server/utils/queue'
 
@@ -65,7 +66,10 @@ async function saveCompanyCode(context: BrowserContext, company: any, allCodes: 
   }
 }
 
-export async function seedCodes(client: SupabaseClient<Database>) {
+export default defineEventHandler(async () => {
+  const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
+    auth: { persistSession: false },
+  })
   const { companies: allCompanies } = await getAllCompanies({ client, sort: { sort: 'name', ascending: true } }) || []
   const allCodes = await getAllCodes(client) || []
 
@@ -81,4 +85,4 @@ export async function seedCodes(client: SupabaseClient<Database>) {
 
     queue.enqueue(async () => await browser.close())
   }
-}
+})

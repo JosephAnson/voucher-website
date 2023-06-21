@@ -1030,7 +1030,7 @@
     unimport "^3.0.7"
     untyped "^1.3.2"
 
-"@nuxt/kit@3.5.3", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.2.2", "@nuxt/kit@^3.3.3", "@nuxt/kit@^3.4.1", "@nuxt/kit@^3.4.3", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.1", "@nuxt/kit@^3.5.2", "@nuxt/kit@^3.5.3":
+"@nuxt/kit@3.5.3", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.3.3", "@nuxt/kit@^3.4.1", "@nuxt/kit@^3.4.3", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.1", "@nuxt/kit@^3.5.2", "@nuxt/kit@^3.5.3":
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.5.3.tgz#879d556142febcc8250aff857e75bb8d87daedbb"
   integrity sha512-QzoOGqa1zjKQfg7Y50TrrFAL9DhtIpYYs10gihcM1ISPrn9ROht+VEjqsaMvT+L8JuQbNf8wDYl8qzsdWGU29Q==
@@ -3912,7 +3912,7 @@ define-properties@^1.1.3, define-properties@^1.1.4, define-properties@^1.2.0:
     has-property-descriptors "^1.0.0"
     object-keys "^1.1.1"
 
-defu@^6.0.0, defu@^6.1.0, defu@^6.1.1, defu@^6.1.2:
+defu@^6.0.0, defu@^6.1.1, defu@^6.1.2:
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/defu/-/defu-6.1.2.tgz#1217cba167410a1765ba93893c6dbac9ed9d9e5c"
   integrity sha512-+uO4+qr7msjNNWKYPHqN/3+Dx3NFkmIzayk2L1MyZQlvgZb/J1A0fo410dpKrN2SnqFjt8n4JL8fDJE0wIgjFQ==
@@ -7006,13 +7006,6 @@ node-addon-api@^6.1.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-6.1.0.tgz#ac8470034e58e67d0c6f1204a18ae6995d9c0d76"
   integrity sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==
 
-node-cron@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/node-cron/-/node-cron-3.0.2.tgz#bb0681342bd2dfb568f28e464031280e7f06bd01"
-  integrity sha512-iP8l0yGlNpE0e6q1o185yOApANRe47UPbLf4YxfbiNHt/RU5eBcGB/e0oudruheSf+LQeDMezqC5BVAb5wwRcQ==
-  dependencies:
-    uuid "8.3.2"
-
 node-domexception@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/node-domexception/-/node-domexception-1.0.0.tgz#6888db46a1f71c0b76b3f7555016b63fe64766e5"
@@ -7269,15 +7262,6 @@ nuxt-og-image@^1.5.9:
     ufo "^1.1.1"
     ws "^8.13.0"
     yoga-wasm-web "^0.3.3"
-
-nuxt-scheduler@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/nuxt-scheduler/-/nuxt-scheduler-0.0.16.tgz#4ba45062bdecdbbbd03f527656761f269e26a345"
-  integrity sha512-uZH+7IrNqEVogh9in3eftoIi/2WnKglehpsuEGXikZ/+dMSq31p9unyl8BSs4D63Ddzpx6ovFhQFDscPrucbbA==
-  dependencies:
-    "@nuxt/kit" "^3.2.2"
-    defu "^6.1.0"
-    node-cron "^3.0.2"
 
 nuxt-schema-org@^2.2.0:
   version "2.2.0"
@@ -9860,11 +9844,6 @@ util@^0.12.0:
     is-generator-function "^1.0.7"
     is-typed-array "^1.1.3"
     which-typed-array "^1.1.2"
-
-uuid@8.3.2:
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
-  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 validate-npm-package-license@^3.0.1, validate-npm-package-license@^3.0.4:
   version "3.0.4"

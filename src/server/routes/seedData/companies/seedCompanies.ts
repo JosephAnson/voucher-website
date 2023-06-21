@@ -1,12 +1,15 @@
 import { chromium } from 'playwright'
-import type { SupabaseClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
+import { getTopParrainCompanies } from './getTopParrainCompanies'
 import { getAllCompanies } from '~/server/api/companies'
-import type { Database } from '~/supabase.types'
-import { getTopParrainCompanies } from '~/server/seedData/companies/getTopParrainCompanies'
 import { createCompany } from '~/server/api/companies/add.post'
 import { createGuid } from '~/utils/createGuid'
 
-export async function seedCompanies(client: SupabaseClient<Database>) {
+export default defineEventHandler(async () => {
+  const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
+    auth: { persistSession: false },
+  })
+
   const browser = await chromium.launch()
 
   // Make sure the browser opens a new page
@@ -72,4 +75,4 @@ export async function seedCompanies(client: SupabaseClient<Database>) {
   console.log('-'.repeat(20))
 
   await browser.close()
-}
+})
