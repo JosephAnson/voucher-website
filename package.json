@@ -37,7 +37,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.5",
     "@iconify-json/carbon": "^1.1.18",
-    "@nuxt/devtools": "^0.6.1",
+    "@nuxt/devtools": "^0.6.2",
     "@nuxt/image-edge": "^1.0.0-28094923.e859bba",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/html-validator": "^1.4.0",

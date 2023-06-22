@@ -899,19 +899,19 @@
   resolved "https://registry.yarnpkg.com/@nuxt/devalue/-/devalue-2.0.2.tgz#5749f04df13bda4c863338d8dabaf370f45ef7c7"
   integrity sha512-GBzP8zOc7CGWyFQS6dv1lQz8VVpz5C2yRszbXufwG/9zhStTIH50EtD87NmWbTMwXDvZLNg8GIpb1UFdH93JCA==
 
-"@nuxt/devtools-kit@0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@nuxt/devtools-kit/-/devtools-kit-0.6.1.tgz#815edc070ae2c25234af44e369da5aed1cd4e037"
-  integrity sha512-4x4f9MynFGRajUx91sh5GuDQGoZlmDxF4JOhTN/s90x5wkjRLN4hIb988E7NZ2ak3iH4+DTh7VQWZTBfLaBqlA==
+"@nuxt/devtools-kit@0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@nuxt/devtools-kit/-/devtools-kit-0.6.2.tgz#db6aef55dff1c045d6306e117e9055e14aa72e3b"
+  integrity sha512-nHysPrkl4oJELqs+MmmSSFfVufE13I8UpufgdLIcEKR3PW27gX199N5SpE9qrd/2EvMxaiH83TUjzilrF2jnUw==
   dependencies:
     "@nuxt/kit" "^3.5.3"
     "@nuxt/schema" "^3.5.3"
     execa "^7.1.1"
 
-"@nuxt/devtools-wizard@0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@nuxt/devtools-wizard/-/devtools-wizard-0.6.1.tgz#c5f24e3f11ae19acfab5aed7bb815f67b80cab36"
-  integrity sha512-eQVYNZHw8wrVyZXeQpTAv4jc08VVNV7Db2D2KmMO08DipkrCqzCf7c6sFtcSmNIlGArm6lcObszTOpdZPhWTHw==
+"@nuxt/devtools-wizard@0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@nuxt/devtools-wizard/-/devtools-wizard-0.6.2.tgz#c8628198be9128f8f9e94d9a26703afe32a5b354"
+  integrity sha512-/irigr6v8sbN6D4BQ0n9MLmja4u2QhuMBgSnC57yObaplzm7dV5vSWY2nZCep4GMGy1ZH+M4HmThHhG9APk+8w==
   dependencies:
     consola "^3.1.0"
     diff "^5.1.0"
@@ -922,16 +922,16 @@
     picocolors "^1.0.0"
     pkg-types "^1.0.3"
     prompts "^2.4.2"
-    rc9 "^2.1.0"
-    semver "^7.5.1"
+    rc9 "^2.1.1"
+    semver "^7.5.2"
 
-"@nuxt/devtools@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@nuxt/devtools/-/devtools-0.6.1.tgz#f48eed5dafb6904a4aa5168104eb7fb5780f76e5"
-  integrity sha512-nz1FCJ2WViQWKUG9dTjwib/XZ7/dzeaP/r+++Y7W6a70y3ME5q58YldSNhNKJZXcbYWAU5UFzsoaslB5SWrlhw==
+"@nuxt/devtools@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@nuxt/devtools/-/devtools-0.6.2.tgz#dc3a4eeb5df868bdeb5520770d4b271ef6f86660"
+  integrity sha512-GRKsOMKbyxnRRgeBLjnVT0essaqt0O4iZedzCmHLKmg3HPbGmy9fN3J9gPNN+/TQ86plXwq2lZ7Utz1cL2hWBQ==
   dependencies:
-    "@nuxt/devtools-kit" "0.6.1"
-    "@nuxt/devtools-wizard" "0.6.1"
+    "@nuxt/devtools-kit" "0.6.2"
+    "@nuxt/devtools-wizard" "0.6.2"
     "@nuxt/kit" "^3.5.3"
     birpc "^0.2.12"
     boxen "^7.1.0"
@@ -941,7 +941,7 @@
     fast-glob "^3.2.12"
     get-port-please "^3.0.1"
     global-dirs "^3.0.1"
-    h3 "^1.6.6"
+    h3 "^1.7.0"
     hookable "^5.5.3"
     image-meta "^0.1.1"
     is-installed-globally "^0.4.0"
@@ -954,8 +954,8 @@
     perfect-debounce "^1.0.0"
     picocolors "^1.0.0"
     pkg-types "^1.0.3"
-    rc9 "^2.1.0"
-    semver "^7.5.1"
+    rc9 "^2.1.1"
+    semver "^7.5.2"
     sirv "^2.0.3"
     unimport "^3.0.8"
     vite-plugin-inspect "^0.7.28"
@@ -5327,18 +5327,18 @@ gzip-size@^7.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-h3@^1.0.1, h3@^1.6.6:
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/h3/-/h3-1.6.6.tgz#f7da8517ae3bf906716975e38f2d3c24ab79a239"
-  integrity sha512-DWu2s11OuuO9suEkX99dXaJoxd1RgPXiM4iDmLdrhGV63GLoav13f3Kdd5/Rw7xNKzhzn2+F2dleQjG66SnMPQ==
+h3@^1.0.1, h3@^1.6.6, h3@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/h3/-/h3-1.7.0.tgz#46aa4095feeb7d342a32f17fcc02a18dcb099529"
+  integrity sha512-iJJz2Pn2rC0j8CB3rkFMs0K269W7hDVOC7eL3qne5Joy4JZX1W7id7PBFV593GboHDOx0PzgO6ocqsynrIvdxw==
   dependencies:
     cookie-es "^1.0.0"
     defu "^6.1.2"
-    destr "^1.2.2"
+    destr "^2.0.0"
     iron-webcrypto "^0.7.0"
     radix3 "^1.0.1"
     ufo "^1.1.2"
-    uncrypto "^0.1.2"
+    uncrypto "^0.1.3"
 
 has-bigints@^1.0.1, has-bigints@^1.0.2:
   version "1.0.2"
@@ -9589,7 +9589,7 @@ unconfig@^0.3.9:
     defu "^6.1.2"
     jiti "^1.18.2"
 
-uncrypto@^0.1.2:
+uncrypto@^0.1.2, uncrypto@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/uncrypto/-/uncrypto-0.1.3.tgz#e1288d609226f2d02d8d69ee861fa20d8348ef2b"
   integrity sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==
