@@ -30,7 +30,7 @@
     "openai": "^3.3.0",
     "pinia": "^2.1.4",
     "playwright": "^1.35.1",
-    "supabase": "^1.70.1",
+    "supabase": "^1.72.0",
     "tailwindcss": "3.3.2",
     "yup": "^1.2.0"
   },
