@@ -5,7 +5,7 @@ import { throwIfPropertiesMissing } from '~/server/utils/throwIfPropertiesMissin
 
 export async function updateCompany(
   client: SupabaseClient<Database>,
-  { id, name, description, metaTitle, metaDescription, featured, approved }: { id: string; name?: string; description?: string; metaTitle?: string; metaDescription?: string; featured: boolean; approved: boolean },
+  { id, name, description, metaTitle, metaDescription, featured, approved }: { id: string; name?: string; description?: string; metaTitle?: string; metaDescription?: string; featured?: boolean; approved?: boolean },
 ) {
   const { data, error } = await client
     .from('companies')

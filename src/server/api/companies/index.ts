@@ -1,5 +1,4 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
-import type { H3Event } from 'h3'
 import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 import { COMPANY_COLUMNS } from '~/utils/constants'
@@ -10,12 +9,16 @@ const sortMapping = {
   ALPHABETICAL: { sort: 'name', ascending: true },
 }
 
-export async function getAllCompanies({ client, event }: {
+export async function getAllCompanies({ client, sort, page, limit }: {
   client: SupabaseClient<Database>
-  event: H3Event
+  sort?: string
+  page?: number | string
+  limit?: number | string
 }) {
-  const { data, count } = await generateListQuery({
-    event,
+  const { data, count, error } = await generateListQuery({
+    sort,
+    page,
+    limit,
     query: client
       .from('companies')
       .select(COMPANY_COLUMNS, { count: 'exact' })
@@ -23,16 +26,26 @@ export async function getAllCompanies({ client, event }: {
     sortMapping,
   })
 
+  console.log('error', error)
+
   return { items: data, count }
 }
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event)
+  const query = getQuery(event) as {
+    sort?: string
+    page?: string
+    limit?: string
+    category?: string
+  }
+
   const client = serverSupabaseClient<Database>(event)
 
   if (query?.category) {
     let supabaseQuery = generateListQuery({
-      event,
+      sort: query?.sort,
+      page: query?.page,
+      limit: query?.limit,
       query: client
         .from('company_categories')
         .select(`company(${COMPANY_COLUMNS})`, { count: 'exact' })
@@ -48,6 +61,11 @@ export default defineEventHandler(async (event) => {
     return { items: data?.map(({ company }: any) => company) || [], count }
   }
   else {
-    return await getAllCompanies({ event, client })
+    return await getAllCompanies({
+      sort: query?.sort,
+      page: query?.page,
+      limit: query?.limit,
+      client,
+    })
   }
 })

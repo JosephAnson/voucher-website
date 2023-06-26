@@ -1,4 +1,4 @@
-import { chromium } from 'playwright'
+import { launchChromium } from 'playwright-aws-lambda'
 import { createClient } from '@supabase/supabase-js'
 import { getTopParrainCompanies } from './getTopParrainCompanies'
 import { getAllCompanies } from '~/server/api/companies'
@@ -10,12 +10,12 @@ export default defineEventHandler(async () => {
     auth: { persistSession: false },
   })
 
-  const browser = await chromium.launch()
+  const browser = await launchChromium()
 
   // Make sure the browser opens a new page
   const page = await browser.newPage()
 
-  const { companies: allCompanies } = await getAllCompanies({ client, sort: { sort: 'name', ascending: true } }) || []
+  const { items: allCompanies } = await getAllCompanies({ client, sort: 'NEWEST' }) || []
 
   const parrainCompaniesEN = await getTopParrainCompanies(page, 'en')
   // const skyDealCodes = await getSpyDealsCodes(page, company.name, 'en')
@@ -25,7 +25,7 @@ export default defineEventHandler(async () => {
 
   for (const company of companies) {
     if (company) {
-      const existingCompany = allCompanies.find(c => c.id === company.id)
+      const existingCompany = allCompanies.find((c: { id: string }) => c.id === company.id)
 
       if (existingCompany) {
         console.log('company already exists', company.name)
@@ -75,4 +75,6 @@ export default defineEventHandler(async () => {
   console.log('-'.repeat(20))
 
   await browser.close()
+
+  return 'Seeding companies'
 })

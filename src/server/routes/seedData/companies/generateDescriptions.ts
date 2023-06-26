@@ -7,7 +7,7 @@ export default defineEventHandler(async () => {
   const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '')
   const { sendMessage } = useChatGPT()
 
-  const { companies: allCompanies } = await getAllCompanies({ client, sort: { sort: 'name', ascending: true } }) || []
+  const { items: allCompanies } = await getAllCompanies({ client, sort: 'NEWEST' }) || []
 
   for (const company of allCompanies) {
     if (!company.description) {
@@ -64,4 +64,6 @@ export default defineEventHandler(async () => {
       }
     }
   }
+
+  return 'Generating Descriptions'
 })

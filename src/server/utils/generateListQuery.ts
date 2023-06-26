@@ -1,4 +1,3 @@
-import type { H3Event } from 'h3'
 import type { PostgrestFilterBuilder } from '@supabase/postgrest-js'
 import type { Database } from '~/supabase.types'
 import type { SORTS } from '~/types'
@@ -13,25 +12,25 @@ function getSort(sort: string, sortMapping: SortMapping, defaultSort: SORTS): {
   return sortMapping[sortString as SORTS]
 }
 
-export function generateListQuery({ event, query: supabaseQuery, sortForeignTable, sortMapping }: {
-  event: H3Event
+export function generateListQuery({ sort, page, limit, query: supabaseQuery, sortForeignTable, sortMapping }: {
+  sort?: string
+  page?: number | string
+  limit?: number | string
   query: PostgrestFilterBuilder<Database['public'], any, any>
   sortForeignTable?: string
   sortMapping: SortMapping
 }) {
-  const query = getQuery(event)
-
   let newSupabaseQuery = supabaseQuery
 
-  if (query?.sort) {
-    const sort = getSort(query.sort as string, sortMapping, 'ALPHABETICAL')
-    newSupabaseQuery = newSupabaseQuery.order(sort.sort, { foreignTable: sortForeignTable || '', ascending: sort.ascending })
+  if (sort) {
+    const newSort = getSort(sort, sortMapping, 'ALPHABETICAL')
+    newSupabaseQuery = newSupabaseQuery.order(newSort.sort, { foreignTable: sortForeignTable || '', ascending: newSort.ascending })
   }
 
-  if (query?.limit && query?.page) {
-    const limit = Number(query.limit || 10000)
-    const page = Number(Number(query.page) - 1)
-    newSupabaseQuery = newSupabaseQuery.range(limit * page, page === 0 ? limit - 1 : limit * page + limit - 1)
+  if (limit && page) {
+    const newLimit = Number(limit || 10000)
+    const newPage = Number(Number(page) - 1)
+    newSupabaseQuery = newSupabaseQuery.range(newLimit * newPage, page === 0 ? newLimit - 1 : newLimit * newPage + newLimit - 1)
   }
 
   return newSupabaseQuery

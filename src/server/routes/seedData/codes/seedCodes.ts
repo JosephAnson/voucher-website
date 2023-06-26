@@ -1,6 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { BrowserContext } from 'playwright'
-import { chromium } from 'playwright'
+import playwright from 'playwright-aws-lambda'
 import { createClient } from '@supabase/supabase-js'
 import { getSpyDealsCodes } from './getSpyDealsCodes'
 import { getTopParrainCodes } from './getTopParrainCodes'
@@ -70,14 +70,14 @@ export default defineEventHandler(async () => {
   const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
     auth: { persistSession: false },
   })
-  const { companies: allCompanies } = await getAllCompanies({ client, sort: { sort: 'name', ascending: true } }) || []
+  const { items: allCompanies } = await getAllCompanies({ client, sort: 'NEWEST' }) || []
   const allCodes = await getAllCodes(client) || []
 
   const companyChunks = chunkArray(allCompanies, allCompanies.length / 3)
 
   for (const companies of companyChunks) {
     const queue = new Queue()
-    const browser = await chromium.launch()
+    const browser = await playwright.launchChromium()
     const context = await browser.newContext()
 
     for (const company of companies)
@@ -85,4 +85,6 @@ export default defineEventHandler(async () => {
 
     queue.enqueue(async () => await browser.close())
   }
+
+  return 'Seeding codes'
 })

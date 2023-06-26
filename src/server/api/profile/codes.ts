@@ -9,9 +9,17 @@ export default defineEventHandler(async (event) => {
   if (user) {
     try {
       const client = serverSupabaseClient<Database>(event)
+      const query = getQuery(event) as {
+        sort?: string
+        page?: string
+        limit?: string
+        category?: string
+      }
 
       const { data, count } = await generateListQuery({
-        event,
+        sort: query?.sort,
+        page: query?.page,
+        limit: query?.limit,
         query: client
           .from('codes')
           .select(CODE_COLUMNS, { count: 'exact' })
