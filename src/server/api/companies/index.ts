@@ -26,7 +26,8 @@ export async function getAllCompanies({ client, sort, page, limit }: {
     sortMapping,
   })
 
-  console.log('error', error)
+  if (error)
+    console.log('error', error)
 
   return { items: data, count }
 }

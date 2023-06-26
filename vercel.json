@@ -6,15 +6,15 @@
     },
     {
       "path": "/seedData/codes/seedCodes",
-      "schedule": "0 5 * * *"
+      "schedule": "0 3 * * *"
     },
     {
       "path": "/seedData/companies/seedCompanies",
-      "schedule": "0 5 * * *"
+      "schedule": "0 3 * * *"
     },
     {
       "path": "/seedData/companies/generateDescriptions",
-      "schedule": "0 5 * * *"
+      "schedule": "0 3 * * *"
     }
   ]
 }
