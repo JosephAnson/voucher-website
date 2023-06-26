@@ -16,7 +16,7 @@ const categories = computed(() => {
         <List
           title="Companies"
           api="/api/companies"
-          :page-limit="6"
+          :page-limit="24"
           :categories="categories"
         >
           <template #items="{ items }">

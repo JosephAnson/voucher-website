@@ -23,7 +23,7 @@ function deleteVoucherCode(refresh, id) {
       <List
         title="Your voucher codes"
         api="/api/profile/codes"
-        :page-limit="6"
+        :page-limit="24"
       >
         <template #items="{ items: codes, refresh }">
           <ul class="space-y-4">
