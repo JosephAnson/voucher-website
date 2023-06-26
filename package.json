@@ -19,7 +19,7 @@
     "@pinia/nuxt": "^0.4.11",
     "@unocss/nuxt": "^0.53.1",
     "@unocss/reset": "^0.53.1",
-    "@vee-validate/nuxt": "^4.9.6",
+    "@vee-validate/nuxt": "^4.10.2",
     "@vee-validate/yup": "^4.9.6",
     "@vercel/analytics": "^1.0.1",
     "@vueuse/core": "^10.2.0",
