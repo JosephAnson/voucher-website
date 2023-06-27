@@ -1,9 +1,9 @@
 import { launchChromium } from 'playwright-aws-lambda'
 import { createClient } from '@supabase/supabase-js'
 import { getTopParrainCompanies } from './getTopParrainCompanies'
-import { getAllCompanies } from '~/server/api/companies'
 import { createCompany } from '~/server/api/companies/add.post'
 import { createGuid } from '~/utils/createGuid'
+import { getAllCompanies } from '~/server/routes/seedData/service/getAllCompanies'
 
 export default defineEventHandler(async () => {
   const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
@@ -15,7 +15,7 @@ export default defineEventHandler(async () => {
   // Make sure the browser opens a new page
   const page = await browser.newPage()
 
-  const { items: allCompanies } = await getAllCompanies({ client, sort: 'NEWEST' }) || []
+  const { data: allCompanies } = await getAllCompanies(client)
 
   const parrainCompaniesEN = await getTopParrainCompanies(page, 'en')
   // const skyDealCodes = await getSpyDealsCodes(page, company.name, 'en')
@@ -63,6 +63,8 @@ export default defineEventHandler(async () => {
               description: '',
               created_at: new Date().toISOString(),
               codes: [],
+              metaTitle: '',
+              metaDescription: '',
             })
 
             console.log('company created', company.name)

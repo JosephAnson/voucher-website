@@ -1,30 +1,6 @@
-import type { SupabaseClient } from '@supabase/supabase-js'
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 import { throwIfPropertiesMissing } from '~/server/utils/throwIfPropertiesMissing'
-
-export async function createCode(userId: string, client: SupabaseClient<Database>, { title, description, code, company, language = 'en' }: { title: string; description: string; code: string; company: string; language?: string }) {
-  if (!title || title === '' || !code || code === '' || !company)
-    console.log('code not created')
-
-  const { data, error } = await client
-    .from('codes')
-    .insert({
-      title,
-      description,
-      code,
-      company,
-      author: userId,
-      language,
-    })
-    .select()
-    .single()
-
-  if (error)
-    throw createError(`Cannot update code: ${error.message}`)
-
-  return data
-}
 
 export default defineEventHandler(async (event) => {
   const client = serverSupabaseClient<Database>(event)
@@ -41,6 +17,26 @@ export default defineEventHandler(async (event) => {
 
   throwIfPropertiesMissing(body, ['title', 'description', 'code', 'company'])
 
-  if (user && user.id)
-    return await createCode(user.id, client, body)
+  if (user && user.id) {
+    if (!body.title || body.title === '' || !body.code || body.code === '' || !body.company)
+      console.log('code not created')
+
+    const { data, error } = await client
+      .from('codes')
+      .insert({
+        title: body.title,
+        description: body.description,
+        code: body.code,
+        company: body.company,
+        author: user.id,
+        language: body.language,
+      })
+      .select()
+      .single()
+
+    if (error)
+      throw createError(`Cannot update code: ${error.message}`)
+
+    return data
+  }
 })

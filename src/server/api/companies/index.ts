@@ -1,4 +1,3 @@
-import type { SupabaseClient } from '@supabase/supabase-js'
 import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 import { COMPANY_COLUMNS } from '~/utils/constants'
@@ -7,29 +6,6 @@ import { generateListQuery } from '~/server/utils/generateListQuery'
 const sortMapping = {
   NEWEST: { sort: 'created_at', ascending: false },
   ALPHABETICAL: { sort: 'name', ascending: true },
-}
-
-export async function getAllCompanies({ client, sort, page, limit }: {
-  client: SupabaseClient<Database>
-  sort?: string
-  page?: number | string
-  limit?: number | string
-}) {
-  const { data, count, error } = await generateListQuery({
-    sort,
-    page,
-    limit,
-    query: client
-      .from('companies')
-      .select(COMPANY_COLUMNS, { count: 'exact' })
-      .eq('codes.language', 'en'),
-    sortMapping,
-  })
-
-  if (error)
-    console.log('error', error)
-
-  return { items: data, count }
 }
 
 export default defineEventHandler(async (event) => {
@@ -62,11 +38,20 @@ export default defineEventHandler(async (event) => {
     return { items: data?.map(({ company }: any) => company) || [], count }
   }
   else {
-    return await getAllCompanies({
+    const { data, count, error } = await generateListQuery({
       sort: query?.sort,
       page: query?.page,
       limit: query?.limit,
-      client,
+      query: client
+        .from('companies')
+        .select(COMPANY_COLUMNS, { count: 'exact' })
+        .eq('codes.language', 'en'),
+      sortMapping,
     })
+
+    if (error)
+      console.log('error', error)
+
+    return { items: data, count }
   }
 })

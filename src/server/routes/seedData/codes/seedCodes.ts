@@ -2,18 +2,40 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import type { BrowserContext } from 'playwright'
 import playwright from 'playwright-aws-lambda'
 import { createClient } from '@supabase/supabase-js'
+import { getAllCompanies } from '../service/getAllCompanies'
 import { getSpyDealsCodes } from './getSpyDealsCodes'
 import { getTopParrainCodes } from './getTopParrainCodes'
-import { getAllCompanies } from '~/server/api/companies'
-import { getAllCodes } from '~/server/api/code'
 import type { Code } from '~/types'
 import { isBannedCode } from '~/utils/isBannedCode'
 import type { Database } from '~/supabase.types'
-import { createCode } from '~/server/api/code/add.post'
 import { chunkArray } from '~/server/utils/chunkArray'
 import { Queue } from '~/server/utils/queue'
+import { getAllCodes } from '~/server/routes/seedData/service/getAllCodes'
 
-async function saveCompanyCode(context: BrowserContext, company: any, allCodes: any[], client: SupabaseClient<Database>) {
+async function createCode(userId: string, client: SupabaseClient<Database>, { title, description, code, company, language = 'en' }: { title: string; description: string; code: string; company: string; language?: string }) {
+  if (!title || title === '' || !code || code === '' || !company)
+    console.log('code not created')
+
+  const { data, error } = await client
+    .from('codes')
+    .insert({
+      title,
+      description,
+      code,
+      company,
+      author: userId,
+      language,
+    })
+    .select()
+    .single()
+
+  if (error)
+    throw createError(`Cannot update code: ${error.message}`)
+
+  return data
+}
+
+async function saveCompanyCode(context: BrowserContext, company: { id: string; name: string; url: string }, allCodes: any[], client: SupabaseClient<Database>) {
   try {
     console.log(`searching: ${company.name}, Current total codes ${allCodes.length}`)
 
@@ -70,20 +92,22 @@ export default defineEventHandler(async () => {
   const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
     auth: { persistSession: false },
   })
-  const { items: allCompanies } = await getAllCompanies({ client, sort: 'NEWEST' }) || []
+  const { data: allCompanies } = await getAllCompanies(client)
   const allCodes = await getAllCodes(client) || []
 
-  const companyChunks = chunkArray(allCompanies, allCompanies.length / 3)
+  if (allCompanies) {
+    const companyChunks = chunkArray(allCompanies, allCompanies.length / 3)
 
-  for (const companies of companyChunks) {
-    const queue = new Queue()
-    const browser = await playwright.launchChromium()
-    const context = await browser.newContext()
+    for (const companies of companyChunks) {
+      const queue = new Queue()
+      const browser = await playwright.launchChromium()
+      const context = await browser.newContext()
 
-    for (const company of companies)
-      queue.enqueue(async () => await saveCompanyCode(context, company, allCodes, client))
+      for (const company of companies)
+        queue.enqueue(async () => await saveCompanyCode(context, company, allCodes, client))
 
-    queue.enqueue(async () => await browser.close())
+      queue.enqueue(async () => await browser.close())
+    }
   }
 
   return 'Seeding codes'
