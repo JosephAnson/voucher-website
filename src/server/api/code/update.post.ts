@@ -1,23 +1,6 @@
-import type { SupabaseClient } from '@supabase/supabase-js'
 import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 import { throwIfPropertiesMissing } from '~/server/utils/throwIfPropertiesMissing'
-
-export async function updateCode(client: SupabaseClient<Database>, { id, title, description, code }: { id: string; title: string; description: string; code: string }) {
-  const { data, error } = await client
-    .from('codes')
-    .update({
-      title, description, code,
-    })
-    .eq('id', id)
-    .select()
-    .single()
-
-  if (error)
-    throw createError('Cannot update code')
-
-  return data
-}
 
 export default defineEventHandler(async (event) => {
   const client = serverSupabaseClient<Database>(event)
@@ -33,5 +16,17 @@ export default defineEventHandler(async (event) => {
 
   throwIfPropertiesMissing(body, ['id', 'title', 'description', 'code'])
 
-  return await updateCode(client, body)
+  const { data, error } = await client
+    .from('codes')
+    .update({
+      title: body.title, description: body.description, code: body.code,
+    })
+    .eq('id', body.id)
+    .select()
+    .single()
+
+  if (error)
+    throw createError('Cannot update code')
+
+  return data
 })

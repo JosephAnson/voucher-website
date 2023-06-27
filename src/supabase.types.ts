@@ -25,6 +25,7 @@ export interface Database {
           id?: number
           order?: number
         }
+        Relationships: []
       }
       codes: {
         Row: {
@@ -57,6 +58,20 @@ export interface Database {
           language?: string
           title?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: 'codes_author_fkey'
+            columns: ['author']
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'codes_company_fkey'
+            columns: ['company']
+            referencedRelation: 'companies'
+            referencedColumns: ['id']
+          },
+        ]
       }
       companies: {
         Row: {
@@ -95,6 +110,7 @@ export interface Database {
           name?: string
           url?: string
         }
+        Relationships: []
       }
       company_categories: {
         Row: {
@@ -112,6 +128,20 @@ export interface Database {
           company?: string
           id?: number
         }
+        Relationships: [
+          {
+            foreignKeyName: 'company_categories_category_fkey'
+            columns: ['category']
+            referencedRelation: 'categories'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'company_categories_company_fkey'
+            columns: ['company']
+            referencedRelation: 'companies'
+            referencedColumns: ['id']
+          },
+        ]
       }
       profile_roles: {
         Row: {
@@ -123,6 +153,7 @@ export interface Database {
         Update: {
           role?: string
         }
+        Relationships: []
       }
       profiles: {
         Row: {
@@ -146,6 +177,20 @@ export interface Database {
           role?: string | null
           username?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: 'profiles_id_fkey'
+            columns: ['id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'profiles_role_fkey'
+            columns: ['role']
+            referencedRelation: 'profile_roles'
+            referencedColumns: ['role']
+          },
+        ]
       }
     }
     Views: {
