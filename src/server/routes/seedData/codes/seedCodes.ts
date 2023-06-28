@@ -10,7 +10,7 @@ import { isBannedCode } from '~/utils/isBannedCode'
 import type { Database } from '~/supabase.types'
 import { chunkArray } from '~/server/utils/chunkArray'
 import { Queue } from '~/server/utils/queue'
-import { getAllCodes } from '~/server/routes/seedData/service/getAllCodes'
+import { CODE_COLUMNS } from '~/utils/constants'
 
 async function createCode(userId: string, client: SupabaseClient<Database>, { title, description, code, company, language = 'en' }: { title: string; description: string; code: string; company: string; language?: string }) {
   if (!title || title === '' || !code || code === '' || !company)
@@ -27,7 +27,6 @@ async function createCode(userId: string, client: SupabaseClient<Database>, { ti
       language,
     })
     .select()
-    .single()
 
   if (error)
     throw createError(`Cannot update code: ${error.message}`)
@@ -93,14 +92,17 @@ export default defineEventHandler(async () => {
     auth: { persistSession: false },
   })
   const { data: allCompanies } = await getAllCompanies(client)
-  const allCodes = await getAllCodes(client)
+
+  const { data: allCodes } = await client
+    .from('codes')
+    .select(CODE_COLUMNS)
 
   if (allCompanies && allCodes) {
-    const companyChunks = chunkArray(allCompanies, allCompanies.length / 3)
+    const companyChunks = chunkArray(allCompanies, allCompanies.length / 6)
 
     for (const companies of companyChunks) {
       const queue = new Queue()
-      const browser = await playwright.launchChromium()
+      const browser = await playwright.launchChromium({ headless: true })
       const context = await browser.newContext()
 
       for (const company of companies)

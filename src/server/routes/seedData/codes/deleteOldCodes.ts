@@ -13,10 +13,8 @@ export default defineEventHandler(async () => {
     .select('id, created_at')
     .lt('created_at', new Date(Date.now() - daysOld * 24 * 60 * 60 * 1000).toISOString())
 
-  if (error) {
+  if (error)
     console.error(error)
-    return
-  }
 
   console.log(oldCodes)
 
@@ -29,10 +27,8 @@ export default defineEventHandler(async () => {
         .delete()
         .in('id', chunk.map(c => c.id))
 
-      if (error) {
+      if (error)
         console.error(error)
-        return
-      }
 
       console.log(data)
     }
