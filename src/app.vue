@@ -29,16 +29,17 @@ useSchemaOrg([
   }),
   defineWebPage(),
 ])
-
-useHead({
-  titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} - VouchersDiscountsCodes` : 'VouchersDiscountsCodes - Save Big with the Latest Deals and Promo Codes'
-  },
-})
 </script>
 
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <div>
+    <SeoKit />
+    <!-- a. Generates browser screenshots for every page -->
+    <OgImageScreenshot />
+    <!-- b. Generate satori images for every page (uses the default template) -->
+    <OgImageStatic />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
 </template>

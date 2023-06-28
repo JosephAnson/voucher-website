@@ -1,4 +1,3 @@
-import { resolve } from 'node:path'
 import {
   presetIcons,
   presetTypography,
@@ -10,17 +9,26 @@ import {
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default defineNuxtConfig({
+  extends: [
+    'nuxt-seo-kit',
+  ],
+  runtimeConfig: {
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.vouchersdiscountscodes.com',
+      siteName: 'Vouchers Discounts Codes',
+      siteDescription: 'Discover the latest voucher codes, discounts and promo codes for your favorite online stores at VouchersDiscountsCodes. Get huge savings on fashion, beauty, home decor, electronics and more. Start saving today!',
+      language: 'en',
+    },
+  },
   devtools: true,
   app: {
     head: {
+      titleTemplate: (titleChunk) => {
+        return titleChunk ? `${titleChunk} - VouchersDiscountsCodes` : 'VouchersDiscountsCodes - Save Big with the Latest Deals and Promo Codes'
+      },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Discover the latest voucher codes, discounts and promo codes for your favorite online stores at VouchersDiscountsCodes. Get huge savings on fashion, beauty, home decor, electronics and more. Start saving today!',
-        },
         {
           hid: 'keywords',
           name: 'keywords',
@@ -60,18 +68,14 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/i18n',
     '@nuxtjs/eslint-module',
-    '@nuxtjs/robots',
     '@nuxtjs/supabase',
-    // '@nuxtjs/html-validator',
     '@nuxt/image-edge',
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@unlighthouse/nuxt',
     '@vee-validate/nuxt',
-    'nuxt-simple-sitemap',
     'nuxt-schema-org',
-    'nuxt-og-image',
   ],
   plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
   srcDir: 'src/',
