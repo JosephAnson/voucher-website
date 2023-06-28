@@ -3,9 +3,10 @@ import { getTopParrainCompanies } from './getTopParrainCompanies'
 import { createCompany } from '~/server/api/companies/add.post'
 import { createGuid } from '~/utils/createGuid'
 import { getAllCompanies } from '~/server/routes/seedData/service/getAllCompanies'
+import type { Database } from '~/supabase.types'
 
 export default defineEventHandler(async () => {
-  const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
+  const client = createClient<Database>(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
     auth: { persistSession: false },
   })
 

@@ -62,7 +62,7 @@ async function saveCompanyCode(context: BrowserContext, company: { id: string; n
             code: code.code,
             company: company.id,
             language: code.language,
-          }), { timeout: 1000 })
+          }), { timeout: 2000 })
 
           // Add code that's been added to list of codes so it's not add again
           allCodes.push({

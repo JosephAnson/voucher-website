@@ -1,9 +1,10 @@
 import { createClient } from '@supabase/supabase-js'
 import { useChatGPT } from '~/composables/useChatGPT'
 import { getAllCompanies } from '~/server/routes/seedData/service/getAllCompanies'
+import type { Database } from '~/supabase.types'
 
 export default defineEventHandler(async () => {
-  const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '')
+  const client = createClient<Database>(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '')
   const { sendMessage } = useChatGPT()
 
   const { data: allCompanies } = await getAllCompanies(client)
@@ -22,8 +23,6 @@ export default defineEventHandler(async () => {
               name: company.name, description: company.description,
             })
             .eq('id', company.id)
-            .select()
-            .single()
 
           if (error)
             console.log(`Cannot update company: ${error.message}`)
@@ -64,8 +63,6 @@ export default defineEventHandler(async () => {
                 metaTitle: json.title, metaDescription: json.description,
               })
               .eq('id', company.id)
-              .select()
-              .single()
 
             if (error)
               console.log(`Cannot update company: ${error.message}`)

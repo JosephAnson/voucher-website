@@ -1,8 +1,9 @@
 import { createClient } from '@supabase/supabase-js'
 import { chunkArray } from '~/server/utils/chunkArray'
+import type { Database } from '~/supabase.types'
 
 export default defineEventHandler(async () => {
-  const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
+  const client = createClient<Database>(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
     auth: { persistSession: false },
   })
 
