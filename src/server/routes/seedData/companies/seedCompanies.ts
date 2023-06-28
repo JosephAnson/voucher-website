@@ -1,4 +1,3 @@
-import { launchChromium } from 'playwright-aws-lambda'
 import { createClient } from '@supabase/supabase-js'
 import { getTopParrainCompanies } from './getTopParrainCompanies'
 import { createCompany } from '~/server/api/companies/add.post'
@@ -10,14 +9,9 @@ export default defineEventHandler(async () => {
     auth: { persistSession: false },
   })
 
-  const browser = await launchChromium({ headless: true })
-
-  // Make sure the browser opens a new page
-  const page = await browser.newPage()
-
   const { data: allCompanies } = await getAllCompanies(client)
 
-  const parrainCompaniesEN = await getTopParrainCompanies(page, 'en')
+  const parrainCompaniesEN = await getTopParrainCompanies('en')
   // const skyDealCodes = await getSpyDealsCodes(page, company.name, 'en')
   // const skyDealCodesNl = await getSpyDealsCodes(page, company.name, 'nl', 'https://www.spydeals.nl/winkels')
 
@@ -77,8 +71,6 @@ export default defineEventHandler(async () => {
   }
 
   console.log('-'.repeat(20))
-
-  await browser.close()
 
   return 'Seeding companies'
 })

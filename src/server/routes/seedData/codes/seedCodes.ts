@@ -12,11 +12,13 @@ import { chunkArray } from '~/server/utils/chunkArray'
 import { Queue } from '~/server/utils/queue'
 import { CODE_COLUMNS } from '~/utils/constants'
 
+const createCodeQueue = new Queue()
+
 async function createCode(userId: string, client: SupabaseClient<Database>, { title, description, code, company, language = 'en' }: { title: string; description: string; code: string; company: string; language?: string }) {
   if (!title || title === '' || !code || code === '' || !company)
     console.log('code not created')
 
-  const { data, error } = await client
+  const { error } = await client
     .from('codes')
     .insert({
       title,
@@ -26,12 +28,11 @@ async function createCode(userId: string, client: SupabaseClient<Database>, { ti
       author: userId,
       language,
     })
-    .select()
 
   if (error)
     throw createError(`Cannot update code: ${error.message}`)
-
-  return data
+  else
+    console.log('code created', company, code)
 }
 
 async function saveCompanyCode(context: BrowserContext, company: { id: string; name: string; url: string }, allCodes: any[], client: SupabaseClient<Database>) {
@@ -55,13 +56,13 @@ async function saveCompanyCode(context: BrowserContext, company: { id: string; n
         const existingCode = allCodes.find(c => c.code === code.code && c.company === company.id && c.language === code.language)
 
         if (!existingCode) {
-          await createCode('ca35f5fc-389c-4678-8ec8-294336ed3132', client, {
+          createCodeQueue.enqueue(async () => await createCode('ca35f5fc-389c-4678-8ec8-294336ed3132', client, {
             title: code.title,
             description: code.description,
             code: code.code,
             company: company.id,
             language: code.language,
-          })
+          }), { timeout: 1000 })
 
           // Add code that's been added to list of codes so it's not add again
           allCodes.push({
@@ -77,10 +78,11 @@ async function saveCompanyCode(context: BrowserContext, company: { id: string; n
               avatar_url: '',
             },
           })
-          console.log('code created', company.id, code.code)
         }
       }
     }
+
+    await page.close()
   }
   catch (error) {
     console.log('error', error)
@@ -98,7 +100,7 @@ export default defineEventHandler(async () => {
     .select(CODE_COLUMNS)
 
   if (allCompanies && allCodes) {
-    const companyChunks = chunkArray(allCompanies, allCompanies.length / 6)
+    const companyChunks = chunkArray(allCompanies, allCompanies.length / 10)
 
     for (const companies of companyChunks) {
       const queue = new Queue()

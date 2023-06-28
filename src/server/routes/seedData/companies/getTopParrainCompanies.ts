@@ -1,4 +1,4 @@
-import type { Page } from 'playwright'
+import { launchChromium } from 'playwright-aws-lambda'
 import { convertUrlToId } from '~/utils/convertUrlToId'
 
 interface Company {
@@ -8,13 +8,17 @@ interface Company {
   id: string
 }
 
-export async function getTopParrainCompanies(page: Page, language = 'en', SITE_URL = 'https://www.topparrain.com') {
+export async function getTopParrainCompanies(language = 'en', SITE_URL = 'https://www.topparrain.com') {
   const items: Company[] = []
+  const browser = await launchChromium({ headless: true })
+
+  console.log('getting company links')
 
   async function getCompanyLinks(pageNumber: number): Promise<void> {
+    const page = await browser.newPage()
+
     await page.goto(`${SITE_URL}/${language}/companies?page=${pageNumber}`)
 
-    console.log('getting company links')
     const companyLinks = await page.evaluate(() => {
       const items = document.querySelectorAll('.company')
 
@@ -46,10 +50,13 @@ export async function getTopParrainCompanies(page: Page, language = 'en', SITE_U
         }
       }
     }
+
+    await page.close()
   }
 
-  for (let i = 1; i < 20; i++)
-    await getCompanyLinks(i)
+  await Promise.all(Array.from(Array(20).keys()).map(i => getCompanyLinks(i)))
+
+  await browser.close()
 
   return items
 }
