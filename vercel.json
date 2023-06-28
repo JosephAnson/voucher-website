@@ -1,10 +1,6 @@
 {
   "crons": [
     {
-      "path": "/api/hello",
-      "schedule": "0 5 * * *"
-    },
-    {
       "path": "/seedData/codes/seedCodes",
       "schedule": "0 3 * * *"
     },
@@ -15,6 +11,10 @@
     {
       "path": "/seedData/companies/generateDescriptions",
       "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/seedData/codes/deleteOldCodes",
+      "schedule": "0 3 1 * *"
     }
   ]
 }

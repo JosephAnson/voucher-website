@@ -93,9 +93,9 @@ export default defineEventHandler(async () => {
     auth: { persistSession: false },
   })
   const { data: allCompanies } = await getAllCompanies(client)
-  const allCodes = await getAllCodes(client) || []
+  const allCodes = await getAllCodes(client)
 
-  if (allCompanies) {
+  if (allCompanies && allCodes) {
     const companyChunks = chunkArray(allCompanies, allCompanies.length / 3)
 
     for (const companies of companyChunks) {
