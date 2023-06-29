@@ -30,7 +30,7 @@ async function createCode(userId: string, client: SupabaseClient<Database>, { ti
     })
 
   if (error)
-    throw createError(`Cannot update code: ${error.message}`)
+    console.log(`Cannot update code: ${error.message}`)
   else
     console.log('code created', company, code)
 }
@@ -91,7 +91,7 @@ async function saveCompanyCode(context: BrowserContext, company: { id: string; n
 
 export default defineEventHandler(async () => {
   const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
-    auth: { persistSession: false },
+    auth: { persistSession: false, autoRefreshToken: true },
   })
   const { data: allCompanies } = await getAllCompanies(client)
 
@@ -100,7 +100,7 @@ export default defineEventHandler(async () => {
     .select(CODE_COLUMNS)
 
   if (allCompanies && allCodes) {
-    const companyChunks = chunkArray(allCompanies, allCompanies.length / 10)
+    const companyChunks = chunkArray(allCompanies.reverse(), allCompanies.length / 10)
 
     for (const companies of companyChunks) {
       const queue = new Queue()
@@ -108,7 +108,7 @@ export default defineEventHandler(async () => {
       const context = await browser.newContext()
 
       for (const company of companies)
-        queue.enqueue(async () => await saveCompanyCode(context, company, allCodes, client))
+        queue.enqueue(async () => await saveCompanyCode(context, company, allCodes, client), { timeout: 1000 })
 
       queue.enqueue(async () => await browser.close())
     }
