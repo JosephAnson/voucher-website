@@ -7279,17 +7279,10 @@ node-fetch@2.6.7:
   dependencies:
     whatwg-url "^5.0.0"
 
-node-fetch@^2.6.1:
+node-fetch@^2.6.1, node-fetch@^2.6.11, node-fetch@^2.6.7:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.12.tgz#02eb8e22074018e3d5a83016649d04df0e348fba"
   integrity sha512-C/fGU2E8ToujUivIO0H+tpQ6HWo4eEmchoPIoXtxCrVghxdKq+QOHqEZW7tuP3KlV3bC8FRMO5nMCC7Zm1VP6g==
-  dependencies:
-    whatwg-url "^5.0.0"
-
-node-fetch@^2.6.11, node-fetch@^2.6.7:
-  version "2.6.11"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.11.tgz#cde7fc71deef3131ef80a738919f999e6edfff25"
-  integrity sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==
   dependencies:
     whatwg-url "^5.0.0"
 
@@ -9472,10 +9465,10 @@ sucrase@^3.32.0:
     pirates "^4.0.1"
     ts-interface-checker "^0.1.9"
 
-supabase@^1.75.1:
-  version "1.75.1"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.75.1.tgz#589ed29f3f2358398d4255d13690f5ef41a7c682"
-  integrity sha512-xI2wNcToqibYha9/ffSqS56l35knczPr8Zdy1uf2SX1S5SRUUOeDgBVUKEPAtjfiuGurd9x2CeVZV6wMYh1SgA==
+supabase@^1.75.2:
+  version "1.75.2"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.75.2.tgz#084a37938c8e549d05da58acee8cae4a6b67ac73"
+  integrity sha512-SOe8vP57vK6MDRwl+DgGVbPHXZ3FBMVuh8SPZnoNgIHIX6n6BkzRbb0ixz+6Fg/ZmVmpugM9myEIOHx6y9jtag==
   dependencies:
     bin-links "^4.0.1"
     node-fetch "^3.2.10"
