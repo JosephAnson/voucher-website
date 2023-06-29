@@ -11,6 +11,10 @@
     {
       "path": "/seedData/companies/generateDescriptions",
       "schedule": "0 4 * * *"
+    },
+    {
+      "path": "/seedData/codes/deleteOldCodes",
+      "schedule": "0 4 * * *"
     }
   ]
 }
