@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/seedData/codes/seedCodes",
-      "schedule": "0 5 * * *"
+      "schedule": "*/10 * * * *"
     },
     {
       "path": "/seedData/companies/seedCompanies",

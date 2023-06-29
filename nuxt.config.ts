@@ -486,4 +486,10 @@ export default defineNuxtConfig({
     typedPages: true,
     inlineSSRStyles: false,
   },
+  nitro: {
+    storage: {
+      cache: { driver: 'vercelKV' },
+      data: { driver: 'vercelKV' },
+    },
+  },
 })

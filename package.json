@@ -22,6 +22,7 @@
     "@vee-validate/nuxt": "^4.10.2",
     "@vee-validate/yup": "^4.10.2",
     "@vercel/analytics": "^1.0.1",
+    "@vercel/kv": "^0.2.2",
     "@vueuse/core": "^10.2.1",
     "@vueuse/head": "^1.1.26",
     "@vueuse/nuxt": "^10.2.1",
