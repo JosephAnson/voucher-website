@@ -2453,14 +2453,14 @@
   dependencies:
     isomorphic-fetch "^3.0.0"
 
-"@vee-validate/nuxt@^4.10.2":
-  version "4.10.2"
-  resolved "https://registry.yarnpkg.com/@vee-validate/nuxt/-/nuxt-4.10.2.tgz#185badfe7ca0a5a8a029ca72613968118d4bc98c"
-  integrity sha512-YE/Td3yWMwsTQGhk3B8etfUPAjfDEhcS0ouSt+O8Jl4NNrWBcheDVmixWOcAxMiKJzv28S3cCFRhFASbdLYvPg==
+"@vee-validate/nuxt@^4.10.3":
+  version "4.10.3"
+  resolved "https://registry.yarnpkg.com/@vee-validate/nuxt/-/nuxt-4.10.3.tgz#8349532900f1361875dd229123408b56ac857574"
+  integrity sha512-O6row3NdvlnFCKjrXGg8nGi64fFGDqjyfJ5WuvL832cHO6fzkM/CphFsQPAGDHhslpPWxkDFQeu9pyU7X+Py6w==
   dependencies:
-    "@nuxt/kit" "^3.5.3"
+    "@nuxt/kit" "^3.6.1"
     local-pkg "^0.4.3"
-    vee-validate "^4.10.2"
+    vee-validate "^4.10.3"
 
 "@vee-validate/yup@^4.10.2":
   version "4.10.2"
@@ -10220,10 +10220,10 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vee-validate@^4.10.2:
-  version "4.10.2"
-  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.10.2.tgz#facd48ea32e61bb3f6685938ab6d58d6e235dde9"
-  integrity sha512-J2we1IjIvEKSC32ECw1HWgwwyqDIsrUnhGhZWgrvHeNp6m+pHY5C6PrdSDy1Ly4NcDNNO5XGMNvRZnurIKIdEg==
+vee-validate@^4.10.2, vee-validate@^4.10.3:
+  version "4.10.3"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.10.3.tgz#552bbaa4cb418fa2cf460956db9c75f09cf6ad41"
+  integrity sha512-JDEpP765Hg5bLJBBbaYutnmiKXh4YX4Jz1FKIBp2Fw5PiuL8ULdZSuJZNbfvbA3ClMV+aJYWIlzA8iLyWGq+fQ==
   dependencies:
     "@vue/devtools-api" "^6.5.0"
     type-fest "^3.12.0"
