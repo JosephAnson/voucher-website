@@ -1,16 +1,15 @@
-import type { BrowserContext, Page } from 'playwright'
+import type { Page } from 'puppeteer-core'
 import type { Code } from '~/types'
 
 const companiesMap: Record<string, { text?: string; href: string | null }> = {}
 let initialSearch = false
 
-export async function getSpyDealsCodes(context: BrowserContext, page: Page, name: string, language = 'en', SITE_URL = 'https://www.spydeals.co.uk/shops'): Promise<(Code | null)[]> {
+export async function getSpyDealsCodes(page: Page, name: string, language = 'en', SITE_URL = 'https://www.spydeals.co.uk/shops'): Promise<(Code | null)[]> {
   if (!initialSearch) {
     const sections = ['/a-d', '/e-g', '/h-k', '/l-o', '/p-s', '/t-w', '/x-z', '/0-9']
 
     for (const section of sections) {
-      await page.goto(SITE_URL + section, { timeout: 100000 })
-      await page.waitForLoadState('load') // Wait for the "load" event
+      await page.goto(SITE_URL + section, { timeout: 100000, waitUntil: 'networkidle0' })
 
       const companies = await page.evaluate(() => {
         const items = document.querySelectorAll('.companies-alphabetized__company-item a')
@@ -40,8 +39,7 @@ export async function getSpyDealsCodes(context: BrowserContext, page: Page, name
   const companyUrl = await getCompanyUrl(page, name)
 
   if (companyUrl) {
-    await page.goto(`${companyUrl}`, { timeout: 100000 })
-    await page.waitForLoadState('load') // Wait for the "load" event
+    await page.goto(`${companyUrl}`, { timeout: 100000, waitUntil: 'networkidle0' })
 
     const vouchers = await page.evaluate(() => {
       const items = document.querySelectorAll(':not(.expired).company-card.voucher')
@@ -62,9 +60,9 @@ export async function getSpyDealsCodes(context: BrowserContext, page: Page, name
 
     for (const voucher of vouchers) {
       if (voucher.href && voucher.voucherId) {
-        await context.addCookies([{ name: 'show-voucher', value: voucher.voucherId, url: SITE_URL }])
+        await page.setCookie({ name: 'show-voucher', value: voucher.voucherId, url: SITE_URL })
 
-        await page.goto(`${companyUrl}`, { timeout: 100000 })
+        await page.goto(`${companyUrl}`, { timeout: 100000, waitUntil: 'networkidle0' })
 
         const code = await page.evaluate(() => {
           const code = document.querySelector('.copy-voucher-btn.copy-voucher-code')

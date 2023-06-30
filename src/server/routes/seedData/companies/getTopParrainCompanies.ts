@@ -1,5 +1,12 @@
-import { launchChromium } from 'playwright-aws-lambda'
+import chromium from '@sparticuz/chromium'
+import { createBrowser } from '../utils/createBrowser'
 import { convertUrlToId } from '~/utils/convertUrlToId'
+
+// Optional: If you'd like to use the legacy headless mode. "new" is the default.
+chromium.setHeadlessMode = true
+
+// Optional: If you'd like to disable webgl, true is the default.
+chromium.setGraphicsMode = false
 
 interface Company {
   name: string
@@ -10,11 +17,12 @@ interface Company {
 
 export async function getTopParrainCompanies(language = 'en', pageNumber = 0, SITE_URL = 'https://www.topparrain.com') {
   const items: Company[] = []
-  const browser = await launchChromium({ headless: true })
+
+  const browser = await createBrowser()
 
   const page = await browser.newPage()
 
-  await page.goto(`${SITE_URL}/${language}/companies?page=${pageNumber}`)
+  await page.goto(`${SITE_URL}/${language}/companies?page=${pageNumber}`, { waitUntil: 'networkidle0' })
 
   const companyLinks = await page.evaluate(() => {
     const items = document.querySelectorAll('.company')
@@ -27,7 +35,7 @@ export async function getTopParrainCompanies(language = 'en', pageNumber = 0, SI
   })
 
   for (const companyInfo of companyLinks) {
-    await page.goto(SITE_URL + companyInfo.href)
+    await page.goto(SITE_URL + companyInfo.href, { waitUntil: 'networkidle0' })
 
     let companyUrl = await page.evaluate(() => document.querySelector('a.w-16.h-16')?.getAttribute('href'))
 
@@ -47,10 +55,6 @@ export async function getTopParrainCompanies(language = 'en', pageNumber = 0, SI
       }
     }
   }
-
-  await page.close()
-
-  await browser.close()
 
   return items
 }

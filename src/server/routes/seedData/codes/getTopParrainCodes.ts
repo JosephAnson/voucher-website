@@ -1,10 +1,9 @@
-import type { Page } from 'playwright'
+import type { Page } from 'puppeteer-core'
 import type { Code } from '~/types'
 
 export async function getTopParrainCodes(page: Page, name: string, language = 'en', SITE_URL = 'https://www.topparrain.com'): Promise<Code[]> {
   async function getCompanyUrl(page: Page, name: string) {
-    await page.goto(`${SITE_URL}/${language}/companies?search%5Bname%5D=${name}`, { timeout: 100000 })
-    await page.waitForLoadState('load') // Wait for the "load" event
+    await page.goto(`${SITE_URL}/${language}/companies?search%5Bname%5D=${name}`, { timeout: 100000, waitUntil: 'networkidle0' })
 
     return page.evaluate(() => {
       const firstLink = document.querySelectorAll('.company a')?.[0]
@@ -15,8 +14,7 @@ export async function getTopParrainCodes(page: Page, name: string, language = 'e
   const companyUrl = await getCompanyUrl(page, name)
 
   if (companyUrl) {
-    await page.goto(`${SITE_URL}${companyUrl}?show_codes=true`, { timeout: 100000 })
-    await page.waitForLoadState('load') // Wait for the "load" event
+    await page.goto(`${SITE_URL}${companyUrl}?show_codes=true`, { timeout: 100000, waitUntil: 'networkidle0' })
 
     const items = await page.evaluate(() => {
       const codeItemsSelector = '.referral-code'

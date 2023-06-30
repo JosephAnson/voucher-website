@@ -1,7 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { createClient } from '@supabase/supabase-js'
 import { readBody } from 'h3'
-import playwright from 'playwright-aws-lambda'
+import { createBrowser } from '../utils/createBrowser'
 import { getSpyDealsCodes } from './getSpyDealsCodes'
 import { getTopParrainCodes } from './getTopParrainCodes'
 import type { Code } from '~/types'
@@ -44,8 +44,7 @@ export default defineEventHandler(async (event) => {
   const client = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
     auth: { persistSession: false, autoRefreshToken: true },
   })
-  const browser = await playwright.launchChromium({ headless: true, timeout: 1000000 })
-  const context = await browser.newContext()
+  const browser = await createBrowser()
 
   const { data: allCodes } = await client
     .from('codes')
@@ -56,12 +55,12 @@ export default defineEventHandler(async (event) => {
       console.log(`searching: ${body.name}, Current total codes ${allCodes.length}`)
 
       // Make sure the browser opens a new page
-      const page = await context.newPage()
+      const page = await browser.newPage()
 
       const parrainCodes = await getTopParrainCodes(page, body.name, 'en')
       const parrainCodesNl = await getTopParrainCodes(page, body.name, 'nl')
-      const skyDealCodes = await getSpyDealsCodes(context, page, body.name, 'en')
-      const skyDealCodesNl = await getSpyDealsCodes(context, page, body.name, 'nl', 'https://www.spydeals.nl/winkels')
+      const skyDealCodes = await getSpyDealsCodes(page, body.name, 'en')
+      const skyDealCodesNl = await getSpyDealsCodes(page, body.name, 'nl', 'https://www.spydeals.nl/winkels')
 
       const codes: (Code | null)[] = [...parrainCodes, ...parrainCodesNl, ...skyDealCodes, ...skyDealCodesNl]
         .filter((code): code is Code => code !== null && code.code !== '' && code.title !== '')
