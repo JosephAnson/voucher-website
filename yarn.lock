@@ -2462,13 +2462,13 @@
     local-pkg "^0.4.3"
     vee-validate "^4.10.3"
 
-"@vee-validate/yup@^4.10.2":
-  version "4.10.2"
-  resolved "https://registry.yarnpkg.com/@vee-validate/yup/-/yup-4.10.2.tgz#79bc7424a2a2c02bf5cac23ad75a6f2646c7d902"
-  integrity sha512-96C2AZHyvaRhO9IuLmQC+dDPAUeWjs8ZtwslxbV/T5TvVQhN7vNBOwsgODtcRUQjt/YAc0PHAsM59cy88XJT3A==
+"@vee-validate/yup@^4.10.3":
+  version "4.10.3"
+  resolved "https://registry.yarnpkg.com/@vee-validate/yup/-/yup-4.10.3.tgz#21888e75858225bf55e24f8f6add4639f20338e2"
+  integrity sha512-jMycHo3cEUUfV1xL6FndTqKTpiokBYdlLj2lb7BDNYWiMQW6jp4kAafvl9YUwX36EBYp+JVzJhaTGwMCvYEFJQ==
   dependencies:
     type-fest "^3.12.0"
-    vee-validate "^4.10.2"
+    vee-validate "^4.10.3"
     yup "^1.2.0"
 
 "@vercel/analytics@^1.0.1":
@@ -10220,7 +10220,7 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vee-validate@^4.10.2, vee-validate@^4.10.3:
+vee-validate@^4.10.3:
   version "4.10.3"
   resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.10.3.tgz#552bbaa4cb418fa2cf460956db9c75f09cf6ad41"
   integrity sha512-JDEpP765Hg5bLJBBbaYutnmiKXh4YX4Jz1FKIBp2Fw5PiuL8ULdZSuJZNbfvbA3ClMV+aJYWIlzA8iLyWGq+fQ==
