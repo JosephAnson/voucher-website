@@ -1169,7 +1169,7 @@
     unimport "^3.0.7"
     untyped "^1.3.2"
 
-"@nuxt/kit@3.6.1", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.3.3", "@nuxt/kit@^3.4.1", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.1", "@nuxt/kit@^3.5.2", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.6.0", "@nuxt/kit@^3.6.1":
+"@nuxt/kit@3.6.1", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.3.3", "@nuxt/kit@^3.4.1", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.1", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.6.0", "@nuxt/kit@^3.6.1":
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.6.1.tgz#78c1a18f63defaf890f1e7d6c69f4d385d43b8af"
   integrity sha512-7AoiKV0zAtyT3ZvjMfGislMcB+JMbBZxYw68/oWtkEPXCfGQMYuiMI9Ue246/0JT2Yp2KZclEgrJEJ6NLkqFcw==
@@ -1425,15 +1425,15 @@
     "@nuxt/kit" "^3.0.0"
     h3 "^1.0.1"
 
-"@nuxtjs/supabase@^0.3.7":
-  version "0.3.7"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-0.3.7.tgz#43132dc8eff0cea29f65a7a55220e8149b08df59"
-  integrity sha512-Hn4hryNuZYqWfbNvi44sN+Uxx5GcevhHwYzVKEZX23IKy1PSbY+h4mRe2MGoTSpV8MdNvyC0+ah2WoV50BIlrg==
+"@nuxtjs/supabase@^0.3.8":
+  version "0.3.8"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-0.3.8.tgz#8a01ddf1bbc5cf5dfc44bbb06c7567ccc0d52fa1"
+  integrity sha512-MEhfgllJx7DQX4XrycGbnTmiW6JI1wLTaVTkDV9X90q+jfBz59d/uM2E6aj4XhLuJp4GN/THGpMg8k1RfuYxqQ==
   dependencies:
-    "@nuxt/kit" "^3.5.2"
-    "@supabase/supabase-js" "2.24.0"
+    "@nuxt/kit" "^3.6.1"
+    "@supabase/supabase-js" "2.26.0"
     defu "^6.1.2"
-    pathe "^1.1.0"
+    pathe "^1.1.1"
 
 "@pinia/nuxt@^0.4.11":
   version "0.4.11"
@@ -1672,10 +1672,10 @@
   dependencies:
     cross-fetch "^3.1.5"
 
-"@supabase/gotrue-js@^2.26.0":
-  version "2.34.0"
-  resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-2.34.0.tgz#20637923a9ae584d132a3647c7d594e976be2d99"
-  integrity sha512-j4up+jZDyutUwKcrwDXhVbeHFydUu9wLvotr4qREenz+ec0d3L7Zs0Nb1hP8B64HbJ4tmFXhpOG23IsvQtC58w==
+"@supabase/gotrue-js@^2.31.0":
+  version "2.39.0"
+  resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-2.39.0.tgz#8cfc60488871d3db45b3a4f7fad8233055ba08c5"
+  integrity sha512-Fhro0zcglqKAJRLeGGompySUwx74RM/CE1ICd/7R2qhpE7qWDiTM0f2s6+qK5YQnu7akHnIIvSn9NAN9MuTOqw==
   dependencies:
     cross-fetch "^3.1.5"
 
@@ -1686,7 +1686,7 @@
   dependencies:
     cross-fetch "^3.1.5"
 
-"@supabase/realtime-js@^2.7.2":
+"@supabase/realtime-js@^2.7.3":
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/@supabase/realtime-js/-/realtime-js-2.7.3.tgz#cbcb84181add681ab99c87032bfe88101c6863b3"
   integrity sha512-c7TzL81sx2kqyxsxcDduJcHL9KJdCOoKimGP6lQSqiZKX42ATlBZpWbyy9KFGFBjAP4nyopMf5JhPi2ZH9jyNw==
@@ -1702,15 +1702,15 @@
   dependencies:
     cross-fetch "^3.1.5"
 
-"@supabase/supabase-js@2.24.0":
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.24.0.tgz#6bb0ef18c678112caaf793c466a8f21c24c03820"
-  integrity sha512-zrAm+hp6DBICqZ7xVPk+KofmlfjJWQzXuf2sHAyPz8XVjpha84z2OVWcow2aI10YkMOrPwhRtBBQYJOnh/fx2w==
+"@supabase/supabase-js@2.26.0":
+  version "2.26.0"
+  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.26.0.tgz#80eb5d7b6dc5ac7b29218f7211747e256184247a"
+  integrity sha512-RXmTPTobaYAwkSobadHZmEVLmzX3SGrtRZIGfLWnLv92VzBRrjuXn0a+bJqKl50GUzsyqPA+j5pod7EwMkcH5A==
   dependencies:
     "@supabase/functions-js" "^2.1.0"
-    "@supabase/gotrue-js" "^2.26.0"
+    "@supabase/gotrue-js" "^2.31.0"
     "@supabase/postgrest-js" "^1.7.0"
-    "@supabase/realtime-js" "^2.7.2"
+    "@supabase/realtime-js" "^2.7.3"
     "@supabase/storage-js" "^2.5.1"
     cross-fetch "^3.1.5"
 
