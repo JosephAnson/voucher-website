@@ -9285,10 +9285,10 @@ sucrase@^3.32.0:
     pirates "^4.0.1"
     ts-interface-checker "^0.1.9"
 
-supabase@^1.75.2:
-  version "1.75.3"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.75.3.tgz#98c34afd2ce3e0594687a982b3519d3064806cbd"
-  integrity sha512-o6rd6v09QstJACYbcNPHaPPnCSi6CO5o2g4ZiZ45V+RYBQasPk8UCOqzJEzi/Ahizq3rb1bJBdwYdEpDmlepPg==
+supabase@^1.77.5:
+  version "1.77.5"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.77.5.tgz#fcfb6ff87a41714a1f49e7fb807a00222e3a9dc1"
+  integrity sha512-dqafC/LzrdGBsW1Rl6228C+rk6ZJJVI06G0U+og6hI8kgwwPBCExQ5YHUmMbrrsqayIyNQgBRukREchDSC10BA==
   dependencies:
     bin-links "^4.0.1"
     node-fetch "^3.2.10"
@@ -9386,15 +9386,6 @@ tapable@^2.2.0:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
 
-tar-fs@*:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-3.0.4.tgz#a21dc60a2d5d9f55e0089ccd78124f1d3771dbbf"
-  integrity sha512-5AFQU8b9qLfZCX9zp2duONhPmZv0hGYiBPJsyUdqMjzq/mqVpy/rEUSeHk1+YitmxugaptgBh5oDGU3VsAJq4w==
-  dependencies:
-    mkdirp-classic "^0.5.2"
-    pump "^3.0.0"
-    tar-stream "^3.1.5"
-
 tar-fs@2.1.1, tar-fs@^2.0.0, tar-fs@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-2.1.1.tgz#489a15ab85f1f0befabb370b7de4f9eb5cbe8784"
@@ -9438,7 +9429,7 @@ tar-stream@^2.1.4, tar-stream@^2.2.0:
     inherits "^2.0.3"
     readable-stream "^3.1.1"
 
-tar-stream@^3.1.0, tar-stream@^3.1.5:
+tar-stream@^3.1.0:
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/tar-stream/-/tar-stream-3.1.6.tgz#6520607b55a06f4a2e2e04db360ba7d338cc5bab"
   integrity sha512-B/UyjYwPpMBv+PaFSWAmtYjwdrlEaZQEhMIBFNC5oEG8lpiW8XjcSdmEaClj28ArfKScKHs2nshz3k2le6crsg==
