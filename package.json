@@ -18,7 +18,7 @@
     "@headlessui/vue": "^1.7.14",
     "@heroicons/vue": "^2.0.18",
     "@pinia/nuxt": "^0.4.11",
-    "@unocss/nuxt": "^0.53.4",
+    "@unocss/nuxt": "^0.53.6",
     "@unocss/reset": "^0.53.4",
     "@vee-validate/nuxt": "^4.10.3",
     "@vee-validate/yup": "^4.10.2",
