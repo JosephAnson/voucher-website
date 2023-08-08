@@ -9465,10 +9465,10 @@ sucrase@^3.32.0:
     pirates "^4.0.1"
     ts-interface-checker "^0.1.9"
 
-supabase@^1.75.2:
-  version "1.75.2"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.75.2.tgz#084a37938c8e549d05da58acee8cae4a6b67ac73"
-  integrity sha512-SOe8vP57vK6MDRwl+DgGVbPHXZ3FBMVuh8SPZnoNgIHIX6n6BkzRbb0ixz+6Fg/ZmVmpugM9myEIOHx6y9jtag==
+supabase@^1.83.7:
+  version "1.83.7"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.83.7.tgz#e9f4e2e1899d6e920e69fff16226b88474f69b2c"
+  integrity sha512-3YWwnJxtraDwKYnMFo+uElv4X7nbgZYS++b85ueGRsaAR73E+n5U31rBH34xyw+ob0rm9MPvVbMADqC8RbvFVQ==
   dependencies:
     bin-links "^4.0.1"
     node-fetch "^3.2.10"
