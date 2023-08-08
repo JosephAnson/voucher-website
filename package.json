@@ -43,7 +43,7 @@
     "@nuxt/image-edge": "^1.0.0-28101255.bece998",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/html-validator": "^1.5.2",
-    "@nuxtjs/i18n": "^8.0.0-beta.12",
+    "@nuxtjs/i18n": "^8.0.0-rc.2",
     "@nuxtjs/robots": "^3.0.0",
     "@nuxtjs/supabase": "^0.3.7",
     "@unlighthouse/nuxt": "^0.9.0",
