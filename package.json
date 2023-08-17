@@ -52,7 +52,7 @@
     "nuxt-seo-kit": "^1.3.9",
     "sass": "^1.63.6",
     "typescript": "^5.1.6",
-    "unocss": "^0.53.4"
+    "unocss": "^0.55.1"
   },
   "resolutions": {
     "consola": "^3.0.0"
