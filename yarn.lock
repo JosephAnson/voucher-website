@@ -2690,14 +2690,14 @@
   dependencies:
     isomorphic-fetch "^3.0.0"
 
-"@vee-validate/nuxt@^4.10.3":
-  version "4.10.3"
-  resolved "https://registry.yarnpkg.com/@vee-validate/nuxt/-/nuxt-4.10.3.tgz#8349532900f1361875dd229123408b56ac857574"
-  integrity sha512-O6row3NdvlnFCKjrXGg8nGi64fFGDqjyfJ5WuvL832cHO6fzkM/CphFsQPAGDHhslpPWxkDFQeu9pyU7X+Py6w==
+"@vee-validate/nuxt@^4.11.2":
+  version "4.11.2"
+  resolved "https://registry.yarnpkg.com/@vee-validate/nuxt/-/nuxt-4.11.2.tgz#d0c2da145c642aff8eda4ad45f34ab14fde8f282"
+  integrity sha512-aE0TuBYJsCcfSv+ajZXTkUcFMNOe5wkhU3esfVD3jiO/UnJJosjGGX6ITcXwBcw9TDyGbL+ntl3CEG8FJCnIcw==
   dependencies:
-    "@nuxt/kit" "^3.6.1"
+    "@nuxt/kit" "^3.6.5"
     local-pkg "^0.4.3"
-    vee-validate "^4.10.3"
+    vee-validate "4.11.2"
 
 "@vee-validate/yup@^4.10.2":
   version "4.10.2"
@@ -7062,13 +7062,6 @@ magic-string@^0.30.0, magic-string@^0.30.2:
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.4.15"
 
-magic-string@^0.30.2:
-  version "0.30.2"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.2.tgz#dcf04aad3d0d1314bc743d076c50feb29b3c7aca"
-  integrity sha512-lNZdu7pewtq/ZvWUp9Wpf/x7WzMTsR26TWV03BRZrXFsv+BI6dy8RAiKgm1uM/kyR0rCfUcqvOlXKG66KhIGug==
-  dependencies:
-    "@jridgewell/sourcemap-codec" "^1.4.15"
-
 magicast@^0.2.9:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/magicast/-/magicast-0.2.9.tgz#9b5de1c6ba40b3fa626834017f0f11800a033cbe"
@@ -10138,6 +10131,11 @@ type-fest@^3.12.0:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.12.0.tgz#4ce26edc1ccc59fc171e495887ef391fe1f5280e"
   integrity sha512-qj9wWsnFvVEMUDbESiilKeXeHL7FwwiFcogfhfyjmvT968RXSvnl23f1JOClTHYItsi7o501C/7qVllscUP3oA==
 
+type-fest@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.2.0.tgz#e259430307710e77721ecf6f545840acad72195f"
+  integrity sha512-5zknd7Dss75pMSED270A1RQS3KloqRJA9XbXLe0eCxyw7xXFb3rd+9B0UQ/0E+LQT6lnrLviEolYORlRWamn4w==
+
 type@^1.0.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/type/-/type-1.2.0.tgz#848dd7698dafa3e54a6c479e759c4bc3f18847a0"
@@ -10460,16 +10458,6 @@ unplugin@^1.0.1, unplugin@^1.1.0, unplugin@^1.3.1, unplugin@^1.3.2, unplugin@^1.
     webpack-sources "^3.2.3"
     webpack-virtual-modules "^0.5.0"
 
-unplugin@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-1.4.0.tgz#b771373aa1bc664f50a044ee8009bd3a7aa04d85"
-  integrity sha512-5x4eIEL6WgbzqGtF9UV8VEC/ehKptPXDS6L2b0mv4FRMkJxRtjaJfOWDd6a8+kYbqsjklix7yWP0N3SUepjXcg==
-  dependencies:
-    acorn "^8.9.0"
-    chokidar "^3.5.3"
-    webpack-sources "^3.2.3"
-    webpack-virtual-modules "^0.5.0"
-
 unstorage@^1.5.0, unstorage@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/unstorage/-/unstorage-1.7.0.tgz#1b3c66aa495f52bc248d63b9b2f75446b0435544"
@@ -10568,13 +10556,13 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vee-validate@^4.10.2, vee-validate@^4.10.3:
-  version "4.10.3"
-  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.10.3.tgz#552bbaa4cb418fa2cf460956db9c75f09cf6ad41"
-  integrity sha512-JDEpP765Hg5bLJBBbaYutnmiKXh4YX4Jz1FKIBp2Fw5PiuL8ULdZSuJZNbfvbA3ClMV+aJYWIlzA8iLyWGq+fQ==
+vee-validate@4.11.2, vee-validate@^4.10.2:
+  version "4.11.2"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.11.2.tgz#f6b42776db0545af295f6428171cab12d0cafed9"
+  integrity sha512-tIWMCqMzX/GzCaIvlMg3/2ZFP5sVMjrZHIRIFIs9Wa/Y8gg7dnsYRj0Gp5a9X4C3tPfTJRctkFmb0J7/lR+h1w==
   dependencies:
     "@vue/devtools-api" "^6.5.0"
-    type-fest "^3.12.0"
+    type-fest "^4.2.0"
 
 vite-node@^0.32.2:
   version "0.32.2"
