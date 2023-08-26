@@ -22,7 +22,7 @@
     "@unocss/nuxt": "^0.54.2",
     "@unocss/reset": "^0.53.4",
     "@vee-validate/nuxt": "^4.10.3",
-    "@vee-validate/yup": "^4.10.2",
+    "@vee-validate/yup": "^4.11.3",
     "@vercel/analytics": "^1.0.1",
     "@vercel/kv": "^0.2.2",
     "@vueuse/core": "^10.2.1",
