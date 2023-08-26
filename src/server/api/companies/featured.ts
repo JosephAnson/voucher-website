@@ -4,7 +4,7 @@ import { COMPANY_COLUMNS } from '~/utils/constants'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
-  const client = serverSupabaseClient<Database>(event)
+  const client = await serverSupabaseClient<Database>(event)
 
   const limit = Number(query?.limit || 10000)
 

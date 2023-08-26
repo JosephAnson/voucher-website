@@ -39,7 +39,7 @@ export async function createCompany(client: SupabaseClient<Database>, { id, url,
 }
 
 export default defineEventHandler(async (event) => {
-  const client = serverSupabaseClient<Database>(event)
+  const client = await serverSupabaseClient<Database>(event)
   const body = await readBody(event)
 
   if (!body) {

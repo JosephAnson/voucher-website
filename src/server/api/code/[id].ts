@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const client = serverSupabaseClient<Database>(event)
+  const client = await serverSupabaseClient<Database>(event)
   const { data } = await client
     .from('codes')
     .select(CODE_COLUMNS)

@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
 
   if (user) {
     try {
-      const client = serverSupabaseClient<Database>(event)
+      const client = await serverSupabaseClient<Database>(event)
       const query = getQuery(event) as {
         sort?: string
         page?: string

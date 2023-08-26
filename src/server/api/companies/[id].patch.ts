@@ -2,7 +2,7 @@ import { serverSupabaseClient } from '#supabase/server'
 import type { Database } from '~/supabase.types'
 
 export default defineEventHandler(async (event) => {
-  const client = serverSupabaseClient<Database>(event)
+  const client = await serverSupabaseClient<Database>(event)
 
   if (!event.context.params?.id) {
     throw createError({

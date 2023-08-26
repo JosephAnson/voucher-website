@@ -4,7 +4,7 @@ import type { Database } from '~/supabase.types'
 const COLUMNS = 'id, category'
 
 export default defineCachedEventHandler(async (event) => {
-  const client = serverSupabaseClient<Database>(event)
+  const client = await serverSupabaseClient<Database>(event)
   const { data } = await client
     .from('categories')
     .select(COLUMNS)

@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     category?: string
   }
 
-  const client = serverSupabaseClient<Database>(event)
+  const client = await serverSupabaseClient<Database>(event)
 
   if (query?.category) {
     let supabaseQuery = generateListQuery({

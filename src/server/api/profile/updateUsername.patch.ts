@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   throwIfPropertiesMissing(body, ['username'])
 
-  const client = serverSupabaseClient<Database>(event)
+  const client = await serverSupabaseClient<Database>(event)
   const userId = await getUserID(event)
 
   const { data, error } = await client

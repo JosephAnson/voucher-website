@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     const profileId = user?.id
 
     try {
-      const client = serverSupabaseClient<Database>(event)
+      const client = await serverSupabaseClient<Database>(event)
 
       return client
         .from('profiles')

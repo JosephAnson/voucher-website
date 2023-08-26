@@ -6,7 +6,7 @@ export default defineEventHandler(async (event): Promise<boolean> => {
   const body = await readBody(event)
   throwIfPropertiesMissing(body, ['username'])
 
-  const client = serverSupabaseClient<Database>(event)
+  const client = await serverSupabaseClient<Database>(event)
   const { data } = await client.from('profiles').select('username').eq('username', body.username)
 
   return (data?.length || 0) > 0

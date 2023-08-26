@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   throwIfPropertiesMissing(body, ['avatar_url'])
 
-  const client = serverSupabaseClient<Database>(event)
+  const client = await serverSupabaseClient<Database>(event)
   const userId = await getUserID(event)
 
   return client.from('profiles').update({ avatar_url: body.avatar_url }).eq('id', userId)

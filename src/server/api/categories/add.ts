@@ -4,7 +4,7 @@ import { throwIfPropertiesMissing } from '../../utils/throwIfPropertiesMissing'
 import { serverSupabaseClient } from '#supabase/server'
 
 export default defineEventHandler(async (event) => {
-  const client = serverSupabaseClient<Database>(event)
+  const client = await serverSupabaseClient<Database>(event)
   const body = await readBody(event)
 
   if (!body) {

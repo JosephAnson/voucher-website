@@ -3,7 +3,7 @@ import type { Database } from '~/supabase.types'
 import { throwIfPropertiesMissing } from '~/server/utils/throwIfPropertiesMissing'
 
 export default defineEventHandler(async (event) => {
-  const client = serverSupabaseClient<Database>(event)
+  const client = await serverSupabaseClient<Database>(event)
 
   const body = await readBody(event)
 
