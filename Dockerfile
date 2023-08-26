@@ -1,33 +1,34 @@
 FROM node:18-alpine as base
 
-# create work directory in app folder
-WORKDIR /src
-
 # install required packages for node image
 RUN apk add openssh g++ make python3 git
 
-ARG PORT=3000
+# create work directory in app folder
+WORKDIR /src
+
 ENV NODE_ENV=production
-ENV PORT=$PORT
+ENV PORT=3000
+
+# copy the app, note .dockerignore
+COPY --link package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --production=false
+
+# Lint
+FROM base as lint
+COPY . .
+RUN npm run lint
 
 # Build
 FROM base AS build
-
-COPY --link package.json yarn.lock ./
-
-RUN yarn install --frozen-lockfile --production=false
-
-COPY --link . .
-
+COPY . .
 RUN yarn run build
 
 # Copy the build output and node_modules
-FROM base
+FROM base AS release
 COPY --from=build /src/.output /src/.output
-# COPY --from=build /src/node_modules /src/node_modules
 
 # Expose the port
-EXPOSE $PORT
+EXPOSE 3000
 
 # Run
 CMD [ "node", ".output/server/index.mjs" ]
