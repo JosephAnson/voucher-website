@@ -819,10 +819,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@iconify-json/carbon@^1.1.20":
-  version "1.1.20"
-  resolved "https://registry.yarnpkg.com/@iconify-json/carbon/-/carbon-1.1.20.tgz#b55f8b87c629d93a1abc9cc77320335bbe080cac"
-  integrity sha512-ed/3FDCjicQARWaSGIDZpaF+rWmxoSqrmHYZV2aEicufp0yciG44y9OEmArxxr/0U6bEC3zJbKMSOSw4CKeBJg==
+"@iconify-json/carbon@^1.1.24":
+  version "1.1.24"
+  resolved "https://registry.yarnpkg.com/@iconify-json/carbon/-/carbon-1.1.24.tgz#a473f073a16f3bfd91c1212403db8df40cc5ea68"
+  integrity sha512-Sx4vj3HfQj3yP6a4QzWc1BymDO5uTOGTHeb5it/xaMa196C6+RegNUv1F+Y1h8AJ2Sv93GMI+PyMH0HyqTHEmg==
   dependencies:
     "@iconify/types" "*"
 
