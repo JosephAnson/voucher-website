@@ -8,8 +8,8 @@ const repeatPassword = ref('')
 </script>
 
 <template>
-  <div class="bg-gray-100 flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+  <div class="min-h-full flex flex-col justify-center bg-gray-100 py-12 lg:px-8 sm:px-6">
+    <div class="sm:mx-auto sm:max-w-md sm:w-full">
       <Heading
         h1
         class="text-center"
@@ -18,7 +18,7 @@ const repeatPassword = ref('')
       </Heading>
     </div>
 
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="mt-8 sm:mx-auto sm:max-w-md sm:w-full">
       <div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
         <form
           class="space-y-6"
@@ -83,7 +83,7 @@ const repeatPassword = ref('')
 
           <Button
             type="submit"
-            class="flex w-full justify-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+            class="w-full flex justify-center rounded-md bg-primary-600 px-3 py-2 text-sm text-white font-semibold shadow-sm hover:bg-primary-500 focus-visible:outline-2 focus-visible:outline-primary-600 focus-visible:outline-offset-2 focus-visible:outline"
           >
             Sign up
           </Button>

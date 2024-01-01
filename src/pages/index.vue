@@ -36,14 +36,14 @@ const sections = [
         Save money with our vouchers, discounts and codes
       </Heading>
       <Heading
-        h3
-        primary
+
+        primary h3
         styled="h4"
       >
         Categories
       </Heading>
-      <div class="flex flex-wrap justify-center space-x-2 mt-2 ">
-        <ul class="grid grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4 w-full">
+      <div class="mt-2 flex flex-wrap justify-center space-x-2">
+        <ul class="grid grid-cols-3 w-full gap-2 lg:grid-cols-6 md:gap-4">
           <li
             v-for="category in categories"
             :key="category.id"
@@ -65,8 +65,8 @@ const sections = [
   <Section :padding-top="false">
     <Container>
       <Heading
-        h3
-        primary
+
+        primary h3
         styled="h4"
       >
         Best Offers
@@ -81,22 +81,22 @@ const sections = [
         <Heading h3>
           made easy and simple
         </Heading>
-        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <p class="mt-2 text-3xl text-gray-900 font-bold tracking-tight sm:text-4xl">
           Share your voucher codes
         </p>
-        <p class="mt-6 text-lg leading-8 text-gray-600">
+        <p class="mt-6 text-lg text-gray-600 leading-8">
           We believe in the power of community and collaboration when it comes to saving money. Here, you have the opportunity to share and discover the latest and greatest voucher codes from fellow bargain hunters. Whether you've stumbled upon a fantastic discount code or received an exclusive offer, this is the place to spread the savings and help others save big on their purchases.
         </p>
       </div>
-      <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-        <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+      <div class="mx-auto mt-16 max-w-2xl lg:mt-24 sm:mt-20 lg:max-w-4xl">
+        <dl class="grid grid-cols-1 max-w-xl gap-x-8 gap-y-10 lg:grid-cols-2 lg:max-w-none lg:gap-y-16">
           <div
             v-for="section in sections"
             :key="section.name"
             class="relative pl-16"
           >
-            <dt class="text-base font-semibold leading-7 text-gray-900">
-              <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-600">
+            <dt class="text-base text-gray-900 font-semibold leading-7">
+              <div class="absolute left-0 top-0 h-10 w-10 flex items-center justify-center rounded-lg bg-primary-600">
                 <div
                   class="h-6 w-6 text-white"
                   :class="section.icon"
@@ -105,7 +105,7 @@ const sections = [
               </div>
               {{ section.name }}
             </dt>
-            <dd class="mt-2 text-base leading-7 text-gray-600">
+            <dd class="mt-2 text-base text-gray-600 leading-7">
               {{ section.description }}
             </dd>
           </div>
@@ -117,7 +117,7 @@ const sections = [
   <Section>
     <Container>
       <div class="mx-auto max-w-2xl lg:text-center">
-        <p class="text-lg leading-8 text-gray-500">
+        <p class="text-lg text-gray-500 leading-8">
           Join us in this exciting community-driven initiative to make savings a collaborative effort. Share, discover, and benefit from the collective wisdom of savvy shoppers at VouchersDiscountsCodes. Together, let's unlock incredible discounts and turn every shopping experience into a budget-friendly adventure!
         </p>
       </div>

@@ -29,7 +29,7 @@ useSeoMeta({
       class="lg:flex lg:gap-x-8"
     >
       <div class="lg:max-w-md">
-        <div class="aspect-square overflow-hidden max-w-50">
+        <div class="aspect-square max-w-50 overflow-hidden">
           <nuxt-img
             width="200"
             :src="company.logo"
@@ -109,14 +109,14 @@ useSeoMeta({
         </section>
 
         <Panel
-          class="mt-10 mb-4"
+          class="mb-4 mt-10"
           title="How Referrals work"
         >
           Share Your Voucher Codes works on a simple principle: sharing is caring. If you have a voucher code that you'd like to share with the community, simply submit it through our user-friendly submission form. Make sure to include all the necessary details, such as the store name, discount value, expiration date, and any additional terms or conditions. Once reviewed and approved by our team, your voucher code will be published on our website for others to benefit from.
         </Panel>
       </div>
 
-      <div class="flex flex-col space-y-4 flex-grow-1">
+      <div class="flex flex-grow-1 flex-col space-y-4">
         <CodeCard
           v-for="code in company.codes"
           :id="code.id"

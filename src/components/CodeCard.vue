@@ -26,8 +26,8 @@ function copyCode() {
 </script>
 
 <template>
-  <div class="overflow-hidden rounded-xl border border-gray-200 bg-white p-4">
-    <div class="flex flex-col md:flex-row flex-grow-1 justify-between gap-x-4 mb-2">
+  <div class="overflow-hidden border border-gray-200 rounded-xl bg-white p-4">
+    <div class="mb-2 flex flex-grow-1 flex-col justify-between gap-x-4 md:flex-row">
       <Heading
         :margin-bottom="false"
         bold
@@ -35,21 +35,21 @@ function copyCode() {
       >
         {{ props.title }}
       </Heading>
-      <div class="mt-2 md:mt-0 flex-shrink-0">
-        <div class="flex items-center mb-1 mb-0 mt-1">
+      <div class="mt-2 flex-shrink-0 md:mt-0">
+        <div class="mb-0 mb-1 mt-1 flex items-center">
           <img
             :src="props.avatarSrc"
             :alt="`${props.username}.`"
             class="h-6 w-6 rounded-full md:order-2"
           >
-          <h4 class="ml-2 md:ml-0 md:mr-2 text-xs color-primary text-bold mb-0 flex-shrink-0">
+          <h4 class="text-bold mb-0 ml-2 flex-shrink-0 text-xs color-primary md:ml-0 md:mr-2">
             {{ props.username }}
           </h4>
         </div>
       </div>
     </div>
 
-    <div class="text-xs mb-4">
+    <div class="mb-4 text-xs">
       <p class="line-clamp-3">
         {{ props.description }}
       </p>
@@ -64,7 +64,7 @@ function copyCode() {
         @click="copyCode"
       />
 
-      <div class="flex justify-end space-x-2 flex-shrink-0">
+      <div class="flex flex-shrink-0 justify-end space-x-2">
         <Button
           v-if="!props.edit && props.revealed"
           class="flex-shrink-0"
@@ -75,7 +75,7 @@ function copyCode() {
 
         <Button
           v-if="!props.edit && !props.revealed"
-          class="flex-shrink-0 w-full text-center"
+          class="w-full flex-shrink-0 text-center"
           :to="`/vouchercode/${props.id}`"
         >
           Reveal Code

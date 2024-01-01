@@ -57,10 +57,10 @@ function setPage(page: number | string) {
     v-if="!isFirstPage || !isLastPage"
     class="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0"
   >
-    <div class="-mt-px flex w-0 flex-1">
+    <div class="w-0 flex flex-1 -mt-px">
       <a
         v-if="!isFirstPage"
-        class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+        class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm text-gray-500 font-medium hover:border-gray-300 hover:text-gray-700"
         @click="currentPage = 1"
       >
         <div
@@ -71,7 +71,7 @@ function setPage(page: number | string) {
       </a>
       <a
         v-if="!isFirstPage"
-        class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+        class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm text-gray-500 font-medium hover:border-gray-300 hover:text-gray-700"
         @click="prev"
       >
         <div
@@ -81,10 +81,10 @@ function setPage(page: number | string) {
         Previous
       </a>
     </div>
-    <div class="hidden md:-mt-px md:flex">
+    <div class="hidden md:flex md:-mt-px">
       <span
         v-if="currentPage > 3"
-        class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500"
+        class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm text-gray-500 font-medium"
       >...</span>
 
       <a
@@ -100,7 +100,7 @@ function setPage(page: number | string) {
       >
         {{ pageItem }}
       </a>
-      <a class="inline-flex items-center border-t-2 px-4 pt-4 text-sm font-medium border-primary-500 text-primary-600">{{ currentPage }}</a>
+      <a class="inline-flex items-center border-t-2 border-primary-500 px-4 pt-4 text-sm text-primary-600 font-medium">{{ currentPage }}</a>
       <a
         v-for="pageItem in twoNextPagesFromCurrentPage"
         :key="pageItem"
@@ -116,13 +116,13 @@ function setPage(page: number | string) {
       </a>
       <span
         v-if="!isLastPage && pageCount > 3"
-        class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500"
+        class="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm text-gray-500 font-medium"
       >...</span>
     </div>
-    <div class="-mt-px flex w-0 flex-1 justify-end">
+    <div class="w-0 flex flex-1 justify-end -mt-px">
       <a
         v-if="!isLastPage"
-        class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+        class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm text-gray-500 font-medium hover:border-gray-300 hover:text-gray-700"
         @click="next"
       >
         Next
@@ -133,7 +133,7 @@ function setPage(page: number | string) {
       </a>
       <a
         v-if="!isLastPage"
-        class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+        class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm text-gray-500 font-medium hover:border-gray-300 hover:text-gray-700"
         @click="currentPage = pageCount"
       >
         Last

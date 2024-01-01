@@ -27,7 +27,7 @@ const error = inject('error', false)
     v-model="input"
     :name="props.id"
     :placeholder="props.placeholder"
-    class="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+    class="block w-full border-0 rounded-md py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset sm:text-sm placeholder:text-gray-400 sm:leading-6 focus:ring-2 focus:ring-primary-600 focus:ring-inset"
     :class="{
       'bg-gray-300 cursor-not-allowed': props.disabled,
       'ring-red-300': error,
@@ -41,7 +41,7 @@ const error = inject('error', false)
     :name="props.id"
     :type="props.type"
     :placeholder="props.placeholder"
-    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+    class="block w-full border-0 rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset sm:text-sm placeholder:text-gray-400 sm:leading-6 focus:ring-2 focus:ring-primary-600 focus:ring-inset"
     :class="{
       'bg-gray-300': props.disabled,
       'ring-red-300': error,

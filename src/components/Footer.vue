@@ -12,7 +12,7 @@ const navigation = {
   <footer class="bg-white pb-10 sm:pb-10">
     <Section>
       <Container>
-        <div class="sm:flex justify-between">
+        <div class="justify-between sm:flex">
           <nav
             class="sm:flex sm:justify-center sm:space-x-12"
             aria-label="Footer"
@@ -24,14 +24,14 @@ const navigation = {
             >
               <NuxtLink
                 :to="item.to"
-                class="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                class="text-sm text-gray-600 leading-6 hover:text-gray-900"
               >
                 {{ item.name }}
               </NuxtLink>
             </div>
           </nav>
-          <p class="text-center text-xs leading-5 text-gray-500">
-            &copy; 2020 VouchersDiscountsCodes. All rights reserved.
+          <p class="text-center text-xs text-gray-500 leading-5">
+            &copy; 2024 VouchersDiscountsCodes. All rights reserved.
           </p>
         </div>
       </Container>

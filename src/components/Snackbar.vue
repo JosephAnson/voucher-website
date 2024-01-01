@@ -39,9 +39,9 @@ onMounted(() => showNotice())
   <teleport to="body">
     <div
       aria-live="assertive"
-      class="pointer-events-none fixed z-200 inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6"
+      class="pointer-events-none fixed inset-0 z-200 flex items-end px-4 py-6 sm:items-start sm:p-6"
     >
-      <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
+      <div class="w-full flex flex-col items-center sm:items-end space-y-4">
         <!-- Notification panel, dynamically insert this into the live region when it needs to be displayed -->
         <transition
           enter-active-class="transform ease-out duration-300 transition"
@@ -53,24 +53,24 @@ onMounted(() => showNotice())
         >
           <div
             v-if="isActive"
-            class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+            class="pointer-events-auto max-w-sm w-full overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5"
           >
             <div class="p-4">
               <div class="flex items-start">
                 <div class="flex-shrink-0">
                   <div
                     v-if="props.status === 'success'"
-                    class="h-6 w-6 text-green-400 i-carbon-checkmark-outline"
+                    class="i-carbon-checkmark-outline h-6 w-6 text-green-400"
                   />
                   <div
                     v-if="props.status === 'danger'"
-                    class="h-6 w-6 text-red-400 i-carbon-warning"
+                    class="i-carbon-warning h-6 w-6 text-red-400"
                   />
                 </div>
                 <div class="ml-3 w-0 flex-1 pt-0.5">
                   <p
                     v-if="props.title"
-                    class="text-sm font-medium text-gray-900"
+                    class="text-sm text-gray-900 font-medium"
                   >
                     {{ props.title }}
                   </p>
@@ -81,7 +81,7 @@ onMounted(() => showNotice())
                 <div class="ml-4 flex flex-shrink-0">
                   <button
                     type="button"
-                    class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                    class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                     @click="isActive = false"
                   >
                     <span class="sr-only">Close</span>

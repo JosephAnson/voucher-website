@@ -69,7 +69,7 @@ onSupabaseUpload((url) => {
   </div>
   <p
     v-if="props.message"
-    class="text-xs mt-2"
+    class="mt-2 text-xs"
   >
     {{ props.message }}
   </p>

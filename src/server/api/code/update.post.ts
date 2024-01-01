@@ -19,7 +19,9 @@ export default defineEventHandler(async (event) => {
   const { data, error } = await client
     .from('codes')
     .update({
-      title: body.title, description: body.description, code: body.code,
+      title: body.title,
+      description: body.description,
+      code: body.code,
     })
     .eq('id', body.id)
     .select()

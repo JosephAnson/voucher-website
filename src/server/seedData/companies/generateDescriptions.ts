@@ -20,7 +20,8 @@ export default defineEventHandler(async () => {
           const { error } = await client
             .from('companies')
             .update({
-              name: company.name, description: company.description,
+              name: company.name,
+              description: company.description,
             })
             .eq('id', company.id)
 
@@ -60,7 +61,8 @@ export default defineEventHandler(async () => {
             const { error } = await client
               .from('companies')
               .update({
-                metaTitle: json.title, metaDescription: json.description,
+                metaTitle: json.title,
+                metaDescription: json.description,
               })
               .eq('id', company.id)
 

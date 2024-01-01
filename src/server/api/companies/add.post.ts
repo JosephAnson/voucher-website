@@ -19,7 +19,7 @@ async function checkIfCompanyExists(client: SupabaseClient<Database>, id: string
   }
 }
 
-export async function createCompany(client: SupabaseClient<Database>, { id, url, name, logo, approved = false }: { id: string; url: string; name: string; logo: string; approved: boolean }) {
+export async function createCompany(client: SupabaseClient<Database>, { id, url, name, logo, approved = false }: { id: string, url: string, name: string, logo: string, approved: boolean }) {
   const { data, error } = await client
     .from('companies')
     .insert({ id, url, name, logo, approved })

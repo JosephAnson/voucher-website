@@ -12,7 +12,6 @@ export default defineCachedEventHandler(async (event) => {
     .order('id')
 
   return data
-},
-{
+}, {
   maxAge: 60 * 60 * 24 * 7,
 })

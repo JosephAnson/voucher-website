@@ -1,7 +1,7 @@
 <template>
   <a
     href="#"
-    class="font-medium text-primary-600 hover:text-primary-500"
+    class="text-primary-600 font-medium hover:text-primary-500"
   >
     <slot />
   </a>

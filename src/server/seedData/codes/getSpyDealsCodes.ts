@@ -1,7 +1,7 @@
 import type { BrowserContext, Page } from 'playwright'
 import type { Code } from '~/types'
 
-const companiesMap: Record<string, { text?: string; href: string | null }> = {}
+const companiesMap: Record<string, { text?: string, href: string | null }> = {}
 let initialSearch = false
 
 export async function getSpyDealsCodes(context: BrowserContext, page: Page, name: string, language = 'en', SITE_URL = 'https://www.spydeals.co.uk/shops'): Promise<(Code | null)[]> {

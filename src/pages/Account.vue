@@ -16,7 +16,7 @@ const username = ref<string>(userStore.user.username || '')
       <Heading h1>
         Profile
       </Heading>
-      <p class="mt-1 text-sm leading-6 text-gray-600">
+      <p class="mt-1 text-sm text-gray-600 leading-6">
         This information will be displayed publicly so be careful what you share.
       </p>
 
