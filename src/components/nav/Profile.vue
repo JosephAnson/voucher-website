@@ -25,7 +25,7 @@ router.afterEach(() => {
     class="relative flex-shrink-0"
   >
     <div>
-      <MenuButton class="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+      <MenuButton class="flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
         <span class="sr-only">Open user menu</span>
         <NuxtImg
           v-if="userStore.user.avatar_url"

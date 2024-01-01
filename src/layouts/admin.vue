@@ -38,7 +38,7 @@ const sidebarOpen = ref(false)
             leave-from="translate-x-0"
             leave-to="-translate-x-full"
           >
-            <DialogPanel class="relative mr-16 flex w-full max-w-xs flex-1">
+            <DialogPanel class="relative mr-16 max-w-xs w-full flex flex-1">
               <TransitionChild
                 as="template"
                 enter="ease-in-out duration-300"
@@ -48,10 +48,10 @@ const sidebarOpen = ref(false)
                 leave-from="opacity-100"
                 leave-to="opacity-0"
               >
-                <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
+                <div class="absolute left-full top-0 w-16 flex justify-center pt-5">
                   <button
                     type="button"
-                    class="-m-2.5 p-2.5"
+                    class="p-2.5 -m-2.5"
                     @click="sidebarOpen = false"
                   >
                     <span class="sr-only">Close sidebar</span>
@@ -71,15 +71,15 @@ const sidebarOpen = ref(false)
     </TransitionRoot>
 
     <!-- Static sidebar for desktop -->
-    <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+    <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:w-72 lg:flex lg:flex-col">
       <AdminSidebarNavigation />
     </div>
 
     <div class="lg:pl-72">
-      <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+      <div class="sticky top-0 z-40 h-16 flex shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 lg:px-8 sm:px-6">
         <button
           type="button"
-          class="-m-2.5 p-2.5 text-gray-700 lg:hidden"
+          class="p-2.5 text-gray-700 -m-2.5 lg:hidden"
           @click="sidebarOpen = true"
         >
           <span class="sr-only">Open sidebar</span>
@@ -99,7 +99,7 @@ const sidebarOpen = ref(false)
       </div>
 
       <main class="py-10">
-        <div class="px-4 sm:px-6 lg:px-8">
+        <div class="px-4 lg:px-8 sm:px-6">
           <slot />
         </div>
       </main>

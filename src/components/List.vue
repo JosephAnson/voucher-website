@@ -19,7 +19,7 @@ const props = defineProps<{
   title: string
   api: string
   pageLimit: number
-  categories?: { id: number | null; category: string }[]
+  categories?: { id: number | null, category: string }[]
 }>()
 
 const mobileFiltersOpen = ref(false)
@@ -94,7 +94,7 @@ function setPage(pageNumber: number) {
           leave-from="translate-x-0"
           leave-to="translate-x-full"
         >
-          <DialogPanel class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-2 pb-12 shadow-xl">
+          <DialogPanel class="relative ml-auto h-full max-w-xs w-full flex flex-col overflow-y-auto bg-white py-2 pb-12 shadow-xl">
             <div class="flex items-center justify-between px-4">
               <Heading
                 h2
@@ -104,7 +104,7 @@ function setPage(pageNumber: number) {
               </Heading>
               <button
                 type="button"
-                class="flex h-10 w-10 items-center justify-center rounded-md text-gray-400"
+                class="h-10 w-10 flex items-center justify-center rounded-md text-gray-400"
                 @click="mobileFiltersOpen = false"
               >
                 <span class="sr-only">Close menu</span>
@@ -122,7 +122,7 @@ function setPage(pageNumber: number) {
               </h3>
               <ul
                 role="list"
-                class="px-2 py-1 font-medium text-gray-900"
+                class="px-2 py-1 text-gray-900 font-medium"
               >
                 <li
                   v-for="categoryItem in props.categories"
@@ -165,10 +165,10 @@ function setPage(pageNumber: number) {
         class="relative inline-block text-left"
       >
         <div>
-          <MenuButton class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
+          <MenuButton class="group inline-flex justify-center text-sm text-gray-700 font-medium hover:text-gray-900">
             Sort&nbsp;<span class="hidden md:inline">by: {{ $t(`sortOptions.${sort}`) }} </span>
             <ChevronDownIcon
-              class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+              class="ml-1 h-5 w-5 flex-shrink-0 text-gray-400 -mr-1 group-hover:text-gray-500"
               aria-hidden="true"
             />
           </MenuButton>
@@ -204,7 +204,7 @@ function setPage(pageNumber: number) {
       <button
         v-if="props.categories"
         type="button"
-        class="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
+        class="ml-4 p-2 text-gray-400 -m-2 sm:ml-6 lg:hidden hover:text-gray-500"
         @click="mobileFiltersOpen = true"
       >
         <span class="sr-only">Categories</span>
@@ -234,7 +234,7 @@ function setPage(pageNumber: number) {
         </Heading>
         <ul
           role="list"
-          class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
+          class="border-b border-gray-200 pb-6 text-sm text-gray-900 font-medium space-y-4"
         >
           <li
             v-for="categoryItem in props.categories"

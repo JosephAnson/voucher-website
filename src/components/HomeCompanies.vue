@@ -16,7 +16,7 @@ const companyCount = computed(() => companies.value?.length)
     />
   </div>
   <div class="mt-16 flex justify-center">
-    <p class="relative rounded-full bg-gray-50 px-4 py-1.5 text-sm leading-6 text-gray-600 ring-1 ring-inset ring-gray-900/5">
+    <p class="relative rounded-full bg-gray-50 px-4 py-1.5 text-sm text-gray-600 leading-6 ring-1 ring-gray-900/5 ring-inset">
       <span class="hidden md:inline">Get voucher codes for over {{ companyCount }} companies.</span>
     </p>
   </div>

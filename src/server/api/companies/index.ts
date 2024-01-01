@@ -9,12 +9,7 @@ const sortMapping = {
 }
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event) as {
-    sort?: string
-    page?: string
-    limit?: string
-    category?: string
-  }
+  const query = getQuery(event)
 
   const client = await serverSupabaseClient<Database>(event)
 

@@ -62,12 +62,12 @@ watch(selectedCompany, () => {
     <div class="relative">
       <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
         <div
-          class="h-5 w-5 text-gray-400 i-carbon-search z-2"
+          class="i-carbon-search z-2 h-5 w-5 text-gray-400"
           aria-hidden="true"
         />
       </div>
       <div class="flex items-center space-x-2">
-        <div class="relative  flex items-center w-full">
+        <div class="relative w-full flex items-center">
           <Combobox
             v-model="selectedCompany"
             as="div"
@@ -82,12 +82,12 @@ watch(selectedCompany, () => {
               <ComboboxInput
                 ref="input"
                 aria-autocomplete="none"
-                class="w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-1.5 md:pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                class="w-full border-0 rounded-md bg-white py-1.5 pl-10 pr-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 ring-inset md:pr-12 sm:text-sm sm:leading-6 focus:ring-2 focus:ring-primary-600 focus:ring-inset"
                 :display-value="(person) => person?.name"
                 @change="search = $event.target.value"
                 @keydown.enter="searchCompanies(search)"
               />
-              <ComboboxButton class="absolute inset-y-0 right-8 hidden md:flex items-center rounded-r-md px-2 focus:outline-none hidden md:flex">
+              <ComboboxButton class="absolute inset-y-0 right-8 hidden hidden items-center rounded-r-md px-2 md:flex md:flex focus:outline-none">
                 <ChevronUpDownIcon
                   class="h-5 w-5 text-gray-400"
                   aria-hidden="true"
@@ -104,7 +104,7 @@ watch(selectedCompany, () => {
               >
                 <ComboboxOptions
                   v-if="filteredCompanies.length > 0 || search"
-                  class="absolute bottom-100% md:bottom-auto z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                  class="absolute bottom-100% z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 md:bottom-auto sm:text-sm focus:outline-none"
                 >
                   <ComboboxOption
                     v-if="search && filteredCompanies.length <= 0"
@@ -153,8 +153,8 @@ watch(selectedCompany, () => {
               </transition>
             </div>
           </Combobox>
-          <div class="absolute inset-y-0 right-0 py-1.5 pr-1.5 hidden md:flex">
-            <kbd class="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400">⌘K</kbd>
+          <div class="absolute inset-y-0 right-0 hidden py-1.5 pr-1.5 md:flex">
+            <kbd class="inline-flex items-center border border-gray-200 rounded px-1 text-xs text-gray-400 font-sans">⌘K</kbd>
           </div>
         </div>
         <Button

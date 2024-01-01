@@ -13,11 +13,11 @@ const codeCount = computed(() => props.codes.length)
 
 <template>
   <li
-    class="overflow-hidden rounded-xl border bg-white"
+    class="overflow-hidden border rounded-xl bg-white"
   >
     <NuxtLink
       :to="`/companies/${props.id}`"
-      class="flex flex-col h-full"
+      class="h-full flex flex-col"
     >
       <div class="flex flex-grow-1 justify-between gap-x-4 p-4 pb-0">
         <div>
@@ -43,7 +43,7 @@ const codeCount = computed(() => props.codes.length)
           format="webp"
         />
       </div>
-      <div class="p-4 flex gap-x-4 justify-between">
+      <div class="flex justify-between gap-x-4 p-4">
         <div class="flex gap-x-4">
           <Button
             theme="transparent"

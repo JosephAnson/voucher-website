@@ -3,7 +3,7 @@ import type { Database } from '~/supabase.types'
 import type { SORTS } from '~/types'
 import { SORT_OPTIONS } from '~/types'
 
-type SortMapping = Record<SORTS, { sort: string; ascending: boolean }>
+type SortMapping = Record<SORTS, { sort: string, ascending: boolean }>
 function getSort(sort: string, sortMapping: SortMapping, defaultSort: SORTS): {
   sort: string
   ascending: boolean

@@ -1,34 +1,47 @@
-FROM node:18-alpine as base
+# Step 1: Use a base image with Node.js. Nuxt 3 requires Node.js 14 or later.
+FROM node:18-alpine
 
-# install required packages for node image
-RUN apk add openssh g++ make python3 git
+ENV NITRO_PRESET node-server
 
-# create work directory in app folder
-WORKDIR /src
+ARG SUPABASE_URL
+ARG SUPABASE_KEY
+ARG OPENAI_API_KEY
+ARG KV_URL
+ARG KV_REST_API_URL
+ARG KV_REST_API_TOKEN
+ARG KV_REST_API_READ_ONLY_TOKEN
 
-ENV NODE_ENV=production
-ENV PORT=3000
+ENV SUPABASE_URL=${SUPABASE_URL}
+ENV SUPABASE_KEY=${SUPABASE_KEY}
+ENV OPENAI_API_KEY=${OPENAI_API_KEY}
+ENV KV_URL=${KV_URL}
+ENV KV_REST_API_URL=${KV_REST_API_URL}
+ENV KV_REST_API_TOKEN=${KV_REST_API_TOKEN}
+ENV KV_REST_API_READ_ONLY_TOKEN=${KV_REST_API_READ_ONLY_TOKEN}
 
-# copy the app, note .dockerignore
-COPY --link package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --production=false
 
-# Lint
-FROM base as lint
+# Step 2: Set the working directory in the container
+WORKDIR /app
+
+# Step 3: Install pnpm
+RUN npm install -g pnpm
+
+# Step 4: Copy the package.json and pnpm-lock.yaml (or pnpm-workspace.yaml if you use workspaces)
+# files into the working directory
+COPY package.json pnpm-lock.yaml ./
+
+# Step 5: Install dependencies using pnpm.
+# The --frozen-lockfile option ensures that the installed packages match the lockfile.
+RUN pnpm install --frozen-lockfile
+
+# Step 6: Copy the rest of the application code into the working directory
 COPY . .
-RUN npm run lint
 
-# Build
-FROM base AS build
-COPY . .
-RUN yarn run build
+# Step 7: Build the application if needed. This step can be omitted if you're running a development server.
+RUN pnpm build
 
-# Copy the build output and node_modules
-FROM base AS release
-COPY --from=build /src/.output /src/.output
+# Step 8: Expose the port that Nuxt will run on
+ENV EXPOSE 3000
 
-# Expose the port
-EXPOSE 3000
-
-# Run
-CMD [ "node", ".output/server/index.mjs" ]
+# Step 10: Build the application
+CMD ["node", ".output/server/index.mjs"]

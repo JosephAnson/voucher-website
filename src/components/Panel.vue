@@ -12,7 +12,7 @@ const props = defineProps<{
 <template>
   <div class="bg-white shadow sm:rounded-lg">
     <div class="px-4 py-5 sm:p-6">
-      <h3 class="text-base font-semibold leading-6 text-gray-900">
+      <h3 class="text-base text-gray-900 font-semibold leading-6">
         {{ props.title }}
       </h3>
       <div class="mt-2 max-w-xl text-sm text-gray-500">
@@ -24,7 +24,7 @@ const props = defineProps<{
       >
         <a
           :href="props.link.href"
-          class="font-semibold text-primary-600 hover:text-primary-500"
+          class="text-primary-600 font-semibold hover:text-primary-500"
         >
           {{ props.link.text }}
           <span aria-hidden="true"> &rarr;</span>

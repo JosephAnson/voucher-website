@@ -25,7 +25,7 @@ async function updatePassword() {
 
 <template>
   <Section class="bg-gray-100">
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="sm:mx-auto sm:max-w-md sm:w-full">
       <Heading
         h1
         class="text-center"
@@ -34,7 +34,7 @@ async function updatePassword() {
       </Heading>
     </div>
 
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="mt-8 sm:mx-auto sm:max-w-md sm:w-full">
       <div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
         <form
           action="#"

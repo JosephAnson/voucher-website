@@ -15,14 +15,14 @@ provide('error', props.error)
 
 <template>
   <div
-    class="field items-center mb-4 last-child:mb-0"
+    class="field last-child:mb-0 mb-4 items-center"
     :class="{ flex: !props.stacked }"
   >
     <slot name="label">
       <label
         v-if="props.label"
         :for="props.labelFor"
-        class="label mr-4 inline-block text-sm font-medium leading-6 text-gray-900"
+        class="label mr-4 inline-block text-sm text-gray-900 font-medium leading-6"
 
         :class="{ 'mb-2': props.stacked }"
       >
@@ -32,13 +32,13 @@ provide('error', props.error)
     <slot />
     <p
       v-if="props.message"
-      class="mt-1 text-xs leading-6 text-gray-600"
+      class="mt-1 text-xs text-gray-600 leading-6"
     >
       {{ props.message }}
     </p>
     <p
       v-if="props.error"
-      class="mt-1 text-xs leading-6 text-red-600"
+      class="mt-1 text-xs text-red-600 leading-6"
     >
       {{ props.error }}
     </p>

@@ -20,7 +20,7 @@ const component = computed(() => {
 </script>
 
 <template>
-  <div class="bg-white shadow rounded-2xl p-1 md:p-2 flex items-center justify-center flex-col w-full h-full">
+  <div class="h-full w-full flex flex-col items-center justify-center rounded-2xl bg-white p-1 shadow md:p-2">
     <Component
       :is="component"
       :to="props.to"
@@ -28,7 +28,7 @@ const component = computed(() => {
     >
       <NuxtImg
         v-if="props.imageSrc"
-        class="w-full rounded-xl mb-2 last:mb-0 flex-grow-1"
+        class="mb-2 w-full flex-grow-1 rounded-xl last:mb-0"
         :src="props.imageSrc"
         :alt="props?.imageAlt || props?.title || ''"
         :width="props?.imageWidth || ''"
@@ -39,7 +39,7 @@ const component = computed(() => {
       />
       <h3
         v-if="props.title"
-        class="text-sm text-center"
+        class="text-center text-sm"
       >
         {{ props.title }}
       </h3>

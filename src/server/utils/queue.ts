@@ -1,6 +1,6 @@
 export class Queue {
   running: boolean
-  tasks: { task: (() => Promise<void>); timeout: number }[]
+  tasks: { task: (() => Promise<void>), timeout: number }[]
 
   constructor() {
     this.tasks = []

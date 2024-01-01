@@ -1,6 +1,3 @@
-<script setup lang="ts">
-</script>
-
 <template>
   <div>
     <Section class="bg-gray-100 py-12 text-center">
@@ -11,7 +8,7 @@
 
         <div class="flex justify-center">
           <div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
-            <div class="prose prose-center">
+            <div class="prose-center prose">
               <p>
                 Check your email for the confirmation link, after confirming you will be able to sign in.
               </p>

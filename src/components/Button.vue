@@ -23,7 +23,7 @@ const component = computed(() => {
     :is="component"
     :to="props.to"
     type="button"
-    class="flex-shrink-0 font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+    class="flex-shrink-0 font-semibold shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline"
     :class="{
       'text-xs px-2.5 py-1': props.size === 'xs',
       'text-sm px-2.5 py-1': props.size === 'sm',

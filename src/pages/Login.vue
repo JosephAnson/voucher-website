@@ -18,13 +18,13 @@ const password = ref('')
       {{ ' ' }}
       <NuxtLink
         to="/signup"
-        class="font-medium text-primary-600 hover:text-primary-500"
+        class="text-primary-600 font-medium hover:text-primary-500"
       >
         Sign up
       </NuxtLink>
     </p>
 
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="mt-8 sm:mx-auto sm:max-w-md sm:w-full">
       <div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
         <form
           class="space-y-6"
@@ -51,10 +51,10 @@ const password = ref('')
             label-for="password"
           >
             <template #label>
-              <div class="flex justify-between mb-2">
+              <div class="mb-2 flex justify-between">
                 <label
                   for="password"
-                  class="label mr-4 inline-block text-sm font-medium leading-6 text-gray-900"
+                  class="label mr-4 inline-block text-sm text-gray-900 font-medium leading-6"
                 >
                   Password
                 </label>
@@ -119,11 +119,11 @@ const password = ref('')
             </div>
           </div>
 
-          <div class="mt-6 grid grid-cols-3 gap-3">
+          <div class="grid grid-cols-3 mt-6 gap-3">
             <div>
               <a
                 href="#"
-                class="inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
+                class="w-full inline-flex justify-center rounded-md bg-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:outline-offset-0"
                 @click.prevent="userStore.signInWithSocial({ provider: 'google' })"
               >
                 <span class="sr-only">Sign in with Google</span>

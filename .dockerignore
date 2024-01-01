@@ -2,7 +2,8 @@
 /.nuxt
 /.output
 /node_modules
-
+.git
 .gitignore
 .env
+.github
 README.md

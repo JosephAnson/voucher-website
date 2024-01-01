@@ -9,12 +9,7 @@ export default defineEventHandler(async (event) => {
   if (user) {
     try {
       const client = await serverSupabaseClient<Database>(event)
-      const query = getQuery(event) as {
-        sort?: string
-        page?: string
-        limit?: string
-        category?: string
-      }
+      const query = getQuery(event)
 
       const { data, count } = await generateListQuery({
         sort: query?.sort,

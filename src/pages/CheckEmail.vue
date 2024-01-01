@@ -11,7 +11,7 @@
 
         <div class="flex justify-center">
           <div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
-            <div class="prose prose-center">
+            <div class="prose-center prose">
               <p>
                 Check your email for the magic sign in link, which allows you to sign in without a password
               </p>

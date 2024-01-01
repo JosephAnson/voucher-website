@@ -6,7 +6,7 @@ const props = defineProps<{
 
 <template>
   <div
-    class="flex grid gap-2"
+    class="grid flex gap-2"
     :class="{ 'flex-wrap': props.wrap }"
   >
     <slot />

@@ -27,7 +27,7 @@ const navigation: NavigationItem[] = [
 
 <template>
   <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10">
-    <div class="flex h-16 shrink-0 items-center">
+    <div class="h-16 flex shrink-0 items-center">
       <img
         class="h-8 w-auto"
         src="/logo.svg"
@@ -42,7 +42,7 @@ const navigation: NavigationItem[] = [
         <li>
           <NuxtLink
             to="/"
-            class="flex items-center gap-x-3 rounded-md text-xs leading-6 font-semibold text-gray-400 hover:text-white -mb-3"
+            class="flex items-center gap-x-3 rounded-md text-xs text-gray-400 font-semibold leading-6 -mb-3 hover:text-white"
           >
             <div
               class="i-carbon-arrow-left h-3 w-3 shrink-0"
@@ -57,7 +57,7 @@ const navigation: NavigationItem[] = [
           <li v-if="!item?.children">
             <NuxtLink
               :to="item.to"
-              class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-400 hover:text-white hover:bg-gray-800"
+              class="group flex gap-x-3 rounded-md p-2 text-sm text-gray-400 font-semibold leading-6 hover:bg-gray-800 hover:text-white"
               exact-active-class="bg-gray-800 !text-white"
             >
               <div
@@ -69,7 +69,7 @@ const navigation: NavigationItem[] = [
             </NuxtLink>
           </li>
           <li v-else>
-            <div class="text-xs font-semibold leading-6 text-gray-400">
+            <div class="text-xs text-gray-400 font-semibold leading-6">
               {{ item.name }}
             </div>
             <ul
@@ -82,12 +82,12 @@ const navigation: NavigationItem[] = [
               >
                 <NuxtLink
                   :to="child.to"
-                  class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-400 hover:text-white hover:bg-gray-800"
+                  class="group flex gap-x-3 rounded-md p-2 text-sm text-gray-400 font-semibold leading-6 hover:bg-gray-800 hover:text-white"
                   exact-active-class="bg-gray-800 !text-white"
                 >
                   <span
                     v-if="child.initial"
-                    class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
+                    class="h-6 w-6 flex shrink-0 items-center justify-center border border-gray-700 rounded-lg bg-gray-800 text-[0.625rem] text-gray-400 font-medium group-hover:text-white"
                   >
                     {{ child.initial }}
                   </span>
