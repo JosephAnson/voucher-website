@@ -85,7 +85,7 @@ export const useUserStore = defineStore('user', {
     },
     async signOut() {
       const router = useRouter()
-      const client = useSupabaseAuthClient()
+      const client = useSupabaseClient()
 
       const { error } = await client.auth.signOut()
 
@@ -99,7 +99,7 @@ export const useUserStore = defineStore('user', {
     },
     async signInWithSocial({ provider }: { provider: 'discord' | 'google' }) {
       const router = useRouter()
-      const client = useSupabaseAuthClient()
+      const client = useSupabaseClient()
 
       const { error } = await client.auth.signInWithOAuth({
         provider,
@@ -112,7 +112,7 @@ export const useUserStore = defineStore('user', {
     },
     async signInWithEmail({ email, password }: { email: string; password: string }) {
       const router = useRouter()
-      const client = useSupabaseAuthClient()
+      const client = useSupabaseClient()
 
       const { error } = await client.auth.signInWithPassword({
         email,
@@ -128,7 +128,7 @@ export const useUserStore = defineStore('user', {
       }
     },
     async signUpWithEmail({ email, password, username }: { email: string; password: string; username: string }) {
-      const client = useSupabaseAuthClient()
+      const client = useSupabaseClient()
       const router = useRouter()
 
       const { error } = await client.auth.signUp(
@@ -146,7 +146,7 @@ export const useUserStore = defineStore('user', {
         await router.push('/confirmEmail')
     },
     async signInWithOtp({ email }: { email: string }) {
-      const client = useSupabaseAuthClient()
+      const client = useSupabaseClient()
       const router = useRouter()
 
       const { error } = await client.auth.signInWithOtp({
@@ -162,13 +162,13 @@ export const useUserStore = defineStore('user', {
       }
     },
     async updatePassword({ newPassword }: { newPassword: string }) {
-      const client = useSupabaseAuthClient()
+      const client = useSupabaseClient()
 
       return client.auth
         .updateUser({ password: newPassword })
     },
     async forgotPassword({ email }: { email: string }) {
-      const client = useSupabaseAuthClient()
+      const client = useSupabaseClient()
       const router = useRouter()
 
       const { error, data } = await client.auth
