@@ -48,7 +48,7 @@
     "sass": "^1.69.6",
     "typescript": "^5.3.3",
     "@unocss/eslint-plugin": "^0.58.2",
-    "unocss": "^0.58.2"
+    "unocss": "^0.58.3"
   },
   "resolutions": {
     "consola": "^3.2.3"
