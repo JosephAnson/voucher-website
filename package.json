@@ -39,7 +39,7 @@
     "playwright-aws-lambda": "^0.10.0",
     "@nuxtjs/supabase": "^1.1.5",
     "@pinia/nuxt": "^0.5.1",
-    "@unocss/nuxt": "^0.58.2",
+    "@unocss/nuxt": "^0.58.3",
     "@unocss/reset": "^0.58.2",
     "nuxt-scheduler": "^0.1.9",
     "openai": "^4.24.1",
