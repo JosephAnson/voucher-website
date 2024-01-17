@@ -42,7 +42,7 @@
     "eslint": "8.55.0",
     "nuxt": "^3.9.0",
     "nuxt-scheduler": "^0.1.9",
-    "nuxt-schema-org": "^3.3.0",
+    "nuxt-schema-org": "^3.3.3",
     "openai": "^4.24.1",
     "playwright": "^1.40.1",
     "playwright-aws-lambda": "^0.10.0",
