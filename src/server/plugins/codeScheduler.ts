@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import { config } from 'dotenv'
 import consola from 'consola'
 import { useScheduler } from '#scheduler'
@@ -11,30 +11,38 @@ config()
 
 export default defineNitroPlugin(() => {
   // eslint-disable-next-line node/prefer-global/process
-  if (process.env.APP_ENV === 'build') {
+  if (process.env.APP_ENV === 'build')
     consola.log('[server/plugins/scheduler.ts] Skipping scheduler, in build context')
-    return
-  }
 
-  const scheduler = useScheduler()
+  startScheduler()
+})
 
-  const client = createClient<Database>(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
+function createClient() {
+  // eslint-disable-next-line node/prefer-global/process
+  return createSupabaseClient<Database>(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
     auth: { persistSession: false, autoRefreshToken: true },
   })
+}
+
+function startScheduler() {
+  const scheduler = useScheduler()
 
   scheduler.run(async () => {
+    const client = createClient()
     await seedCodes(client)
   }).everyDays(1)
 
   scheduler.run(async () => {
+    const client = createClient()
     await seedCompanies(client)
   }).everyDays(10)
 
   scheduler.run(async () => {
+    const client = createClient()
     await deleteOldCodes(client)
   }).everyDays(10)
 
   /*  scheduler.run(async () => {
-    await generateDescriptions(client)
-  }).yearly() */
-})
+   await generateDescriptions(client)
+ }).yearly() */
+}

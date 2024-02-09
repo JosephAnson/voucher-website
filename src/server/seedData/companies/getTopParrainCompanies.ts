@@ -54,7 +54,6 @@ export async function getTopParrainCompanies(language = 'en', SITE_URL = 'https:
   }
 
   await page.close()
-
   await browser.close()
 
   return items

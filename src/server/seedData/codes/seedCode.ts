@@ -87,6 +87,7 @@ export async function seedCode(client: SupabaseClient<Database>, company: any) {
       }
 
       await page.close()
+      await browser.close()
     }
     catch (error) {
       console.log('error', error)
