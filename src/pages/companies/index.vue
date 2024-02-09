@@ -14,6 +14,7 @@ const categories = computed(() => {
     <Container>
       <main>
         <List
+          v-if="categories?.length"
           title="Companies"
           api="/api/companies"
           :page-limit="24"

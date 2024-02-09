@@ -7,5 +7,8 @@ export default antfu(
     typescript: {
       tsconfigPath: 'tsconfig.json',
     },
+    rules: {
+      'node/prefer-global/process': 'off',
+    },
   },
 )

@@ -24,7 +24,7 @@ export function generateListQuery({ sort, page, limit, query: supabaseQuery, sor
 
   if (sort) {
     const newSort = getSort(sort, sortMapping, 'ALPHABETICAL')
-    newSupabaseQuery = newSupabaseQuery.order(newSort.sort, { foreignTable: sortForeignTable || '', ascending: newSort.ascending })
+    newSupabaseQuery = newSupabaseQuery.order(newSort.sort, { referencedTable: sortForeignTable || '', ascending: newSort.ascending })
   }
 
   if (limit && page) {

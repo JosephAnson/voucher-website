@@ -91,8 +91,41 @@ export default defineNuxtConfig({
       routes: ['/'],
     },
     storage: {
-      cache: { driver: 'vercelKV' },
-      data: { driver: 'vercelKV' },
+      cache: {
+        driver: 'redis',
+        host: `${process.env.REDIS_HOST}`,
+        port: 6379, // Redis port
+        username: 'default', // needs Redis >= 6
+        password: `${process.env.REDIS_PASSWORD}`,
+        db: 0, // Defaults to 0
+      },
+      data: {
+        driver: 'redis',
+        host: `${process.env.REDIS_HOST}`,
+        port: 6379, // Redis port
+        username: 'default', // needs Redis >= 6
+        password: `${process.env.REDIS_PASSWORD}`,
+        db: 0, // Defaults to 0
+      },
+    },
+    // Development
+    devStorage: {
+      cache: {
+        driver: 'redis',
+        host: `${process.env.REDIS_HOST}`,
+        port: 6379, // Redis port
+        username: 'default', // needs Redis >= 6
+        password: `${process.env.REDIS_PASSWORD}`,
+        db: 0, // Defaults to 0
+      },
+      data: {
+        driver: 'redis',
+        host: `${process.env.REDIS_HOST}`,
+        port: 6379, // Redis port
+        username: 'default', // needs Redis >= 6
+        password: `${process.env.REDIS_PASSWORD}`,
+        db: 0, // Defaults to 0
+      },
     },
   },
   supabase: {

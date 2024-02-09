@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     .from('companies')
     .select(COMPANY_COLUMNS)
     .eq('codes.language', 'en')
-    .order('featured', { foreignTable: '', ascending: false })
+    .order('featured', { referencedTable: '', ascending: false })
     .limit(limit)
 
   return data
