@@ -1,6 +1,5 @@
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import { config } from 'dotenv'
-import consola from 'consola'
 import { useScheduler } from '#scheduler'
 import { seedCompanies } from '~/server/seedData/companies/seedCompanies'
 import { seedCodes } from '~/server/seedData/codes/seedCodes'
@@ -10,15 +9,15 @@ import type { Database } from '~/supabase.types'
 config()
 
 export default defineNitroPlugin(() => {
-  // eslint-disable-next-line node/prefer-global/process
-  if (process.env.APP_ENV === 'build')
-    consola.log('[server/plugins/scheduler.ts] Skipping scheduler, in build context')
+  if (process.env.APP_ENV === 'build') {
+    console.log('[server/plugins/scheduler.ts] Skipping scheduler, in build context')
+    return
+  }
 
   startScheduler()
 })
 
 function createClient() {
-  // eslint-disable-next-line node/prefer-global/process
   return createSupabaseClient<Database>(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
     auth: { persistSession: false, autoRefreshToken: true },
   })
