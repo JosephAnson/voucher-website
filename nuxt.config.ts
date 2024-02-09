@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   devtools: true,
   app: {
     head: {
-      titleTemplate: (titleChunk) => {
+      titleTemplate: (titleChunk: string): string => {
         return titleChunk ? `${titleChunk} - VouchersDiscountsCodes` : 'VouchersDiscountsCodes - Save Big with the Latest Deals and Promo Codes'
       },
       meta: [
