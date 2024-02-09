@@ -97,7 +97,7 @@ export default defineNuxtConfig({
         port: 6379, // Redis port
         username: 'default', // needs Redis >= 6
         password: `${process.env.REDIS_PASSWORD}`,
-        db: 0, // Defaults to 0
+        db: 3, // Defaults to 0
       },
       data: {
         driver: 'redis',
@@ -105,7 +105,7 @@ export default defineNuxtConfig({
         port: 6379, // Redis port
         username: 'default', // needs Redis >= 6
         password: `${process.env.REDIS_PASSWORD}`,
-        db: 0, // Defaults to 0
+        db: 3, // Defaults to 0
       },
     },
     // Development
@@ -116,7 +116,7 @@ export default defineNuxtConfig({
         port: 6379, // Redis port
         username: 'default', // needs Redis >= 6
         password: `${process.env.REDIS_PASSWORD}`,
-        db: 0, // Defaults to 0
+        db: 3, // Defaults to 0
       },
       data: {
         driver: 'redis',
@@ -124,7 +124,7 @@ export default defineNuxtConfig({
         port: 6379, // Redis port
         username: 'default', // needs Redis >= 6
         password: `${process.env.REDIS_PASSWORD}`,
-        db: 0, // Defaults to 0
+        db: 3, // Defaults to 0
       },
     },
   },

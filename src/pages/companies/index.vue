@@ -4,7 +4,7 @@ const { data: _categories } = await useFetch('/api/categories')
 const categories = computed(() => {
   return [
     { id: null, category: 'All' },
-    ..._categories.value,
+    ...(_categories?.value || []),
   ]
 })
 </script>
