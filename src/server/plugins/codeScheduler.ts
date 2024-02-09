@@ -9,7 +9,7 @@ import type { Database } from '~/supabase.types'
 
 config()
 
-export default defineNitroPlugin(async () => {
+export default defineNitroPlugin(() => {
   // eslint-disable-next-line node/prefer-global/process
   if (process.env.APP_ENV === 'build') {
     consola.log('[server/plugins/scheduler.ts] Skipping scheduler, in build context')
@@ -22,17 +22,15 @@ export default defineNitroPlugin(async () => {
     auth: { persistSession: false, autoRefreshToken: true },
   })
 
-  await seedCompanies(client)
-  await seedCodes(client)
-  // await generateDescriptions(client)
-  await deleteOldCodes(client)
-
   scheduler.run(async () => {
     await seedCodes(client)
   }).everyDays(1)
 
   scheduler.run(async () => {
     await seedCompanies(client)
+  }).everyDays(10)
+
+  scheduler.run(async () => {
     await deleteOldCodes(client)
   }).everyDays(10)
 

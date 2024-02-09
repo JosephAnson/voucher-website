@@ -9,7 +9,7 @@ export async function getSpyDealsCodes(context: BrowserContext, page: Page, name
     const sections = ['/a-d', '/e-g', '/h-k', '/l-o', '/p-s', '/t-w', '/x-z', '/0-9']
 
     for (const section of sections) {
-      await page.goto(SITE_URL + section, { timeout: 100000 })
+      await page.goto(SITE_URL + section)
       await page.waitForLoadState('load') // Wait for the "load" event
 
       const companies = await page.evaluate(() => {
@@ -40,7 +40,7 @@ export async function getSpyDealsCodes(context: BrowserContext, page: Page, name
   const companyUrl = await getCompanyUrl(page, name)
 
   if (companyUrl) {
-    await page.goto(`${companyUrl}`, { timeout: 100000 })
+    await page.goto(`${companyUrl}`)
     await page.waitForLoadState('load') // Wait for the "load" event
 
     const vouchers = await page.evaluate(() => {
@@ -64,7 +64,7 @@ export async function getSpyDealsCodes(context: BrowserContext, page: Page, name
       if (voucher.href && voucher.voucherId) {
         await context.addCookies([{ name: 'show-voucher', value: voucher.voucherId, url: SITE_URL }])
 
-        await page.goto(`${companyUrl}`, { timeout: 100000 })
+        await page.goto(`${companyUrl}`)
 
         const code = await page.evaluate(() => {
           const code = document.querySelector('.copy-voucher-btn.copy-voucher-code')

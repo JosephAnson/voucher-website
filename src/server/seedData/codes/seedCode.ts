@@ -37,7 +37,7 @@ export async function seedCode(client: SupabaseClient<Database>, company: any) {
   if (!company.url)
     return 'No company url provided'
 
-  const browser = await chromium.launch({ headless: true, timeout: 1000000 })
+  const browser = await chromium.launch({ headless: true })
   const context = await browser.newContext()
 
   const { data: allCodes } = await client
