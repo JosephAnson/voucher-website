@@ -1,4 +1,4 @@
-import { chromium } from 'playwright'
+import type { BrowserContext } from 'playwright'
 import { convertUrlToId } from '~/utils/convertUrlToId'
 
 interface Company {
@@ -8,12 +8,10 @@ interface Company {
   id: string
 }
 
-export async function getTopParrainCompanies(language = 'en', SITE_URL = 'https://www.topparrain.com') {
+export async function getTopParrainCompanies(context: BrowserContext, language = 'en', SITE_URL = 'https://www.topparrain.com') {
   const items: Company[] = []
 
-  const browser = await chromium.launch({ headless: true })
-
-  const page = await browser.newPage()
+  const page = await context.newPage()
 
   for (let i = 0; i < 5; i++) {
     await page.goto(`${SITE_URL}/${language}/companies?page=${i}`)
@@ -54,7 +52,6 @@ export async function getTopParrainCompanies(language = 'en', SITE_URL = 'https:
   }
 
   await page.close()
-  await browser.close()
 
   return items
 }

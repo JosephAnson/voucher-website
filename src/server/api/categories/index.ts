@@ -15,4 +15,5 @@ export default cachedEventHandler(async (event: H3Event<Request>) => {
   return data
 }, {
   maxAge: 60 * 60 * 24 * 7,
+  swr: true,
 })

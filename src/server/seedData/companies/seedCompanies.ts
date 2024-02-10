@@ -1,14 +1,15 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
+import type { BrowserContext } from 'playwright'
 import { createCompany } from '~/server/api/companies/add.post'
 import { createGuid } from '~/utils/createGuid'
 import { getAllCompanies } from '~/server/seedData/service/getAllCompanies'
 import type { Database } from '~/supabase.types'
 import { getTopParrainCompanies } from '~/server/seedData/companies/getTopParrainCompanies'
 
-export async function seedCompanies(client: SupabaseClient<Database>) {
+export async function seedCompanies(context: BrowserContext, client: SupabaseClient<Database>) {
   const { data: allCompanies } = await getAllCompanies(client)
 
-  const parrainCompaniesEN = await getTopParrainCompanies('en')
+  const parrainCompaniesEN = await getTopParrainCompanies(context, 'en')
 
   const companies = [...parrainCompaniesEN]
 

@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "APP_ENV=build nuxt build",
+    "build": "nuxt build",
     "dev": "nuxt dev",
     "docker:compose": "docker compose -f docker-compose.yml up --build ",
     "gen-types": "npx supabase gen types typescript --project-id \"vdzjsjlcezebwpavsjif\" --schema public > src/supabase.types.ts",

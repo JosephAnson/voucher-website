@@ -9,8 +9,7 @@ const sortMapping = {
 }
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event)
-
+  const query = getQuery<{ sort: string, page: string, limit: string, category: string }>(event)
   const client = await serverSupabaseClient<Database>(event)
 
   if (query?.category) {
@@ -25,6 +24,8 @@ export default defineEventHandler(async (event) => {
       sortForeignTable: 'company',
       sortMapping,
     })
+
+    console.log('query', query)
 
     if (query?.category)
       supabaseQuery = supabaseQuery.eq('category', query.category)
