@@ -44,7 +44,7 @@
     "nuxt": "^3.10.1",
     "nuxt-scheduler": "^0.1.9",
     "nuxt-schema-org": "^3.3.4",
-    "openai": "^4.27.0",
+    "openai": "^4.29.1",
     "sass": "^1.70.0",
     "typescript": "^5.3.3",
     "unocss": "^0.58.5"

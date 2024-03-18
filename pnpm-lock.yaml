@@ -89,8 +89,8 @@ devDependencies:
     specifier: ^3.3.4
     version: 3.3.4(@nuxt/devtools@1.0.8)(@unhead/shared@1.8.10)(@vue/compiler-core@3.4.18)(nuxt@3.10.1)(postcss@8.4.35)(rollup@4.9.6)(unhead@1.8.10)(vite@5.0.12)(vue@3.4.18)(webpack@5.90.1)
   openai:
-    specifier: ^4.27.0
-    version: 4.27.0
+    specifier: ^4.29.1
+    version: 4.29.1
   sass:
     specifier: ^1.70.0
     version: 1.70.0
@@ -2399,7 +2399,7 @@ packages:
   /@types/node-fetch@2.6.11:
     resolution: {integrity: sha512-24xFj9R5+rfQJLRyM56qh+wnVSYhyXC2tkoBndtY0U+vubqNsYXGjufB2nn8Q6gt0LrARwL6UBtMCSVCwl4B1g==}
     dependencies:
-      '@types/node': 18.19.15
+      '@types/node': 20.11.17
       form-data: 4.0.0
     dev: true
 
@@ -6893,8 +6893,8 @@ packages:
       is-docker: 2.2.1
       is-wsl: 2.2.0
 
-  /openai@4.27.0:
-    resolution: {integrity: sha512-j1ZEx9NiBpm31rxWqQTjQt1QvH/8001xHsc/pRoPjkRDYWONCb+qkR6L9C7Wl6ar72Mz1ybtn1bv6fqAoTPlKw==}
+  /openai@4.29.1:
+    resolution: {integrity: sha512-vvKRIgB4/7w48PGVbeR8OceH/PT6fRo4sTIjRC7+y7WoK7by1R0cXs2SZRx4KsEh0ZB8J0eqdVIdRgs8XzeoEg==}
     hasBin: true
     dependencies:
       '@types/node': 18.19.15
